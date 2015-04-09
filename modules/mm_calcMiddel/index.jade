@@ -1,0 +1,25 @@
+script(type='text/javascript').
+  (function() {
+    var $mbody = $('#mbody');
+    var $header = $('#header');
+    if($header.length > 0){
+      //980宽，因为上面还有个运营栏，高度比较高，因此不用再让内容居中了
+      if($('body').hasClass('w980')){
+        return;
+      }
+      //不太精确，先粗略按600算
+      var mbodyHeight = 600;
+      var winHeight = $(window).height();
+      var headerHeight = $header.height();
+      var footerHeight = 60;
+      var marginTop = Math.min(Math.max((winHeight - mbodyHeight) / 2 - headerHeight - footerHeight, 0), 60);
+      $mbody.css({
+        marginTop: marginTop
+      });
+    }else{
+      //没有导航的情况下，去掉margin，防止顶部出白边
+      $mbody.css({
+        marginTop: 0
+      });
+    }
+  })();

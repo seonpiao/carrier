@@ -1,0 +1,16 @@
+extends ../../layouts/layout
+block append head
+  title
+  if __env.NODE_ENV === "production"
+    link(type="text/css",rel="stylesheet",href="/css/page1.min.css")
+  else
+    link(type="text/css",rel="stylesheet",href="/css/page1.css")
+
+block append main
+  div 主内容
+
+block append footer
+  if __env.NODE_ENV === "production"
+    script(type="text/javascript",src="/js/page1.min.js")
+  else
+    script(type="text/javascript",src="/js/page1/main.js")

@@ -1,0 +1,206 @@
+extends ../../layouts/index
+block append title
+  title= girl.name + '的房间-女神的房间-玩乐云'
+
+block append stylesheet
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/index.5f412385d8455084.css', rel='stylesheet', type='text/css')
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/player3-980.d5d742e9483fd93d.css', rel='stylesheet', type='text/css')
+  style(type='text/css').
+    .paoMsg div {
+      position: absolute;
+      animation: text_marquee 8s;
+      -moz-animation: text_marquee 8s;
+      /* Firefox */
+      -webkit-animation: text_marquee 8s;
+      /* Safari and Chrome
+      */
+      -o-animation: text_marquee 8s;
+      /* Opera */
+      -webkit-animation-iteration-count: 1;
+    }
+    @keyframes text_marquee {
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    @-moz-keyframes text_marquee {
+      /* Firefox */
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    @-webkit-keyframes text_marquee {
+      /* Safari and Chrome */
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    @-o-keyframes text_marquee {
+      /* Opera */
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    .weibo_Con {
+      position: absolute;
+      z-index: 50;
+    }
+
+block append headjs
+  script(type='text/javascript')
+    != 'var girlid = ' + girl.girlid + ';'
+    != 'var girlname = "' + girl.name + '";'
+block append bg
+  include ../../../../modules/mm_roombg/index
+
+block append body
+  #header.header(data-module='header')
+  if query.from != '114la'
+    ul.active_box_980.ml_10.active_box_up.hide(data-module='activity')
+      include ../../../../modules/mm_activity980/index
+      li.BottleShow(data-module='bottle')
+          .bottle_s_2
+          p.wish_bottle_word
+  #mbody.indexMain.w1190.cl
+    include ../../../../modules/mm_calcMiddel/index
+    .leftsec
+      #girl.myLady(data-module='girl', girlid='1')
+      .angel-list(data-module='angelList')
+      include ../../../../modules/mm_chat/index
+    .midsec
+      #player
+        #flash(style='width:100%;height:370px;')
+          iframe(src='http://minisite.letv.com/tuiguang/index.shtml?streamid=hz_nsfj_800&typeFrom=wanleyun&ark=100&wmode=opaque&ref=wanleyun&cid=11', frameborder='0', style='width:100%;height:100%;')
+      #shop.game_list.pr(data-module='shop')
+        ul.cl.game_list_tab
+          li.on(data-type='game')
+            .play_game
+          li(data-type='clothes', data-type-value='1')
+            .send_clothes
+          li(data-type='gift', data-type-value='3')
+            .send_gift
+          li(data-type='food', data-type-value='2')
+            .send_food
+          li(data-type='homefurn', data-type-value='8')
+            .send_homefurn
+        .game_listbox.cl
+          .game(data-module='game')
+    ul.active_box.fr.ml_10.active_box_right(data-module='activity')
+      li
+        #ladyNotice.ladynotice_1
+      li
+        #ladygameresult.ladygamereshow(data-module='ladygameresult')
+      li
+        #actionShow.active_2
+      li.hide
+        #firstRechange.first_charge_3
+      li
+        #vipBuy.vip_bug_4
+      li.hide
+        #DailySign.sign_package_5
+      li.hide
+        #ConstellAtion.constellation_6(data-module='constellation')
+      li.hide
+        #RankingList.ranking_list_7
+      li.hide
+        #specialMerchants.persian_merchants_8
+      li.hide
+        #MysteriousTrader.mysterious_merchants_9
+      li.hide
+        #handbook.illustrated_10
+      li.BottleShow(data-module='bottle')
+        .bottle_s_2.bottle-simg
+        p.wish_bottle_word
+    .rightsec
+      .notice.pr(data-module='feed')
+        p.goddess_show
+          span.notice_img.fl 公告
+          //
+            <span class="goddess_house">
+            女神的房间
+            </span>
+        .notice_firstbg
+        #feeds.noticeBoard.scrollbars
+          .scrollbar.hide
+            .scroll_up
+            .track
+              .thumb
+                .thumb_end
+            .scroll_down
+          .viewport
+            ul#output.overview
+      .mytask.pr
+        p.goddess_show
+          span.mytask_img.fl
+            | 我的任务
+        .scrollbars.task_scroll
+          .scrollbar.hide
+            .scroll_up
+            .track
+              .thumb
+                .thumb_end
+            .scroll_down
+          .viewport
+            #task.task_list.overview(data-module='task')
+      .goddess_room.pr.cl.mt_5(data-module='groom', style='display:none')
+        p.goddess_show.cl
+          span.goddess_roomtitle.fl 女神的房间
+          span.goddess_house
+            | 公告板
+        .goddess_room_con.cl
+      #girltaskBar.girldata_task.pr.scrollbars(data-module='girltask')
+        p.goddess_show
+          span.goddess_task_tit.fl 女神任务
+        .scrollbar
+          .scroll_up
+          .track
+            .thumb
+              .thumb_end
+          .scroll_down
+        .viewport
+          ul.overview.goddess_task_main.cl
+  #animation
+  #popWindow
+  #paoPopup(style='display:none;')
+    .paoPopup
+      .paoSkin.paoSkin1
+        .paoBg
+          img.followerImg(src='http://static.mm.' + __env.WLY_DOMAIN + '/orig/images/girl_photo.png')
+          span.followerPic
+          span.paoMsg
+            div
+              span.blueText
+                | 孤单北半球
+              |  送给
+              span.pinkText
+                | 月亮水晶
+              |  一辆
+              span.itemText
+                | 超级豪华跑车
+          img.item(src='http://static.mm.' + __env.WLY_DOMAIN + '/item/100102/50.png', width='50')
+  // 批量赠送
+  #pkg-dialog-send(style='display:none;')
+  div(data-module='errmsg')
+  div(data-module='pkg')
+  div(data-module='insufficient')
+  div(data-module='squarenotice')
+  div(data-module='lovetransfer')
+  #flash_wrapper(data-module='flash')
+  .exchange(data-module='exchange')
+  include ../../../../modules/mm_footer/index
+
+block append footjs
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/index/main.min.084ad4979d508f0a.js')
+  include ../../../../modules/mm_feedback/index

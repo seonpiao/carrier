@@ -1,0 +1,8 @@
+script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/template/tpl-ver.5836f0103d5f14b1.js')
+script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/common/main.min.d24fa0ce77edbf9d.js')
+script(src='http://static.mm.' + __env.WLY_DOMAIN + '/orig/js/jquery.placeholder.js')
+script
+  != 'var domain = "' + __env.WLY_DOMAIN + '";'
+  | try {
+  | document.domain = domain;
+  | } catch (e) {}
