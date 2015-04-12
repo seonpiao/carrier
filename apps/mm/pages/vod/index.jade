@@ -8,6 +8,14 @@ block append meta
 
 block append stylesheet
   link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/vod.038697d0b2ece807.css', rel='stylesheet', type='text/css')
+  style.
+    .footer_nav{
+      background:#181818;
+    }
+    .footer_nav .cp_list{
+      margin: 0 auto 0;
+      padding-top:22px;
+    }
 
 block append headjs
   if query.from == '114la'
