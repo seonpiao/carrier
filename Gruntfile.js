@@ -91,6 +91,10 @@ module.exports = function(grunt) {
             name: "apps/mm/pages/app/main"
           }, {
             name: "apps/mm/pages/404/main"
+          }, {
+            name: "apps/mm/pages/vod/main"
+          }, {
+            name: "apps/i/pages/setbasic/main"
           }]
         }
       }
@@ -249,5 +253,5 @@ module.exports = function(grunt) {
   });
   grunt.registerTask("md5", ["filerev", "tpl-ver", "string-replace"]);
   grunt.registerTask("combine", ["requirejs", "copy", "clean"]);
-  grunt.registerTask("build", ["requirejs", "genstatic", "stylus", "cssmin", "uglify", "jade", "filerev:tpl", "tpl-ver", "filerev:tpl-ver", "filerev:js", "filerev:css", "string-replace"]);
+  grunt.registerTask("build", ["combine", "stylus", "cssmin", "uglify", "jade", "filerev:tpl", "tpl-ver", "filerev:tpl-ver", "filerev:js", "filerev:css", "string-replace"]);
 };
