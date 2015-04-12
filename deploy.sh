@@ -63,6 +63,7 @@ read -p "Deploy to ${hosts[*]}: (y/n)" choice
 if [ "$choice" = "y" ]; then
 
   rm -rf dist
+  rm -rf temp
 
   #编译代码
   grunt build
