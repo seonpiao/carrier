@@ -1,0 +1,26 @@
+extends ../../layouts/index
+
+block append title
+  title 女神的房间 - 玩乐云 -全球首款互联网互动真人游戏秀
+
+block append meta
+  meta(property='wb:webmaster', content='47dec89457353ad1')
+
+block append stylesheet
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/vod.eeab1204241eb853.css', rel='stylesheet', type='text/css')
+
+block append headjs
+  if query.from == '114la'
+    base(target="_blank")
+  script(type='text/javascript').
+    var girlid = 0;
+    var page = 'vod';
+block append body
+  if query.from != '114la'
+    #header.header(data-module='header')
+  .newsquare.project_box.cl(data-module='m_vod')
+    include ../../../../modules/m_vod/index
+    include ../../../../modules/mm_footer/index
+
+block append footjs
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/vod.min.8960f0685ae83beb.js')

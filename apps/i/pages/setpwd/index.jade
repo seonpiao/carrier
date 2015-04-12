@@ -1,0 +1,37 @@
+extends ../../layouts/index
+
+block append title
+  title= '个人中心'
+
+block append meta
+  meta(name='title', content='个人中心')
+  script(type='text/javascript').
+    var page = 'setpwd';
+block append body
+  #header.header(data-module='header')
+  
+  .personal_main.cl
+    include ../../../../modules/i_leftNav/index
+    .personal_ConR.fr(data-module='i_setpwd')
+      h3
+        span 修改密码
+      .p_setPwd.cl
+        form#setpwdForm(action='', onsubmit='', method='', novalidate='novalidate')
+          ul.cl.setPassword_C
+            li
+              .basic_Tit 旧密码
+              .basic_Titcon
+                input#oldPassword.username(name='oldPassword', type='password', placeholder='请输入旧密码')
+            li
+              .basic_Tit 新密码
+              .basic_Titcon
+                input#newPassword.username(name='newPassword', type='password', placeholder='请输入新密码')
+            li
+              .basic_Tit 确认新密码
+              .basic_Titcon
+                input.username(name='confirm', type='password', placeholder='再次输入新密码')
+            li
+              .basic_Tit
+              .basic_Titcon.mt_20
+                input#submit.conserve_btn.save-btn(type='submit', value='确认修改')
+

@@ -1,0 +1,18 @@
+extends ../../layouts/index
+
+block append title
+  title= '个人中心'
+
+block append meta
+  meta(name='title', content='个人中心')
+  script(type='text/javascript').
+    var page = 'setphoto';
+block append body
+  #header.header(data-module='header')
+  
+  .personal_main.cl
+    include ../../../../modules/i_leftNav/index
+    .personal_ConR.fr
+      h3
+        span 修改头像
+      #flashcontent.p_setphoTo.cl(data-module="i_setphoto")
