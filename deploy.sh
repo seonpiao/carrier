@@ -109,12 +109,12 @@ if [ "$choice" = "y" ]; then
   done
 
   #更新Node服务
-  # for((i=0;i<num;i++));do
-  #   echo deploy to ${hosts[i]}
-  #   if [ "$env" = "production" ]; then
-  #     ssh root@${hosts[i]} "dsh -M -r ssh -g node -q -- 'cd /root/code/wfe && git pull && /usr/local/node/bin/pm2 reload mm'"
-  #   else
-  #     ssh root@${hosts[i]} "cd /root/code/${user} && git pull && /usr/local/bin/pm2 reload ${user}"
-  #   fi
-  # done
+  for((i=0;i<num;i++));do
+    echo deploy to ${hosts[i]}
+    if [ "$env" = "production" ]; then
+      ssh root@${hosts[i]} "dsh -M -r ssh -g node -q -- 'cd /root/code/carrier && git pull && /usr/local/node/bin/pm2 reload carrier'"
+    else
+      ssh root@${hosts[i]} "cd /root/code/${user} && git pull && /usr/local/bin/pm2 reload ${user}"
+    fi
+  done
 fi
