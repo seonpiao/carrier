@@ -1,0 +1,70 @@
+include ../itemCount/index
+.openinbox(mailid=id)
+	.center.mailtitle= "主题："
+		span.title= result.title
+		br
+		span.from.white= "来自：" +result.sendername
+	.mailcontent.center
+			if result.attachment 
+				if result.attachment.item && !(result.attachment.coin || result.attachment.diamond)
+					.mailcontent1.center.maincon
+						#itemListBar.scrollbars
+							.scrollbar
+								.scroll_up
+								.track
+									.thumb
+										.thumb_end
+								.scroll_down
+							.viewport
+								.overview= result.content
+				if result.attachment.item && (result.attachment.coin || result.attachment.diamond)
+					.mailcontent2.center.maincon
+						#itemListBar.scrollbars
+							.scrollbar
+								.scroll_up
+								.track
+									.thumb
+										.thumb_end
+								.scroll_down
+							.viewport
+								.overview= result.content
+				if !result.attachment.item && (result.attachment.coin || result.attachment.diamond)
+					.mailcontent3.center.maincon
+						#itemListBar.scrollbars
+							.scrollbar
+								.scroll_up
+								.track
+									.thumb
+										.thumb_end
+								.scroll_down
+							.viewport
+								.overview= result.content
+			else
+				.mailcontent4.center.maincon
+					#itemListBar.scrollbars
+							.scrollbar
+								.scroll_up
+								.track
+									.thumb
+										.thumb_end
+								.scroll_down
+							.viewport
+								.overview= result.content
+	if result.attachment
+		p.att.white.center.cl= "附件："
+		if result.attachment.coin || result.attachment.diamond
+			.rewards_g.cl
+				for value,key in result.attachment
+					if key=="coin"
+						span.gold_img.fl= value
+					if key=="diamond"
+						span.blue_drill.fl.ml_40= value
+		if result.attachment.item	
+			ul.fjList.cl.mt_5= mail
+				for value,id in result.attachment.item
+					li.mailimg
+						img(src=window.resUrl + 'item/'+id+'/40')
+						+itemCount(value)
+		#AllGet.attbt.center.w100.btn_2b.mt_5.tc(emailid= result.id)= "全部领取"
+	else
+		#AllClose.attbt.center.w100.btn_2b.mt_5.tc(emailid= result.id)= "关  闭"

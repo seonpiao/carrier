@@ -1,162 +1,188 @@
-  /*global module:false*/
-var fs = require('fs');
+var fs = require("fs");
+
+var path = require("path");
+
 module.exports = function(grunt) {
-
-  // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-
+    pkg: grunt.file.readJSON("package.json"),
     stylus: {
-      'dist/css/**.css': ['static/stylus/**/main.styl']
-    },
-
-    cssmin: {
       compress: {
-        // files: {
-        //   'dist/css/**.min.css': ['dist/css/**.css']
-        // }
         files: [{
           expand: true,
-          cwd: 'dist/css',
-          src: '*.css',
-          dest: 'dist/css',
-          ext: '.min.css'
+          cwd: "apps",
+          src: ["**/modules.styl"],
+          dest: "dist/css",
+          rename: function(dest, filepath) {
+            return path.join(dest, filepath.replace("pages/", "").replace("/modules", ""));
+          },
+          ext: ".css"
         }]
       }
     },
-
+    cssmin: {
+      compress: {
+        files: [{
+          expand: true,
+          cwd: "dist/css",
+          src: "**/*.css",
+          dest: "dist/css",
+          ext: ".min.css"
+        }]
+      }
+    },
     watch: {
       scripts: {
-        files: [
-          'static/libs/**/*.js',
-          'static/common/**/*.js'
-        ],
-        tasks: ['requirejs:std', 'stylus', 'jade']
+        files: ["apps/**/common.js", "libs/client/**/*.js"],
+        tasks: ["combine"]
       },
       stylesheets: {
-        files: [
-          'static/stylus/**/*.styl',
-          'static/modules/**/*.styl'
-        ],
-        tasks: ['stylus']
-      },
-      css: {
-        files: [
-          'static/css/*.css'
-        ],
-        tasks: ['requirejs:std', 'stylus', 'jade']
+        files: ["**/*.styl"],
+        tasks: ["stylus"]
       },
       jade: {
-        files: [
-          'static/modules/**/*.jade',
-          'static/views/*.jade',
-          'static/views/**/*.jade'
-        ],
-        // tasks: ['jade']
-        tasks: ['jade']
+        files: ["**/*.jade"],
+        tasks: ["jade"]
       }
     },
     jade: {
       site: {
         files: {
-          'dist/template/': ['static/modules/**/*.jade']
+          "dist/template": ["modules/**/*.jade"]
         }
       },
       options: {
-        basePath: 'static'
+        basePath: "modules"
       }
     },
     uglify: {
-      site: {
-        files: {
-          'dist/js/**/main.min.js': ['dist/js/**/main.js']
-        }
+      compress: {
+        files: [{
+          expand: true,
+          cwd: "dist/js",
+          src: "**/*.js",
+          dest: "dist/js",
+          ext: ".min.js"
+        }]
       }
     },
     requirejs: {
       std: {
         options: {
-          baseUrl: "./static",
-          mainConfigFile: 'static/config.js',
-          dir: 'dist/',
-          optimize: 'none',
+          baseUrl: ".",
+          dir: "dist/js/temp",
+          optimize: "none",
           keepBuildDir: false,
+          mainConfigFile: 'config.js',
           paths: {
-            "jquery": "libs/jquery-1.11.1",
-            "jquery-cookie": "libs/jquery-cookie",
-            "underscore": "libs/underscore",
-            "backbone": "libs/backbone",
-            "oz": "libs/oz",
-            "jaderuntime": "libs/runtime"
+            jquery: "libs/client/jquery-1.11.1",
+            "jquery-cookie": "libs/client/jquery-cookie",
+            underscore: "libs/client/underscore",
+            backbone: "libs/client/backbone",
+            oz: "libs/client/oz",
+            jaderuntime: "libs/client/runtime"
           },
           modules: [{
-            name: 'js/common/main'
+            name: "apps/mm/common"
           }, {
-            name: 'js/index/main'
+            name: "apps/mm/pages/room/main"
           }, {
-            name: 'js/page1/main'
+            name: "apps/mm/pages/square/main"
           }, {
-            name: 'js/page404/main'
+            name: "apps/mm/pages/app/main"
           }, {
-            name: 'js/app/main'
+            name: "apps/mm/pages/404/main"
           }]
         }
       }
     },
-    genstatic: {
-      options: {
-        copy: ['image', 'fonts', 'externals']
+    copy: {
+      common: {
+        expand: true,
+        cwd: 'dist/js/temp',
+        src: 'apps/**/common.js',
+        dest: 'dist/js',
+        filter: 'isFile',
+        rename: function(dest, filepath) {
+          return path.join(dest, filepath.replace('apps/', '').replace('pages/', '').replace('/modules', ''));
+        }
+      },
+      modules: {
+        expand: true,
+        cwd: 'dist/js/temp',
+        src: '**/main.js',
+        dest: 'dist/js',
+        filter: 'isFile',
+        rename: function(dest, filepath) {
+          return path.join(dest, filepath.replace('apps/', '').replace('pages/', '').replace('/main', ''));
+        }
       }
+    },
+    clean: {
+      js: ['dist/js/temp']
     },
     filerev: {
       options: {
-        algorithm: 'sha1',
+        algorithm: "sha1",
         length: 16
       },
       js: {
         files: [{
           expand: true,
-          cwd: 'dist/',
-          src: 'js/**/*.js',
-          dest: 'dist'
-        }],
+          cwd: "dist/",
+          src: "js/**/*.js",
+          dest: "dist",
+          filter: function(filepath) {
+            return !filepath.match(/\w+\.\w{16}\.js/)
+          }
+        }]
       },
-      // 加载 MD5后的文件名，将映射关系保存在 tpl-ver.js 文件中，每次 build 重写
-      // view/base.js@loadTemplate 根据tpl-ver.js 取出 MD5后的文件名
       tpl: {
         files: [{
           expand: true,
-          cwd: 'dist/',
-          src: 'template/**/*.js',
-          dest: 'dist'
-        }],
+          cwd: "dist/",
+          src: "template/**/*.js",
+          dest: "dist",
+          filter: function(filepath) {
+            return !filepath.match(/\w+\.\w{16}\.js/)
+          }
+        }]
       },
-      'tpl-ver': {
-        src: 'dist/template/tpl-ver.js',
-        dest: 'dist/template',
+      "tpl-ver": {
+        src: "dist/template/tpl-ver.js",
+        dest: "dist/template",
+        filter: function(filepath) {
+          return !filepath.match(/\w+\.\w{16}\.js/)
+        }
       },
       css: {
-        src: 'dist/css/*.css',
-        dest: 'dist/css'
+        files: [{
+          expand: true,
+          cwd: "dist/",
+          src: "css/**/*.css",
+          dest: "dist",
+          filter: function(filepath) {
+            console.log(filepath)
+            return !filepath.match(/\w+\.\w{16}\.css/)
+          }
+        }]
       }
     },
-    'string-replace': {
+    "string-replace": {
       src: {
         files: [{
           expand: true,
-          cwd: 'views',
-          src: ['**/*.jade', '*.html'],
-          dest: 'views'
+          cwd: "./",
+          src: ["**/*.jade", "**/*.html", "!node_modules/**/*.*", "!dist/**/*.*"],
+          dest: "./"
         }],
         options: {
           replacements: [{
             pattern: /\/dist\/(.*\.(js|css))/gm,
             replacement: function(match) {
-              var file = match.replace(/(.*\.)\w{16}\.(js|css)/, '$1$2');
-              ori = file.replace('/dist', 'dist');
+              var file = match.replace(/(.*\.)\w{16}\.(js|css)/, "$1$2");
+              ori = file.replace("/dist", "dist");
               console.log(file);
-              // console.log(grunt.filerev.summary);
-              return grunt.filerev.summary[ori].replace(/^dist/g, '/dist');
+              return grunt.filerev.summary[ori].replace(/^dist/g, "/dist");
             }
           }]
         }
@@ -164,69 +190,64 @@ module.exports = function(grunt) {
     },
     newapp: {
       options: {
-        dest: ''
+        dest: ""
       }
     },
     newpage: {
       options: {
-        dest: ''
+        dest: ""
       }
     },
     newmodule: {
       options: {
-        modulePath: 'modules',
-        jsPrefix: 'modules/',
-        stylPrefix: '../../../modules/'
+        modulePath: "modules",
+        jsPrefix: "modules/",
+        stylPrefix: "../../../../"
       }
     },
     addmodule: {
       options: {
-        modulePath: 'modules',
-        jsPrefix: 'modules/',
-        stylPrefix: '../../../modules/',
-        path: ''
+        modulePath: "modules",
+        jsPrefix: "modules/",
+        stylPrefix: "../../../../",
+        path: ""
       }
     },
     rmmodule: {
       options: {
-        modulePath: 'modules',
-        path: ''
+        modulePath: "modules",
+        jsPrefix: "modules/",
+        stylPrefix: "../../../../",
+        path: ""
       }
     }
   });
-  // require('load-grunt-tasks')(grunt);
-
-  grunt.loadNpmTasks('grunt-requirejs');
-  grunt.loadNpmTasks('private-grunt-contrib-uglify-wly');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('private-grunt-contrib-stylus');
-  // grunt.loadNpmTasks('private-grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('private-grunt-jade-runtime');
-  grunt.loadNpmTasks('grunt-filerev');
-  grunt.loadNpmTasks('grunt-string-replace');
-  grunt.loadNpmTasks('grunt-carrier-helper');
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['watch']);
-
-  grunt.registerTask('tpl-ver', function() {
+  grunt.loadNpmTasks("grunt-requirejs");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-stylus");
+  grunt.loadNpmTasks("grunt-contrib-cssmin");
+  grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("private-grunt-jade-runtime");
+  grunt.loadNpmTasks("grunt-filerev");
+  grunt.loadNpmTasks("grunt-string-replace");
+  grunt.loadNpmTasks("grunt-carrier-helper");
+  grunt.registerTask("default", ["watch"]);
+  grunt.registerTask("tpl-ver", function() {
     var summary = grunt.filerev.summary;
     var map = {};
     for (var key in summary) {
-      if (key.indexOf('dist/template/modules') == 0) {
-        var file = key.replace('dist/template/modules/', '').replace('.js', '');
-        var md5File = summary[key].replace('dist/template/modules/', '')
+      if (key.indexOf("dist/template") == 0) {
+        var file = key.replace("dist/template/", "").replace(".js", "");
+        var md5File = summary[key].replace("dist/template/", "");
         map[file] = md5File;
       }
     }
-    var str = 'var tplMapping = ' + JSON.stringify(map);
-    fs.writeFileSync('dist/template/tpl-ver.js', str);
+    var str = "window.tplMapping = " + JSON.stringify(map);
+    fs.writeFileSync("dist/template/tpl-ver.js", str);
   });
-
-  grunt.registerTask('md5', ['filerev', 'tpl-ver', 'string-replace']);
-
-  grunt.registerTask('build', ['requirejs', 'genstatic', 'stylus', 'cssmin', 'uglify', 'jade', 'filerev:tpl', 'tpl-ver',
-    'filerev:tpl-ver', 'filerev:js', 'filerev:css', 'string-replace'
-  ]);
+  grunt.registerTask("md5", ["filerev", "tpl-ver", "string-replace"]);
+  grunt.registerTask("combine", ["requirejs", "copy", "clean"]);
+  grunt.registerTask("build", ["requirejs", "genstatic", "stylus", "cssmin", "uglify", "jade", "filerev:tpl", "tpl-ver", "filerev:tpl-ver", "filerev:js", "filerev:css", "string-replace"]);
 };

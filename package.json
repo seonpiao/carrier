@@ -18,8 +18,10 @@
   "devDependencies": {
     "grunt": "^0.4.3",
     "grunt-contrib-cssmin": "*",
-    "private-grunt-contrib-stylus": "~0.4.1",
-    "private-grunt-contrib-uglify-wly": "~0.2.0",
+    "grunt-contrib-stylus": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-contrib-clean": "~0.6.0",
     "grunt-requirejs": "*",
     "grunt-contrib-watch": "~0.3.1",
     "private-grunt-jade-runtime": "*",

@@ -1,0 +1,16 @@
+.financing_props
+  p.yellow= '线索：' + eventname
+  .scrollbars.clue_scroll
+    .scrollbar
+      .scroll_up
+      .track
+        .thumb
+          .thumb_end
+      .scroll_down
+    .viewport
+      .overview
+        dl.clues_play.cl
+          dt.blue &#x7EBF;&#x7D22;&#x73A9;&#x6CD5;&#xFF1A;
+          - for(var i = 1; i <= 10; i++){
+            dd= locals['field' + i]
+          - }

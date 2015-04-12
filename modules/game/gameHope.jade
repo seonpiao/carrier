@@ -1,0 +1,43 @@
+.goddesswish_props.play_games_conbg
+    .props_tit.cl
+        p.tl.ml_10.mt_5
+          | &#x5973;&#x795E;&#x4ECA;&#x65E5;&#x5FC3;&#x613F;&#xFF0C;&#x6EE1;&#x8DB3;&#x613F;&#x671B;&#x5C06;&#x4F1A;&#x5F97;&#x5230;&#xFF1A;
+      .cl.homef_show_con.support_wish
+        ul.cl.homef_show_list.mt_15
+          for item,index in wish
+            li
+              img(src=window.resUrl + 'item/' + item.id + '/50/1/' + item.quality)   
+              - var percent = Math.min(100,item.curfunds / item.targetfunds * 100);
+              if percent == 100
+                ins(class="foodhv")
+              .progress_bg
+                if percent == 100
+                  .full_curiosity(style='')
+                    ins
+                else
+                  .progress_con(style='width:' + percent + '%')
+                    ins.hide
+              div(class="w60 mt_2 btn_buy" + (percent == 100 ? ' btn_grayh20' : ' btn_4y'),data-itemid=(index + 1)) 购买
+            if index < wish.length - 1
+              li.support_prop_sign
+                | +
+          //- li
+          //-   img(src=window.resUrl + 'item/' + wish[0].id + '/50')
+          //-   // 当滚动条full时请使用full_curiosity样式，去掉progress_con样式，width自适应
+          //-   .progress_bg
+                          
+          //-   .w60.btn_4y.mt_2
+          //-     | &#x8D2D;&#x4E70;        
+          //- li.support_prop_sign
+          //-   | +        
+          //- li
+          //-   img(src=window.resUrl + 'item/' + wish[0].id + '/50', width='62', height='62')            
+          //-   .progress_bg
+          //-     .progress_con(style='width:20px')
+          //-       ins            
+          //-   .w60.btn_4y.mt_2
+          //-     | &#x8D2D;&#x4E70;        
+          li.support_prop_sign
+            | =        
+          li
+            img(src=window.resUrl + 'orig/images/player3/support_propimg.png', width='72')

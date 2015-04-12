@@ -1,10 +1,10 @@
 extends ../../layouts/index
+
 block append title
   title= girl.name + '的房间-女神的房间-玩乐云'
 
 block append stylesheet
-  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/index.5f412385d8455084.css', rel='stylesheet', type='text/css')
-  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/player3-980.d5d742e9483fd93d.css', rel='stylesheet', type='text/css')
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/room.bcff16eed6b4b59d.css', rel='stylesheet', type='text/css')
   style(type='text/css').
     .paoMsg div {
       position: absolute;
@@ -100,7 +100,7 @@ block append body
     ul.active_box.fr.ml_10.active_box_right(data-module='activity')
       li
         #ladyNotice.ladynotice_1
-      li
+      li.hide
         #ladygameresult.ladygamereshow(data-module='ladygameresult')
       li
         #actionShow.active_2
@@ -197,10 +197,11 @@ block append body
   div(data-module='insufficient')
   div(data-module='squarenotice')
   div(data-module='lovetransfer')
+  //- div(data-module='rank')
   #flash_wrapper(data-module='flash')
   .exchange(data-module='exchange')
   include ../../../../modules/mm_footer/index
 
 block append footjs
-  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/index/main.min.084ad4979d508f0a.js')
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/room.min.3445d2fc03300bd7.js')
   include ../../../../modules/mm_feedback/index

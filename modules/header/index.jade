@@ -1,0 +1,52 @@
+.header-wrap
+	.header-wrapcon
+	.header-wrapbgshowbbg
+		.header-wrapbgshow
+	.headerbgC.container.clearfix
+		#logo
+			img(src=window.resUrl + "orig/images/logo_50.png")
+		#ubar
+			span.nav.exchange.pbtn#recharge
+				a.btn_6y.w40(href="javascript:;")= "充值"
+			a.nav.udiamond#undiamond(data-module="diamond")
+			a.nav.ucoin#uncoin(data-module="golden")
+			if window.page !== 'app'
+				a.nav.upack#unpack(data-module="pkg")
+					em
+					span= "背包"
+				a.nav.umail#unmail(data-module="email")
+					em
+					span= "收件箱"
+			div.username_box#usernick_slide(data-module="sign")
+		#tbar
+			li#qq_Qbg.qq_Qshow
+				.qq_Qshowwd= "联系女神"
+				.qq_Qshowwdcon.cl.hide
+					ul.qq_Qlist.cl
+						li
+							img(class="fl mr_5",src=window.resUrl + "orig/images/player3/qq_57_15.png")
+							.qq_showC.fl
+								p= "QQ官方交流群"
+								p.mt_5= "162953686"
+						li
+							img(class="fl mr_5",src=window.resUrl + "orig/images/player3/weibo_57_15.png")
+							.qq_showC.fl
+								p= "新浪微博"
+								p.mt_5= (girl ? (girl.weibo.length > 5 ? (girl.weibo.substring(0,6) + '..') : girl.weibo) : '女神的房间')
+									img(class="goddessicon",width="12",src=window.resUrl + "orig/images/player3/v.png")
+								#weibo_Con
+						li.weixin_Bimg
+							img(class="fl mr_5",src=window.resUrl + "orig/images/player3/weixin_61_15.png")
+							.qq_showC.fl
+								p= "微信公众号"
+								p.mt_5= "扫一扫关注"
+								p= "女神的房间"
+			li.feedback.hide= "反馈"
+			li.desktop.hide= "保存到桌面"
+			li.hide.share_area.cl.pr
+				.share.cl= "分享"
+				.share_con
+					a.qq_share.fl(href="javascript:;",target="_blank")
+					a.weixin_share.fl(href="javascript:;",target="_blank")
+					a.space_share.fl(href="javascript:;",target="_blank")
+		#navs(data-module="nav")

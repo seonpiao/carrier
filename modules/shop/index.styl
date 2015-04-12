@@ -1,0 +1,1424 @@
+.game_list
+  padding-top:30px
+  margin-top:5px;
+  .game_list_tab
+    position:absolute
+    left:0
+    top:-4px
+    z-index:1
+    li
+      width:62px
+      height:38px
+      background:url($bgUrl+'player3/boxbg.png') no-repeat -429px -279px
+      float:left
+      line-height:33px
+      text-align:center
+      vertical-align:middle
+      margin:1px auto 0
+      cursor:pointer
+    li.on
+      width:63px
+      height:38px
+      background:url($bgUrl + 'player3/boxbg.png') no-repeat -352px -279px
+      line-height:38px
+      text-align:center
+      position:relative
+      z-index:2
+      padding-left:3px
+      margin:0 auto
+    li.inline
+      width:65px
+      height:38px
+      background:url($bgUrl + 'player3/boxbg.png') no-repeat -540px -279px
+      line-height:38px
+      text-align:center
+      position:relative
+      z-index:2
+      padding-left:1px
+      margin:0 auto
+    li 
+      div
+        background:url($bgUrl + 'player3/games_tab_tag.png') no-repeat
+        margin:0 auto
+        text-align:center
+        vertical-align:middle
+      div.play_game
+          width:35px
+          height:31px
+          background-position:0 0
+      div.send_clothes
+          width:36px
+          height:29px
+          background-position:0 -38px
+      div.send_gift
+          width:35px
+          height:29px
+          background-position:0 -74px
+      div.send_food
+          width:36px
+          height:28px
+          background-position:0 -112px
+      div.send_homefurn
+          width:38px
+          height:30px
+          background-position:0 -148px
+.game_listbox
+  width:465px
+  height:144px
+  background:url($bgUrl+'player3/boxbg.png') no-repeat -305px -323px
+  padding:8px 10px 12px 5px
+  color:#fff
+  font-size:12px
+.play_gamesbox
+  height: 151px
+  width: 467px
+.play_games_starttab
+  width:40px
+  height:151px
+.play_games_starttab li,.play_games_nostarttab li
+  height:auto
+  width:33px
+  padding:3px 3px 2px 3px
+  line-height:14px
+  text-align:center
+  border:1px solid #506773
+  color: #c3c3c4
+  border-right:none
+  position:relative
+  z-index:0
+  cursor:pointer
+.play_games_starttab li.on,.play_games_nostarttab li.on
+  border:1px solid #1774a4
+  margin-right:-1px
+  border-right:none
+  width:34px
+  z-index:12
+  background-color:#0c1924
+.financing_props,.games_nostart_main
+  width:408px
+  height:138px
+  padding:5px 5px 5px 10px
+  border:1px solid #1774a4
+  background-color:#0c1924
+  position:relative
+  z-index:1
+  .financing_props_tit
+    .eventname
+      width: 280px
+      overflow: hidden
+      height: 14px
+      line-height:14px
+      .yellow
+        overflow:hidden
+.games_start_main
+  width:423px
+  height:148px
+  background-color:#0c1924
+  position:relative
+  z-index:1
+  .homef_show_con
+    width: 378px
+    height: 100px
+    overflow: hidden
+    
+.crowdfunding_props
+  padding:0 3px
+.crowdfunding_props_con
+  position:relative
+  .homef_show_con
+    left:-1px
+    width:395px
+  .gift_leftbtn 
+    position:absolute
+    left:-7px
+  .gift_rightbtn
+    position:absolute
+    right:-2px
+.crowdfunding_props_con .homef_show_list li
+  margin-left:1px
+  position:relative
+  ins
+    
+.crowdfunding_props_con .homef_show_list
+  padding-left:0
+  position:absolute
+  top:-3px
+.financing_props_con
+  width:398px
+  height:90px
+  margin-top:5px!important
+  padding:0 5px
+.goddess_photo_rank
+  width:308px
+  height:75px
+  margin-top:8px
+  ul
+    position:relative
+    height:59px
+    li
+      position:absolute
+      display:block
+.player_1
+  width:38px
+  height:38px
+  background:url($bgUrl+'player3/play_games_photobg38.png') no-repeat 0 0
+  position:relative
+  margin-top:15px
+  margin-left:0px
+
+.player_2
+  width:50px
+  height:50px
+  background:url($bgUrl + 'player3/play_games_photobg50.png') no-repeat 0 0
+  position:relative
+.player_1 img
+  position:absolute
+  left:2px
+  top:3px
+.player_2 img
+  position:absolute
+  left:2px
+  top:4px
+.financing_props_img.on p
+  margin-top:-5px
+.financing_props_img.on img
+  background: url($bgUrl+"player3/foodactive_bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0)
+  padding: 8px
+  text-align: center
+  width: 60px
+  margin-top:-4px
+.Progress_number
+  width:118px
+  height:24px
+  line-height:30px
+  background:url($bgUrl+'player3/boxbg.png') no-repeat 0 -908px
+  position:absolute
+  left:-8px
+  bottom:-18px
+  display:block
+  z-index:20
+  color:#f00
+  padding-left:2px
+
+/*play滚动条*/
+.financingProgress_bar
+  width:299px
+  height:12px
+  background:url($bgUrl + 'player3/play_gamescroll_bg.png') no-repeat 0 0
+  margin:1px auto 0
+  position:relative
+.financingProgress_bar .arrow .Progress_smaillbar_img
+  top:1px
+  left:8px
+.financingProgress_barfull
+  width:308px
+  height:18px
+  background:url($bgUrl+'player3/play_gamescroll_full.png') no-repeat 0 0
+  margin:-2px auto 0
+.program_list
+  width:408px
+  height:138px
+  overflow:hidden
+  .scrollbar
+    right:8px
+    top:4px
+  .viewport
+    height:138px
+    top:5px
+    overflow:hidden
+.program_list_con
+  margin-right:5px
+.program_list_con dd
+  width:360px
+  height:36px
+  background:url($bgUrl + 'player3/program_listbg.png') no-repeat 0 -52px
+  padding:1px 15px
+  margin-top:3px
+.program_list_con dd.on
+  background:url($bgUrl + 'player3/program_listbg.png') no-repeat 0 0
+
+.integral_ranking_1,.integral_ranking_2,.integral_ranking_3
+  width:27px
+  height:15px
+  background:url($bgUrl + 'player3/player_number.png') no-repeat left center
+  margin-top:10px
+  margin-right:5px
+.integral_ranking_1
+  background-position:0 0
+.integral_ranking_2
+  background-position:0 -20px
+.integral_ranking_3
+  background-position:0 -40px
+/*天使icon*/
+.angel_icon_lingts
+  width:14px
+  height:15px
+  background:url($bgUrl + "player3/yellow_1.png") no-repeat 0 0
+  display:inline-block
+  vertical-align:middle
+.angel_icon_gray
+  width:14px
+  height:15px
+  background:url($bgUrl + "player3/gray_2.png") no-repeat 0 0
+  display:inline-block
+  vertical-align:middle
+/*vipicon*/
+.vip_icon
+  width:18px
+  height:8px
+  background:url($bgUrl + "player3/vipbtn.png") no-repeat 0 0
+  display:inline-block
+  vertical-align:middle
+  margin:0 3px
+.userphotobg_lights,.userphotobg_gray,.userphotobg_link
+  width:24px
+  height:24px
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat
+  position:relative
+.userphotobg_lights
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -335px -669px
+.userphotobg_gray
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -304px -669px
+.userphotobg_link
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -368px -669px
+.userphoto_bg img
+  position:absolute
+  left:1px
+  top:2px
+  width:20px
+  height:20px
+.userphoto_bg
+  margin:6px 10px 0 0
+/*游戏未开始*/
+.crowdfunding_props_list li p
+  margin-top:0
+  -o-text-overflow: ellipsis
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow:hidden
+  width:80px
+.play_games_nostarttab li
+  height:34px
+  line-height:34px
+.play_games_nostarttab li.on
+  width:35px
+  margin-right:-1px
+  position:relative
+  z-index:10
+/*线索*/
+.nostart_clue
+  width:408px
+  height:130px
+  overflow-y:scroll
+  overflow-x:hidden
+  margin-top:5px
+.clues_play dt
+  width:70px
+  float:left
+  margin-top:3px
+.clues_play dd
+  width:330px
+  float:right
+  margin-top:3px
+.clue_scroll .viewport
+  margin: 5px
+  height: 118px
+/*众筹*/
+.nostart_crowdfunding,.nostart_bet,.nostart_the_vote,.nostart_thevote_result
+  width:408px
+  height:130px
+.nostart_bet_con
+  width:408px
+  height:110px
+  overflow:hidden
+  margin:5px 0
+.nostart_bet_list li
+  float:left
+  width:170px
+  padding-left:20px 
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -789px -589px
+  margin:6px 0
+  cursor:pointer
+.nostart_bet_list li.on
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -789px -604px
+  color:#2ec1e5
+/*投票*/
+.w212
+  width:212px
+  margin-left:20px
+.w172
+  width:172px
+  margin-left:20px
+.thevote_result_list
+  width:400px
+.thevote_result_list 
+  li
+    float:left
+    line-height:12px
+    vertical-align:middle
+    margin:6px 20px 6px 0
+    .field_name
+      width:50px
+      height:14px
+      text-align:right
+.thevote_result_list li .thevote_progress
+  width:96px
+  height:8px
+  border:2px solid #707070
+  margin-left:10px
+  text-align:left
+.thevote_result_list li .thevote_progress span
+  height:8px
+  background-color:#f7aa25
+  display:block
+.guess_action,.guess_singer,.guess_video,.guess_change
+  float:left
+  width:300px
+  border:1px solid #7a7a7a
+.guess_action span
+  height:10px
+  float:left
+  background-color:#2ec1e5
+.guess_singer span
+  height:10px
+  float:left
+  background-color:#ffa0c4
+.guess_video span
+  height:10px
+  float:left
+  background-color:#00fe9b
+.guess_change span
+  height:10px
+  float:left
+  background-color:#f7aa25
+.vote_scroll .viewport
+  height: 115px
+
+/*送衣服2014.11.28*/
+.close_color1
+  color:#f46e01
+.close_color2
+  color:#cf77f2
+.close_color3
+  color:#2db9db
+.close_color4
+  color:#06e88d
+.close_list
+  width:455px
+  margin-left:5px
+  overflow:hidden
+  height:130px
+  .left_btn.disable,.right_btn.disable,.left_btn.prev,.right_btn.next
+    margin-top:50px
+.close_list ul li
+  width:75px
+  float:left
+  margin:8px 5px 8px
+  text-align:center
+.close_list ul
+  width:100000px
+  height:114px
+.close_list_tab
+  width:425px
+  overflow:hidden
+  margin-left:5px
+  position:relative
+  height:100%
+  .overview
+    position:absolute
+  li
+    p
+      width:75px
+      -o-text-overflow: ellipsis
+      text-overflow: ellipsis
+      white-space: nowrap
+      overflow:hidden
+.close_list ul li .imgbox,.close_img 
+  width:70px
+  height:90px
+  padding:1px
+  background:url($bgUrl +'player3/send_clothesimgbg.png') no-repeat -85px 0
+  margin-bottom:7px
+  position:relative
+  cursor:pointer
+.close_list ul li .imgbox:hover
+  background:url($bgUrl+'player3/send_clothesimgbg.png') no-repeat -1px 0
+  padding:4px
+  margin-bottom:4px
+  margin-top:-3px
+  margin-left:-3px
+  margin-right:3px
+  i
+    left:5px
+    top:7px
+.close_img
+  margin-bottom:6px
+.imgbox span
+  float:left
+  width:5px
+  background-color:#082331
+  position:relative
+.imgbox .scroll_dian
+  width:10px
+  height:10px
+  background:url($bgUrl + 'player3/scroll_dianimg.png') no-repeat 0 0
+  position:absolute
+  bottom:-3px
+  left:-3px
+/*送衣服2014.12.10*/
+.close_list_tab li
+  .imgbox
+    position:relative;
+  .imgbox i
+    width:36px
+    height:34px  
+    background:url($bgUrl+'player3/food_chapter.png') no-repeat
+    position:absolute
+    left:2px
+    top:4px
+  & i.clothes_haved
+    background-position:0 -320px;
+.clothes_first_1,.clothes_first_2,.clothes_first_3
+  width:27px
+  height:15px
+  background:url($bgUrl + 'player3/player_number.png') no-repeat right center
+  display:block
+  margin:0 auto
+  line-height:15px
+.clothes_first_1
+  background-position:0 0
+.clothes_first_2
+  background-position:0 -20px
+.clothes_first_3
+  background-position:0 -39px
+.imgbox .clothes_smallicon
+  position:absolute
+  bottom:0
+  right:0
+.clothes_rankingbg
+  width:41px
+  height:14px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -49px -102px
+  padding-left:10px
+.close_list ul li .imgbox:hover .clothes_smallicon
+  bottom:3px
+  right:3px
+.imgbox .lock_img_22
+  width:22px
+  height:28px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -78px -24px
+  display:block
+.imgbox img
+  width:70px
+  height:90px
+  border-radius:3px
+.left_btn.prev,.gift_leftbtn.prev
+  width:11px 
+  height:17px
+  background:url($bgUrl + "prop_icon/lr_clickturnpage_btn.png") no-repeat 0 0
+  margin-top:20px
+  cursor:pointer
+.right_btn.next,.gift_rightbtn.next
+  width:11px 
+  height:17px
+  background:url($bgUrl + "prop_icon/lr_clickturnpage_btn.png") no-repeat -43px 0
+  margin-top:20px
+  cursor:pointer;
+.left_btn.disable,.gift_leftbtn.disable
+  width:11px 
+  height:18px
+  background:url($bgUrl + "player3/lr_turnpage_btn.png") no-repeat 0 0
+  margin-top:20px
+.right_btn.disable,.gift_rightbtn.disable
+  width:11px
+  height:18px
+  background:url($bgUrl + "player3/lr_turnpage_btn.png") no-repeat -39px 0
+  margin-top:20px
+.left_btn.prev:not(.disable):hover,.gift_leftbtn.prev:not(.disable):hover
+  background:url($bgUrl + "prop_icon/lr_clickturnpage_btn.png") no-repeat -13px 0
+.right_btn.next:not(.lock_img):not(.disable):hover,.gift_rightbtn.next:not(.lock_img):not(.disable):hover
+  background:url($bgUrl + "prop_icon/lr_clickturnpage_btn.png") no-repeat -28px 0
+.no_lock_box .close_introduce.w200
+	width:210px
+.close_introduce
+  position:relative
+.no_lock_boxcon,.locked_boxcon
+  width:210px
+  .close_introduce 
+    .chengbao_wd
+      width:120px
+      position:absolute
+      right:9px;
+      bottom:2px;
+.w200
+  width:200px
+.close_title
+  position:absolute
+  left:0
+  top:-25px
+  font-size:14px
+.bid_price_box
+  margin:0 auto
+.goods_help_show
+  width:11px
+  height:14px
+  cursor:pointer
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -89px -57px
+  vertical-align:middle
+  display:inline-block
+  margin-left:6px
+.border_topline
+  width:188px
+  height:1px
+  background:url($bgUrl + 'player3/games_list_line.png') no-repeat 0 0
+  margin:10px auto 5px
+.draw_money_number
+  width:160px
+  background-color:#050a0e
+  border-radius:8px
+  height:15px
+  line-height:15px
+  margin-top:5px
+.bid_pricek,.bid_pricebtn
+  color:#fff
+  height:20px
+  display:inline-block
+  line-height:20px
+  overflow:hidden
+  vertical-align:middle
+  border:1px solid #1774a4
+  background-color:#273851
+  border-radius:2px
+  -webkit-box-shadow:1px 0px 2px #2f4662 inset,0 1px 2px #2f4662 inset,0 -1px 2px #2f4662 inset,-1px 0 2px #2f4662 inset
+  -moz-box-shadow:1px 0px 2px #2f4662 inset,0 1px 2px #2f4662 inset,0 -1px 2px #2f4662 inset,-1px 0 2px #2f4662 inset
+  box-shadow:1px 0px 2px #2f4662 inset,0 1px 2px #2f4662 inset,0 -1px 2px #2f4662 inset,-1px 0 2px #2f4662 inset
+
+.homef_img img
+  width:95px
+  height:95px
+  border-radius:2px
+.goods_showbox
+  position:absolute
+  bottom:106px
+  right:-219px
+.mt_05
+  margin-top:-5px
+
+.bid_price label
+  line-height:20px
+  vertical-align:middle
+.bid_pricek
+  padding:0 2px 0 3px
+  margin:0 5px
+.lock_img_42
+  width:42px
+  height:52px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat 0 -43px
+  margin:0 auto
+.lock_img_42 span
+  position:absolute
+  top:22px
+  z-index:1
+  width:205px
+  text-align:center
+  right:-88px
+.use_sale
+  height:11px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -89px -72px
+  margin:8px 0
+  line-height:11px
+  vertical-align:middle
+  padding-left:14px
+.blue_drill
+  display:inline-block
+  height:18px
+  background:url($bgUrl + 'player3/blue_drill.png') no-repeat 0 0
+  padding-left:23px
+/*幸福度表情*/
+.expression_1,.expression_2,.expression_3,.expression_4,.expression_5
+  width:20px
+  height:21px
+  background:url($bgUrl + 'player3/expression_icon_20.png') no-repeat
+  vertical-align:middle
+  display:inline-block
+.expression_5
+  background-position:0 0
+.expression_4
+  background-position:0 -24px
+.expression_3
+  background-position:0 -48px
+.expression_2
+  background-position:0 -72px
+.expression_1
+  background-position:0 -96px
+
+/*送礼物2014.11.28*/
+.mt40
+  margin-top:40px
+.mb_20
+  margin-bottom:20px
+.ml_10
+  margin-left:10px
+.mb_10
+  margin-bottom:10px
+.gift_con,.homef_con  
+  height: 151px
+  width: 467px
+.gift_con_right,.homef_con_right
+  width:415px
+  height:109px
+  background-color:#0c1924
+  border:1px solid #1774a4
+  padding-top:40px
+  padding:40px 5px 0
+  border-left:none
+  float:left
+.gift_con_right
+  .viewport
+    width:389px
+    overflow:hidden
+    height:100%
+    position:relative
+    margin-top:-18px
+    .overview
+      position:absolute
+.gift_show_list
+  padding-left:2px
+  width:390px
+  height:103px
+  li
+    height:97px
+    .get_drill
+      height:25px
+      line-height:25px
+      padding-left:10px;
+      padding-right:0;
+.gift_con_tab li 
+  width:38px
+  height:24px
+  line-height:24px
+  text-align:center
+  border:1px solid #506773
+  border-right:1px solid #1774a4
+  color:#c3c3c4
+  position:relative
+  margin-top:-1px
+  cursor:pointer
+.gift_con_tab,.homef_con_tab
+  width:40px
+  height:108px
+  float:left
+  padding-top:1px
+.gift_con_tab li.on,.homef_con_tab li.on
+  position:relative
+  left:0
+  background-color:#0c1924
+  color:#c3c3c4
+  border:1px solid #1774a4
+  border-right:none
+  width:39px
+  z-index:10
+.gift_show_list li .giftimg
+  width:60px
+  height:60px
+  background:url($bgUrl + 'player3/giftlink_62.png') no-repeat 0 0
+  padding:1px
+  margin-bottom:4px
+  cursor:pointer
+.gift_show_list li.has_child:hover
+  .giftimg
+    width:52px
+    height:52px
+    background:url($bgUrl + 'player3/gift_iconhover_58.png') no-repeat 0 0
+    padding:3px
+    margin-top:4px
+  ins
+    width:29px
+    height:29px
+    background:url($bgUrl + 'player3/gift_tipsimg.png') no-repeat 0 -42px
+    left:6px
+    top:5px
+.gift_show_list li ins
+  width:39px
+  height:39px
+  background:url($bgUrl + 'player3/gift_tipsimg.png') no-repeat 0 0
+  position:absolute
+  left:4px
+  top:-1px
+.gift_sigel_list,.homef_sigel_list
+  width:201px
+  height:42px
+  padding:5px
+  background:url($bgUrl + '/player3/boxbg.png') no-repeat -305px -600px
+  position:absolute
+  left:-5px
+  bottom:85px
+  z-index:20
+.gift_con_tab li.nob_border,.homef_con_tab li.nob_border
+  border-bottom:none
+.gift_show_list 
+  li
+    width:72px
+    float:left
+    margin:3px
+    vertical-align:middle
+    text-align:center
+    position:relative
+    p
+      width:70px
+      text-align:center
+      overflow:hidden
+      -o-text-overflow: ellipsis
+      text-overflow: ellipsis
+      white-space: nowrap
+.gift_show_list li img,.homef_show_list li img
+  width:60px
+  height:60px
+  margin-bottom:5px
+  border-radius:3px
+/*2014.12.10*/
+.play_game_iconhover
+  display:none
+  width:130px
+  height:20px
+  line-height:20px
+  background-color:#00485c
+  border:1px solid #3eacf8
+  position:absolute
+  top:-29px
+  left:-35px
+  z-index:50
+  font-size:10px
+  border-radius:3px
+.gift_sigel_list
+  .cl
+    li
+      width:30px
+      height:30px
+      background:url($bgUrl + 'player3/play_games_iconbg.png') no-repeat -40px 0
+      padding:1px
+      float:left
+      display:inline
+      cursor:pointer
+      margin:3px 4px 0
+      position:relative
+      img
+        width:30px
+        height:30px
+        margin:0 auto
+        text-align:center
+      &:hover
+        background:url($bgUrl + 'player3/play_games_iconbg.png') no-repeat 0 0
+        padding:1px
+        .play_game_iconhover
+          display:block
+          text-align:center
+
+.gift_sigel_list img,.homef_sigel_list img
+  margin:0 3px
+.homef_show_list li
+  width:80px
+  float:left
+  display:inline
+  text-align:center
+  position:relative
+  .btn_buy
+    margin:2px auto
+.pross_pointer
+  width:3px
+  height:3px
+  background:url($bgUrl + 'player3/pross_pointer_img.png') no-repeat 0 0
+  margin:-1px auto 2px
+.gift_leftbtn,.gift_rightbtn
+  margin-top:30px
+
+/*送食物*/
+.give_foodbox,.noplayname_bg
+  width:465px
+  height:131px
+  background-color: #0c1924
+  border:1px solid #1774a4
+  padding:5px 0 7px
+  margin:3px 0 0 1px
+.ml_10
+  margin-left:10px
+.mr_5
+  margin-right:5px
+.noplayname_bg
+  margin:0 auto
+  padding-top:60px
+  height:80px
+  text-align:center
+  color:#646c73
+  font-size:16px
+/*hover食物的时候的box*/
+.food_typebox,.clothes_hoverbox
+  width:135px
+  padding:5px 10px
+  border:1px solid #0c1218
+  border-radius:2px
+  background-color:#0c1924
+  box-shadow:1px 0px 2px #172a39 inset,0 1px 2px #172a39 inset,0 -1px 2px #172a39 inset,-1px 0 2px #172a39 inset
+  -webkit-box-shadow:1px 0px 2px #172a39 inset,0 1px 2px #172a39 inset,0 -1px 2px #172a39 inset,-1px 0 2px #172a39 inset
+  -moz-box-shadow:1px 0px 2px #172a39 inset,0 1px 2px #172a39 inset,0 -1px 2px #172a39 inset,-1px 0 2px #172a39 inset
+  color:#fff
+  font-size:12px
+.clothes_hoverbox
+  width:150px
+  z-index:5
+  p
+    line-height:1.5
+.clothes_typebox
+  line-height:16px
+.clothes_hoverbox .arrow_icon
+  top:57px
+.arrow_icon
+  width:19px
+  height:18px
+  background:url($bgUrl + 'player3/foodarrow_icon.png') no-repeat 0 0
+  position:absolute
+  left:-16px
+  bottom:18px
+  z-index:6
+.food_hoverbox
+  z-index:5
+.food_hoverbox.food_hoversmaill
+  left:67px
+.food_list .food_typelist li
+  float:left
+  display:inline
+  width:135px
+  text-align:left
+.food_list li.firstimg_big
+  width:78px
+  margin:0 1px
+.food_list li.firstimg_small
+  width:60px
+  margin-top:16px
+.food_list li
+  float:left
+  text-align:center
+  vertical-align:middle
+  position:relative
+  cursor:pointer
+.food_list li.firstimg_small:hover img
+  background:url($bgUrl+'player3/foodhover_bg_48.png') no-repeat 0 0
+  width:40px
+  height:40
+  padding:4px
+  display:inline
+  margin-top:-4px
+  margin-bottom:-2px
+.food_list li.firstimg_small img
+  width:40px
+  height:40px
+  margin-bottom:2px
+.food_list li.firstimg_big:hover img,.homef_show_list li:hover img
+  background:url($bgUrl + 'player3/foodhover_bg.png') no-repeat 0 0
+  width:60px
+  height:60
+  padding:4px
+  display:inline
+  margin-top:-4px
+  margin-bottom:-2px
+.food_list li.firstimg_big img
+  width:60px
+  height:60px
+  vertical-align:middle
+  margin-bottom:2px
+.food_list li.on img,.homef_show_list li.on img
+  background:url($bgUrl + 'player3/foodactive_bg.png') no-repeat 0 0
+  width:60px
+  height:60
+  padding:8px
+  display:inline
+  margin-top:-10px
+  margin-bottom:-4px
+  text-align:center
+.homef_show_list li.on p
+  color:#00fe9b
+.homef_show_list li:hover img
+  margin-bottom:1px
+.homef_show_list li.on img
+  margin-bottom:-6px
+  margin-top:-5px
+ins.foodhv
+  width:36px
+  height:34px  
+  background:url($bgUrl+'player3/food_chapter.png') no-repeat
+  position:absolute
+  right:6px
+  top:27px
+  background-position:0 -280px
+.food_list li ins
+  width:36px
+  height:34px  
+  background:url($bgUrl+'player3/food_chapter.png') no-repeat
+  position:absolute
+  right:6px
+  top:27px
+.food_list li ins.food_3
+  background-position:0 0
+.food_list li ins.food_5
+  background-position:0 -38px
+.food_list li ins.food_7
+  background-position:0 -80px
+.food_list li ins.food_15
+  background-position:0 -120px
+.food_list li ins.food_35
+  background-position:0 -200px
+.food_list li ins.food_105
+  background-position:0 -240px
+.food_list li.firstimg_small ins
+  top:7px
+.get_drill
+  background-color:#000
+  padding-right:5px
+  height:15px
+  padding-left:20px
+  margin-top:3px
+  line-height:15px
+  position:relative
+.get_drill img
+  position:absolute
+  left:-3px
+  top:-1px
+.yellow_btn
+  padding:3px 8px
+  text-align:center
+  background-color:#ffaf05
+  border-radius:5px
+.lock_img
+  width:15px
+  height:19px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -85px 0
+  position:absolute
+  right:3px
+  top:30px
+.gift_rightbtn.lock_img
+  width:15px
+  height:19px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -85px 0
+  position:absolute
+  right:3px
+  top:15px
+  cursor:default;
+.food_list li img.img_small
+  width:38px
+  height:38px
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -304px -700px
+  padding:5px
+  text-align:center
+.food_list li img.img_big
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -444px -700px
+  padding:5px 5px 2px 3px
+  text-align:center
+.food_list li img.link
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -525px -700px
+  padding:1px
+  text-align:center
+.food_list li img.on
+  background:url($bgUrl + 'player3/boxbg.png') no-repeat -360px -700px
+  padding:6px 5px 5px
+  text-align:center
+.Progress_bar
+  width:405px
+  height:12px
+  background:url($bgUrl + 'player3/scroll_png.png') no-repeat 0 0
+  margin:10px auto 0
+  position:relative
+.arrow_pointer
+  width:11px
+  height:15px
+  background:url($bgUrl + 'player3/scroll_redpointer.png') no-repeat 0 0
+  position:absolute
+  left:0px
+  top:-5px
+.give_foodbox
+  position:relative
+  .food_tit
+    width:465px
+  .arrow_pointer
+    left:auto
+    right:-11px
+  .arrow_smaillpointer_dian
+    right:-10px
+  .pross_pointer
+    margin: 5px auto 2px
+  .progress_bar_panel
+    height:15px!important
+    position:absolute
+    bottom:17px
+    left:50%
+    margin-left:-205px!important
+  .food_list
+    position:absolute
+    top:22px
+  .food_list li.firstimg_small p,.food_list li.firstimg_big p
+    width:40px
+    overflow:hidden
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
+    white-space: nowrap
+    margin:0 auto
+    text-align:center
+  .food_list li.firstimg_big p
+    width:70px
+.arrow_smaillpointer
+  width:11px
+  height:15px
+  background:url($bgUrl + 'player3/scroll_purplepointer.png') no-repeat 0 0
+  position:absolute
+  right:-11px
+  top:-5px
+.arrow_smaillpointer_dian
+  background: url($bgUrl + 'player3/scroll_pointerimg.png') no-repeat 0 0
+  height: 18px
+  position:absolute
+  right: -22px
+  top: -4px
+  width: 19px
+.arrow .Progress_bar_img
+  position:relative
+  display:block
+  height:10px
+  left:11px
+  top:1px
+  background:url($bgUrl + 'player3/scroll_img.png') repeat 0 0
+.Progress_barsmall_full
+  width:393px
+  height:22px
+  background:url($bgUrl + 'player3/scroll_small_full.png') no-repeat 0 0
+  margin:-2px auto 0
+  background-size:100%
+.arrow .Progress_smaillbar_img
+  position:relative
+  display:block
+  height:10px
+  left:7px
+  top:6px
+  background:url($bgUrl+'player3/scroll_smaill_img.png') repeat 0 0
+/*送家具2014.11.28*/
+.homef_img .progress_bg
+  margin-top:0
+.progress_bg
+  width:60px
+  height:5px
+  background-color:#082331
+  line-height:5px
+  border-radius:2px
+  margin:-7px auto 0
+  position:relative
+  z-index:1
+.progress_bg .progress_con
+  width:100%
+  height:4px
+  background-color:#d87dfd
+  border-radius:2px
+  position:absolute;
+  left:0;
+  top:0;
+.progress_con ins
+  width:10px
+  height:10px
+  background:url($bgUrl + 'player3/scroll_dianimg.png') repeat 0 0
+  position:absolute
+  right:-2px
+  top:-3px
+  zoom:1
+.full_curiosity
+  width:68px
+  height:12px
+  background:url($bgUrl + 'player3/scroll_curiosity_full.png') repeat 0 0
+  position:absolute
+  left:-3px
+  top:-2px
+  z-index:5
+.novelty_style_li li p
+  margin-top:5px
+  width:68px
+  overflow:hidden
+  -o-text-overflow: ellipsis
+  text-overflow: ellipsis
+  white-space: nowrap
+.novelty_style_li li
+  width:68px
+  height:87px
+  margin:0 5px
+  cursor:pointer
+.homef_con_right
+  padding-top:6px
+  height:142px
+  .homef_tab_body
+    position:relative
+    .viewport
+      position:absolute
+      top:20px
+      left:5px
+      width:392px
+      overflow:hidden
+      height: 115px
+      .overview
+        position:relative
+      .progress_bar_panel
+        bottom: 0px
+        left: 50%
+        position:absolute
+        margin-left: -193px
+    .gift_leftbtn.disable,gift_rightbtn.disable,.gift_rightbtn.next,.gift_leftbtn.prev
+      margin-top:40px
+  .homef_tab_body.homef_style2
+    .viewport
+      top:0
+      width:392px
+      left:10px;
+  .homef_tab_body.homef_style1
+    .viewport
+      width:392px;
+      left:12px;
+    .homef_show_list
+      padding-left:0;
+      li
+        width:78px;
+.homef_con_tab
+  border-right:1px solid #1774a4
+  height:150px
+.homef_con_tab li
+  width:38px
+  height:34px
+  line-height:34px
+  text-align:center
+  border:1px solid #506773
+  border-right:none
+  color:#c3c3c4
+  position:relative
+  cursor:pointer
+.homef_con_tab li.on
+  width:40px
+  position:relative
+  z-index:12
+  margin-right:-1px
+.homef_con_tab
+  padding-top:0
+.mt_2
+  margin-top:2px
+.Progress_barsmall
+  width:389px
+  height:20px
+  background:url($bgUrl + 'player3/scroll_small_png.png') no-repeat 0 0
+  margin:-1px auto 0
+  position:relative
+.homef_show_list .arrow .Progress_bar_img
+  left:-63px
+  bottom:-35px
+.homef_show_list .arrow_pointer
+  bottom:-35px
+.arrow_number 
+  position:absolute
+  top:-12px
+  left:-15px
+  width:160px
+  font-size:10px
+.clothes_first_1,.clothes_first_2,.clothes_first_3
+  width 27px
+  height 15px
+  background url($bgUrl + 'player3/player_number.png') no-repeat right center
+  display block
+  margin 0 auto
+  line-height 15px
+
+.clothes_first_1
+  background-position 0 0
+
+.clothes_first_2
+  background-position 0 -20px
+
+.clothes_first_3
+  background-position 0 -39px
+
+.imgbox
+  .clothes_smallicon
+    position absolute
+    bottom 0
+    right 0
+  .lock_img_22
+    width 22px
+    height 28px
+    background url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -78px -24px
+    display block
+  img
+    width 70px
+    height 90px
+    border-radius 3px
+
+.clothes_rankingbg
+  width 41px
+  height 14px
+  background url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -49px -102px
+  padding-left 10px
+
+.close_list
+  ul
+    li
+      .imgbox
+        &:hover
+          .clothes_smallicon
+            bottom 3px
+            right 3px
+.bid_price_box
+  margin 0 auto
+
+.dialogBluebgGames
+  .ui-dialog-close
+    right 1px
+    top -5px
+.homef_img
+  img
+    width 95px
+    height 95px
+    border-radius 2px
+.bid_price
+  label
+    line-height 20px
+    vertical-align middle
+
+.bid_pricek
+  padding 0 2px 0 3px
+  margin 0 5px
+
+.lock_img_42
+  width 42px
+  height 52px
+  background url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat 0 -43px
+  margin 0 auto
+  span
+    position absolute
+    top 22px
+    z-index 1
+    width 205px
+    text-align center
+    right -88px
+
+.use_sale
+  height:11px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -89px -72px
+  margin:8px 0
+  line-height 11px
+  vertical-align middle
+  padding-left 14px
+.not_use_sale
+  height:12px
+  background:url($bgUrl + 'player3/zhiboye_siconimg.png') no-repeat -88px -86px
+  margin:8px 0
+  line-height:12px
+  vertical-align:middle
+  padding-left:13px
+
+/* copy form player3.css */
+
+.support_prop
+  ul
+    li
+      &.ygold_prop
+        position absolute
+        left 50%
+        margin-left -40px
+        bottom 5px
+      &.player_2_l
+        position absolute
+        left 0
+        bottom 5px
+      &.player_2_r
+        position absolute
+        right 0
+        bottom 5px
+  .goddess_photo_rank
+    margin-left 40px
+  .support_prop_list
+    position relative
+    width 340px
+    height 90px
+    margin 0 auto
+
+.financing_props_con
+  &.support_prop
+    text-align center
+
+.financingProgress_bar
+  &.supportProgress_bar
+    background url("../images/player3/support_prop_scroll.png") no-repeat center center
+    .arrow
+      &.arrow_r
+        .Progress_smaillbar_img
+          right 8px
+          left -8px
+      .Progress_smaillbar_img
+        height 4px
+        background url("../images/player3/scroll_centerbgimg.png") repeat-x center center
+        top 4px
+
+.supportProgress_bar
+  .arrow
+    .arrow_smaillpointer
+      background url("../images/player3/scroll_pointerimg.png") no-repeat right center
+      height 18px
+      width 19px
+      top -7px
+      right -10px
+    &.arrow_r
+      .arrow_smaillpointer
+        left -10px
+        right 0
+
+.financing_props,.games_nostart_main,.play_games_conbg
+  width 408px
+  height 138px
+  overflow:hidden
+  padding 5px 5px 5px 10px
+  border 1px solid #1774a4
+  background-color #0c1924
+  position relative
+  z-index 1
+  .viewport
+    position:relative
+.financing_props
+  .financing_props_tit
+    width:408px;
+.homef_show_list
+  li
+    &.support_prop_sign
+      width 15px
+      font-size 24px
+      margin-top 15px
+
+.homef_show_con
+  &.support_wish
+    padding-left 25px
+
+.play_games_starttab
+  li
+    &.rule_styel
+      line-height 34px
+
+
+
+.crittips_Content
+  .tips_grils img
+    bottom:0
+    top:-38px
+    left:-64px
+  .crittips_title
+    left:49px
+
+    
+
+.prev.disable,.next.disable
+	cursor:default
+.ui-popup-focus .playgame_dialog
+	width:212px;
+.ui-popup-focus .gamefresh_dialog
+	width:272px;
+.wishsuccess_main .getaward_btnd
+  #getdrawokbtn
+    margin:auto auto;
+    text-align:center;

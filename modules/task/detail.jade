@@ -1,0 +1,38 @@
+.taskgirls_img
+  img(src=window.resUrl + 'orig/images/prop_icon/girls_tasknewimg.png')
+.task_rightmain
+  .task_title
+    span
+  .task_rightcon.mt_20
+    p.tl= '任务：' + name
+    p.tl.text1px.mt_5= description
+    - quicklink1 = quicklink1.replace(/#(.*)#/,'<a href="javascript:;" data-effect="' + opteffect1 + '" class="blue1 quicklink" data-module="quicklink">$1</a>');
+    p.tl.text1px.mt_2!= quicklink1
+    if finalreward
+      if finalreward.coin || finalreward.diamond || finalreward.love || finalreward.live
+        p.tl.ml_5.mt_5 奖励：
+        .tl.gold_heartnumber.cl.mt_2
+          - var i = 0;
+          - var classNames = {coin:'gold_img', diamond:'blue_drill', love:'heart_4', live:'five_star'};
+          for count,type in finalreward
+            - var className = classNames[type];
+            if className
+              if i++ > 1
+                - className += ' mt_5';
+              span(class=className)= globalUtil.commafy(count)
+          //- if finalreward.coin
+          //-   span.gold_img= finalreward.coin
+          //- if finalreward.diamond
+          //-   span.blue_drill= finalreward.diamond
+          //- if finalreward.love
+          //-   span.heart_4.mt_5= finalreward.love
+          //- if finalreward.live
+          //-   span.five_star.mt_5= finalreward.live
+      if finalreward.item
+        .receive_goods.cl.mt_10
+          p.ml_5 领取物品：
+          ul.cl.ml_5.mt_5
+            for item,id in finalreward.item
+              li
+                img(src=window.resUrl + "item/"+ id +"/50")
+    a.w90.btn_2b.ml_5.btn-confirm(href='javascript:void(0);') 朕知道了

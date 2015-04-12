@@ -1,0 +1,17 @@
+extends ../raise/index
+
+block append img
+  .homef_img.fl
+    img(src=window.resUrl + 'item/' + itemid + '/76/1/' + quality)
+
+block append nextImg
+  .homef_img.imgbox.fl
+    img(src=window.resUrl + 'item/' + itemid + '/76/1/' + quality,style="width:75px;height:75px;")
+
+block append priceDesc
+  .mt_10
+    | 已集资/
+    span 底价
+
+block append raiseBtn
+  .w90.btn_1y.ml_60.mt_20.mb_5(data-baidu,data-baidu-category="food",data-baidu-action="click_raise",data-baidu-label=itemid) 朕要出价

@@ -1,0 +1,21 @@
+ul.personal_Info_menu(data-module="i_ucnav")
+  li.hide
+    a(href='myhome')
+      span.my_home
+      | 我的首页
+  li.hide
+    a(href='mydiary')
+      span.my_diary
+      | 我的日记簿
+  li.p_account_settings.cl.on
+    .pr.sets_style.cl
+      a.fl(href='setbasic')
+        span.account_sets
+        | 账号设置
+      span#Setaccounts_icon.fr.info_set_down
+    #settingsMenu.settings_menu.cl
+      a#nav-setbasic(href='setbasic') 基本资料
+      a#nav-setphoto(href='setphoto') 修改头像
+      a#nav-setpwd(href='setpwd') 修改密码
+      a(style="display: none", href='shareaccountsets.html') 分享账号设置
+      a(style="display: none", href='###') 充值记录

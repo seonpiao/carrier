@@ -1,0 +1,29 @@
+.financing_props
+  .financing_props_tit.cl
+    p.mt_5
+      span.red(data-module="countdown",data-seconds=countdown)
+      | 后结束
+  p.mt_5= content
+  .crowdfunding_props_con.mt_3.cl
+    a(href="javascript:;").gift_leftbtn.fl.prev
+    .fl.homef_show_con.viewport
+      - var availableColors = ['gray','q_white','q_green','q_blue','q_purple','q_orange'];
+      ul.cl.homef_show_list.mt_10.crowdfunding_props_list.overview
+        - for(var i = 1; i < 21; i++){
+          - var field = locals['field' + i];
+          if field
+            - var percent = ((field.curfunds||0) / field.targetfunds * 100)
+            li(data-field="field" + i,data-id=i,class=(percent >= 100 ? 'disabled' : ''),class=(percent >= 100 ? 'disabled' : ''))
+              a(href="javascript:;")
+                img(src=window.resUrl + 'item/' + field.id + '/50')
+                if percent >= 100
+                  ins(class="foodhv")
+                .progress_bg
+                  if percent >= 100
+                    .full_curiosity(style='')
+                  else
+                    .progress_con(style='width:' + percent + '%')
+                      ins.hide
+              p(class=availableColors[field.quality - 1])= field.name
+        - }
+    a(href="javascript:;").gift_rightbtn.fr.next

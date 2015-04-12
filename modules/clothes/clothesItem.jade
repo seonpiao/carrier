@@ -1,0 +1,13 @@
+div.imgbox
+  img(src=window.resUrl + 'item/' + id + '/76/1/' + quality)
+  if index < 3
+    .clothes_smallicon.clothes_rankingbg
+      ins(class='clothes_first_' + (index + 1))
+  if status == '0'
+    .clothes_smallicon
+      ins.lock_img_22
+  if isupup
+    i.clothes_haved
+- var availableColors = ['gray','q_white','q_green','q_blue','q_purple','q_orange'];
+- var titleColor = availableColors[quality - 1];
+p(class=titleColor)= name

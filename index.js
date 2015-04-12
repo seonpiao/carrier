@@ -6,13 +6,13 @@ var path = require('path');
 var routing = require('koa-routing');
 var views = require('koa-views');
 var body = require('koa-body');
-var resetctx = require('./libs/resetctx');
-var response = require('./libs/response');
+var resetctx = require('./libs/server/resetctx');
+var response = require('./libs/server/response');
 
 var APP_PATH = path.join(__dirname, 'apps');
 
-function init(app, appPath) {
-    app.use(views(appPath, {
+function init(app, pagePath) {
+    app.use(views(pagePath, {
         default: 'jade',
         cache: process.env.NODE_ENV === 'production' ? true : false
     }));
@@ -55,6 +55,11 @@ apps.forEach(function(appName) {
                 yield response.call(this, pageName + '/index');
             });
         }
+    });
+    //如果前面没有匹配的路由，就走默认路由响应404
+    app.route('*').all(function*(next) {
+        yield resetctx.call(this);
+        yield response.call(this);
     });
     logger.info('App[' + appName + '] listening: ' + appConfig.port);
     app.listen(appConfig.port);

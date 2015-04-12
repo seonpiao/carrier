@@ -1,0 +1,67 @@
+.financing_props.program_list.scrollbars
+  .scrollbar
+    .scroll_up
+    .track
+      .thumb
+        .thumb_end
+    .scroll_down
+  .viewport
+    dl.program_list_con.overview
+      dt.program_title
+        span.blue
+          = eventname + "：女神积分排行榜"
+        = alias
+      - var angels = ['link','gray','lights'];
+      for girl,index in ranks
+        dd(class='program_list_entry' + (index === 0 ? ' on' : ''))
+          ul.cl
+            li(class=("integral_ranking_" + Math.min(index + 1, 3)),style=(index < 3 ? '' : 'visibility:hidden;'))
+            li.star_name
+              span.name_color= girl.girlname
+            if !girl.ranks.rank1 && !girl.ranks.rank2 && !girl.ranks.rank3
+              li.byself.red= '没有人给她集资，女神自力更生排行第' + (index + 1)
+            if girl.ranks.rank1
+              li(class='userphoto_bg userphotobg_' + angels[girl.ranks.rank1.usrangel])
+                a(href='javascript:;')
+                  img(src=window.resUrl + 'head/' + girl.ranks.rank1.ssoid + '/40')    
+              li.user_detail.mr_10
+                .cl.rating_top_user
+                  if girl.ranks.rank1.usrangel != '0'
+                    - var className = 'angle_btn_lights_' + girl.ranks.rank1.usrangel;
+                    span(class=className)
+                  if girl.ranks.rank1.usrvip != '0'
+                    span.vip_btn_lights
+                  span.blue2= girl.ranks.rank1.username
+                  p
+                  | &#x8282;&#x76EE;&#x8D21;&#x732E;:
+                  span.blue_drill= globalUtil.commafy(girl.ranks.rank1.bid)
+            if girl.ranks.rank2  
+              li(class='userphoto_bg userphotobg_' + angels[girl.ranks.rank2.usrangel])
+                a(href='javascript:;')
+                  img(src=window.resUrl + 'head/' + girl.ranks.rank2.ssoid + '/40') 
+              li.user_detail.mr_10.hide
+                .cl.rating_top_user
+                  if girl.ranks.rank2.usrangel != '0'
+                    - var className = 'angle_btn_lights_' + girl.ranks.rank2.usrangel;
+                    span(class=className)
+                  if girl.ranks.rank2.usrvip != '0'
+                    span.vip_btn_lights
+                  span.blue2= girl.ranks.rank2.username
+                  p
+                  | &#x8282;&#x76EE;&#x8D21;&#x732E;:
+                  span.blue_drill= globalUtil.commafy(girl.ranks.rank2.bid) 
+            if girl.ranks.rank3  
+              li(class='userphoto_bg userphotobg_' + angels[girl.ranks.rank3.usrangel])
+                a(href='javascript:;')
+                  img(src=window.resUrl + 'head/' + girl.ranks.rank3.ssoid + '/40')
+              li.user_detail.mr_10.hide
+                .cl.rating_top_user
+                  if girl.ranks.rank3.usrangel != '0'
+                    - var className = 'angle_btn_lights_' + girl.ranks.rank3.usrangel;
+                    span(class=className)
+                  if girl.ranks.rank3.usrvip != '0'
+                    span.vip_btn_lights
+                  span.blue2= girl.ranks.rank3.username
+                  p
+                  | &#x8282;&#x76EE;&#x8D21;&#x732E;:
+                  span.blue_drill= globalUtil.commafy(girl.ranks.rank3.bid)

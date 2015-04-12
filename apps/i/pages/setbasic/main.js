@@ -1,0 +1,1 @@
+require([ "apps/i/pages/setbasic/modules" ], function() {});

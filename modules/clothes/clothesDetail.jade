@@ -1,0 +1,28 @@
+.clothes_hoverbox.cl.tl
+  .arrow_icon
+  .clothes_typebox
+  - var availableColors = ['gray','q_white','q_green','q_blue','q_purple','q_orange'];
+  - var availableColorNames = ['灰色','白色','绿色','蓝色','紫色','橙色'];
+  - var titleColor = availableColors[quality - 1];
+  - var nextColor = availableColors[toquality - 1];
+  - var nextColorName = availableColorNames[toquality - 1];
+    p(class=titleColor + ' f14')= name
+    if happybuf && happybuf != '0'
+      p.green 幸福度
+        span(class='expression_' + happybuf)
+    if lovebuf && lovebuf != '0'
+      p.green= '亲密度：' + lovebuf
+    if popbuf && popbuf != '0'
+      p.green= '人气值：' + popbuf
+    p
+      span.white
+        | 已集资/
+        span(class=nextColor)
+          = nextColorName
+          | 品质价
+    - var className = 'blue_drill'
+    if bidtype == '1'
+      - className = 'yellow_gold'
+    p(class=className)
+      span.red= globalUtil.commafy(Math.min(curfunds || 0,bid))
+      span= '/' + globalUtil.commafy(bid || 0)

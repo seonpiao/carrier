@@ -1,0 +1,32 @@
+#LoveAttChange.LoveAttin_box.cl
+  .LoveAtt_tips.cl
+    .LoveAtt_tips_title.cl
+      .lights_show
+        span
+    .LoveAtt_main.pr
+      .LoveAtt_grils
+        if window.girlid > 0
+          img(src=window.resUrl + 'girl/'+window.girlid+'/154x356', height='310')
+        else
+          img(src=window.resUrl + 'girl/'+newgirl.girlid+'/154x356', height='310')
+      .cl.mt_20.LoveAtt_rightcon
+        p.cl.yellow_2.ml_20
+          if girlname
+            | 你的女神你做主！你确定将“关注”转移到
+          else
+            | 为了爱和执着！接力女神现身了！她就是
+          span.name_color= girlname || newgirl.name
+        .love_hrline.cl.mt_5.mb_5
+        .LoveAtt_con.cl.ml_20
+          p.cl.white!= '1. ' + reason.replace(oldgirl.name,'<span class="name_color">' + oldgirl.name + '</span>')
+          p.cl.white.mt_15
+            | 2. 您之前对
+            span.name_color= oldgirl.name
+            女神投资的亲密度
+            = globalUtil.commafy(oldgirl.intimacy)
+            ，都会转移到现在关注的选手
+            span.name_color= girlname || newgirl.name
+            | 身上。
+        .cl.mt_40.ml_40
+          a#agina_sbtn.fl.btn_2b.w90(href='javascript:void(0);') 再看看别人
+          a#goon_attbtnlove.fl.btn_2b.ml_40.w90(href='javascript:void(0);') 继续关注

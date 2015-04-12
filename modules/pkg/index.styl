@@ -1,0 +1,377 @@
+.pkg-dialog
+  border:1px solid #0c1218
+  border-radius:2px
+  background-color:#0c1924
+  padding:5px
+  box-shadow:1px 0px 2px #172a39 inset,0 1px 2px #172a39 inset,0 -1px 2px #172a39 inset,-1px 0 2px #172a39 inset
+  -webkit-box-shadow:1px 0px 2px #172a39 inset,0 1px 2px #172a39 inset,0 -1px 2px #172a39 inset,-1px 0 2px #172a39 inset
+  -moz-box-shadow:1px 0px 2px #172a39 inset,0 1px 2px #172a39 inset,0 -1px 2px #172a39 inset,-1px 0 2px #172a39 inset
+.pkg-dialog .ui-dialog-header,.wishSuccess .ui-dialog-header
+  border:none
+  padding:0
+.pkg-dialog .ui-dialog-close,.wishSuccess .ui-dialog-close
+  width:15px
+  height:15px
+  background:url($bgUrl + 'bottle/bottolbg.png') no-repeat -585px 0
+  right:-13px
+  opacity:1
+  top:0px
+  right:2px
+  z-index:1040
+.pkg-dialog .ui-dialog-close:hover,.wishSuccess .ui-dialog-close:hover
+  background:url($bgUrl+"bottle/bottolbg.png") no-repeat -585px -15px
+.pkg-dialog .ui-dialog-title
+  padding:1px 15px
+  overflow:visible
+.pkg-tit-icon
+  display:inline-block
+  width:125px
+  height:48px
+  background:url($bgUrl+'pkgbg.png') no-repeat -215px -2px
+  position:absolute
+  left:-5px
+  top:-28px
+.pkg-send .pkg-tit-icon
+  background:url($bgUrl+'pkgbg.png') no-repeat -102px -1px
+  width:100px
+  height:26px
+  top:-13px
+  left:-10px
+.pkg-multisend .pkg-tit-icon
+  background:url($bgUrl+'pkgbg.png') no-repeat -1px -1px
+  width:100px
+  height:26px
+  top:-13px
+  left:-10px
+.pkg-success-send
+  background:url($bgUrl+'pkgbg.png') no-repeat -170px -155px
+  display:inline-block
+  width:160px
+  height:140px
+.pkg-success-use
+  background:url($bgUrl+'pkgbg.png') no-repeat 0px -155px
+  display:inline-block
+  width:160px
+  height:140px
+  /*btn*/
+.w150
+  width:150px
+.w300
+  width:300px
+.w100
+  width:100px
+.w90
+  width:90px
+.w160
+  width:160px
+.h20
+  height:20px
+  line-height:20px
+.w120
+  width:120px
+.w80
+  width:80px
+.w50
+  width:50px
+.pkg_btn_3:hover,a.pkg_btn_3:hover
+  background-color:#43d1f4
+.pkg_btn_3:active,a.pkg_btn_3:active
+  background-color:#037aa2
+.pkg_btn_1y:hover,a.pkg_btn_1y:hover
+  background-color:#f7d725
+.pkg_btn_1y:active,a.pkg_btn_1y:active
+  background-color:#ca8017
+.pkg_btn_2b:hover,a.pkg_btn_2b:hover
+  background-color:#43d1f4
+.pkg_btn_2b:active,a.pkg_btn_2b:active
+  background-color:#037aa2
+.pkg_btn_2b,a.pkg_btn_2b
+  height:26px
+  line-height:26px
+  text-align:center
+  border-radius:2px
+  background-color:#2ec1e5
+  color:#fff
+  display:inline-block
+  font-size:12px
+.pkg_btn_1y,a.pkg_btn_1y
+  height:26px
+  line-height:26px
+  text-align:center
+  border-radius:2px
+  background-color:#f7aa25
+  color:#fff
+  display:inline-block
+  font-size:12px
+.pkg-dialog-inner
+  background:#273851
+  border:#1774a4 solid 1px
+  padding-top:8px
+  box-shadow:1px 0px 5px #172a39 inset,0 1px 5x #172a39 inset,0 -1px 5px #172a39 inset,-1px 0 5px #172a39 inset
+  -webkit-box-shadow:1px 0px 5px #172a39 inset,0 1px 5px #172a39 inset,0 -1px 5px #172a39 inset,-1px 0 5px #172a39 inset
+  -moz-box-shadow:1px 0px 5px #172a39 inset,0 1px 5px #172a39 inset,0 -1px 5px #172a39 inset,-1px 0 5px #172a39 inset
+.pkg-dialog-inner .scrollbars .viewport
+  width:246px
+  height:293px
+.pkg-dialog-inner .scrollbars .overview
+  background:url($bgUrl+'navmenu/att_bg_nobd.png') repeat
+  width:243px
+  padding-left:0px
+  min-height:293px
+  margin-left:5px
+.pkg-dialog-inner .scrollbar
+  height:280px
+  width:2px
+  right:6px
+.pkg-dialog-inner .track
+  height:280px
+  width:2px
+  background:#152337
+  margin:0px
+.pkg-dialog-inner .thumb
+  width:2px
+  background:#226c92
+.pkg-dialog-inner .scroll_up,.pkg-dialog-inner .scroll_down
+  display:none
+.pkg-item
+  display:inline-block
+  width:48px
+  height:49px
+  //background:url($bgUrl+'pkgbg.png') no-repeat -196px -75px
+  float:left
+  margin:0px 
+  position:relative
+  .count
+    position: absolute
+    right: 2px
+    bottom: 2px
+    width: 40px
+    left: auto
+    text-align: right
+    overflow: hidden
+  //border:#082331 solid 1px
+.pkg-item.currentItem
+  background:url($bgUrl +'navmenu/att_bg.png') no-repeat right bottom
+.pkg-item .pgk-item-icon
+  width:40px
+  height:40px
+  margin-top:5px
+  margin-left:4px
+/*.pkg-item-level1
+  border:#a2a2a2 solid 1px
+.pkg-item-level2
+  border:#fff solid 1px
+.pkg-item-level3
+  border:#00fe9b solid 1px
+.pkg-item-level4
+  border:#21c1e5 solid 1px
+.pkg-item-level5
+  border:#d87dfd solid 1px
+.pkg-item-level6
+  border:#ff7301 solid 1px
+*/
+.pkg-item-list
+  float:left
+//.pkg-item-icon
+a.pgk-item:hover,a.pgk-item.hover
+.pgk-btns
+  padding-top:5px
+  padding-bottom:5px
+  text-align:center
+.pkg-item-btns
+  background:#0c1924
+  border:#0c1218 solid 1px
+  display:block
+  width:58px
+  position:absolute
+  top:24px
+  left:24px
+.pkg-item-btns a
+  display:inline-block
+  width:58px
+  height:24px
+  line-height:24px
+  color:#f9fbb6
+  text-align:center
+  font-family:"微软雅黑"
+  font-size:12px
+.linebtm
+  font-family:"微软雅黑"
+  font-size:12px
+  background:url($bgUrl+'pkgline.png') no-repeat center bottom
+.itemsend
+.itemsend h3
+  color:#f9fbb6
+  line-height:24px
+  padding-top:4px
+  font-family:"微软雅黑"
+  font-size:12px
+  font-weight:normal
+.pkg-girl-list
+  padding-bottom:10px
+  height:165px
+.pkg-girl
+  width:60px
+  float:left
+  img
+    width:55px
+    background:url($bgUrl+'girl_photo.png') no-repeat -57px -4px
+  img:hover
+    width:55px
+    height:55px;
+    background:url($bgUrl+'girl_photo.png') no-repeat 1px -5px
+.pkg-gray 
+  -webkit-filter: grayscale(100%)
+  -moz-filter: grayscale(100%)
+  -ms-filter: grayscale(100%)
+  -o-filter: grayscale(100%)  
+  filter: grayscale(100%)
+  filter: gray
+.pkg-girl.curr img
+  width:55px
+  height:55px
+  background:url($bgUrl+'girl_photo.png') no-repeat 1px -5px  
+.pkg-girl-name
+  width:58px
+  height:16px
+  line-height:16px
+  color:#ffa0c4
+  font-size:12px
+  text-align:center
+  white-space: nowrap
+  word-wrap: normal
+  overflow: hidden
+  text-overflow: ellipsis
+.pkg-girl-gift-list
+  text-align:center
+  padding-top:5px
+  padding-bottom:3px
+  margin-bottom:8px
+.pkg-girl-gift-list a
+  display:inline-block
+  width:33px
+  text-align:center
+.pkg-girl-gift-list i
+  display:inline-block
+  width:33px
+  height:33px
+  text-align:center
+  background:url($bgUrl+'pkgbg.png') no-repeat
+.pkg-girl-gift-list .giftIcon
+  background:url($bgUrl+'pkgbg.png') no-repeat -33px -32px
+  display:inline-block
+  width:33px
+  height:33px
+.pkg-girl-gift-list .giftText
+  display:inline-block
+  color:#2ec1e5
+  font-size:12px
+  line-height:16px
+  height:16px
+.pkg-girl-gift-list a:hover .giftIcon,.pkg-girl-gift-list a.hover .giftIcon
+  background-position:0 -32px
+.girlGift1 i
+  background-position:2px -73px
+.girlGift2 i
+  background-position:-33px -72px
+.girlGift3 i
+  background-position:-69px -73px 
+.girlGift4 i
+  background-position:-106px -73px
+.girlGift5 i
+  background-position:-144px -73px 
+a:hover .girlGift1 i,a.hover .girlGift1 i,.girlGift1 i:hover
+  background-position:2px -111px
+a:hover .girlGift2 i,a.hover .girlGift2 i,.girlGift2 i:hover
+  background-position:-33px -110px 
+a:hover .girlGift3 i,a.hover .girlGift3 i,.girlGift3 i:hover
+  background-position:-69px -110px
+a:hover .girlGift4 i,a.hover .girlGift4 i,.girlGift4 i:hover
+  background-position:-106px -110px  
+a:hover .girlGift5 i,a.hover .girlGift5 i,.girlGift5 i:hover
+  background-position:-144px -110px  
+.pkg-multisend .pgk-btns
+  margin-top:8px
+
+.itemMoneyIcon
+  display:inline-block
+  width:20px
+  height:20px
+  vertical-align: middle;
+  margin: 0 2px;
+.itemMoneyIcon_diamond
+  background:url($bgUrl+"money_icon.png") no-repeat 0px -24px
+.itemMoneyIcon_diamond:hover
+  background:url($bgUrl+"money_icon.png") no-repeat 0px -0px
+.itemMoneyIcon_coin
+  background:url($bgUrl+"money_icon.png") no-repeat 0px -72px
+.itemMoneyIcon_coin:hover
+  background:url($bgUrl+"money_icon.png") no-repeat 0px -48px
+  
+.pkg-item-detail
+  background:#0c1924
+  border:#0b0d10 solid 1px
+  border-radius:2px
+  padding:0 5px 5px 5px
+  position:absolute
+  font-size:12px
+  width:140px
+  line-height:14px
+  font-family:"微软雅黑"
+  z-index:10000
+  box-shadow:1px 0px 5px #172a39 inset,0 1px 5x #172a39 inset,0 -1px 5px #172a39 inset,-1px 0 5px #172a39 inset
+  -webkit-box-shadow:1px 0px 5px #172a39 inset,0 1px 5px #172a39 inset,0 -1px 5px #172a39 inset,-1px 0 5px #172a39 inset
+  -moz-box-shadow:1px 0px 5px #172a39 inset,0 1px 5px #172a39 inset,0 -1px 5px #172a39 inset,-1px 0 5px #172a39 inset
+.pkg-item-detail-inner
+  position:relative
+  z-index:10001
+  min-height:60px
+.pkg-item-detail .ui-dialog-arrow-a,.pkg-item-detail .ui-dialog-arrow-b
+  position: absolute
+  display: block
+  width: 0
+  height: 0
+  overflow: hidden
+  line-height: 0
+  font-size: 0
+  _color: #FF3FFF
+  _filter: chroma(color=#FF3FFF)
+.pkg-item-detail .ui-dialog-arrow-a
+  left: -20px
+  border-right: 20px solid #0c1218
+  border-left: 0 none
+  border-top: 12px solid transparent
+  border-bottom: 12px solid transparent
+  margin-top: -12px
+  top: 50%
+.pkg-item-detail .ui-dialog-arrow-b
+  left: -20px
+  border-right: 20px solid #0c1924
+  border-left: 0 none
+  border-top: 12px solid transparent
+  border-bottom: 12px solid transparent
+  margin-top: -12px
+  top: 50%
+.pkg-item-detail .fb
+  font-weight:bold
+.pkg-item-detail .f14
+  font-size:14px
+.pkg-item-detail .itemlevel,.pkg-item-detail .itemlevel0,.pkg-item-detail .itemlevel1,.pkg-item-detail .itemlevel2,.pkg-item-detail .itemlevel3,.pkg-item-detail .itemlevel4,.pkg-item-detail .itemlevel5,.pkg-item-detail .itemlevel6
+  font-size:14px
+  line-height:24px
+
+.iconHappbuf
+  display:inline-block
+  width:20px
+  height:20px
+  vertical-align:middle
+.happybuf1
+  background:url($bgUrl + 'happy/1.png') no-repeat center
+.happybuf2
+  background:url($bgUrl + 'happy/2.png') no-repeat center
+.happybuf3
+  background:url($bgUrl + 'happy/3.png') no-repeat center
+.happybuf4
+  background:url($bgUrl + 'happy/4.png') no-repeat center
+.happybuf5
+  background:url($bgUrl + 'happy/5.png') no-repeat center

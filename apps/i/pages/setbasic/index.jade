@@ -1,0 +1,16 @@
+extends ../../layouts/index
+
+block append title
+  title= '个人中心'
+
+block append meta
+  meta(name='title', content='个人中心')
+  script(type='text/javascript').
+    var page = 'setbasic';
+block append body
+  #header.header(data-module='header')
+  
+  .personal_main.cl
+    include ../../../../modules/i_leftNav/index
+    include ../../../../modules/i_setbasic/index
+    

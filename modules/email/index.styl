@@ -1,0 +1,310 @@
+.email-dialog-on
+	background: url($bgUrl + 'navmenu/inbox_bg.png')
+	width: 265px
+	height: 360px
+	z-index: 300
+	border:none
+	.scrollbars .viewport
+		width:245px
+		height:290px
+	.scrollbar
+		height:290px
+		width:2px
+		right:13px
+		margin-top:6px
+	.track
+		height:277px
+		width:2px
+		background: #152337
+		margin: 0
+	.thumb
+		width: 2px
+		background: #226c92
+	.scroll_up,.scroll_down
+		display:none
+
+	.ui-dialog-header
+		border:none
+	.ui-dialog-close
+		position:absolute
+		z-index:10
+		right:4px
+		top:37px
+		text-indent:100em
+		overflow:hidden
+		width:18px
+		height:15px
+		background:url($bgUrl + "bottle/bottolbg.png") no-repeat -583px 0
+	.ui-dialog-close:hover
+		background:url($bgUrl + "bottle/bottolbg.png") no-repeat -583px -15px
+	.inbox
+		width:265px
+		height:360px
+		.noemail_face
+			width:70px
+			height:87px
+			background:url($bgUrl + "navmenu/noemail_face.png") no-repeat center center
+			margin:77px auto 0 105px
+	#email-header
+		height:15px
+	#email-list
+		margin-left: 20px
+		width: 238px
+		height:290px
+		overflow-x: hidden
+		li
+			background-image: url($bgUrl + 'navmenu/inbox_mailline_bg.png')
+			height: 48px
+			width: 221px
+			margin-left: 5px
+			margin-top:0
+			color:#ccc
+			div
+				float:left
+			#icon
+				margin: 3px
+				height: 42px
+				width: 42px
+				float:left
+			.newmail
+				background: url($bgUrl + 'navmenu/inbox_newmail.png') no-repeat
+				width:44px
+				height:44px
+				margin:2px 0 0 2px
+			.readmail
+				background: url($bgUrl + 'navmenu/inbox_readmail.png') no-repeat
+				width:44px
+				height:44px
+				margin:2px 0 0 2px
+			.newmail_at
+				background: url($bgUrl + 'navmenu/inbox_newmail_at.png')
+				width:44px
+				height:44px
+				margin:2px 0 0 2px
+			.readmail_at
+				background: url($bgUrl + 'navmenu/inbox_readmail_at.png')
+				width:44px
+				height:44px
+				margin:2px 0 0 2px
+			.from
+				font-size: 12px
+				float: left
+				width: 165px
+				margin-left:5px
+				margin-top:5px
+				vertical-align:middle
+				span
+					display:inline-block
+					vertical-align:middle
+			.time
+				float:right
+				font-size: 12px
+				margin-right:10px
+				overflow:hidden 
+			.title
+				width:94px
+				-o-text-overflow:ellipsis
+				text-overflow:ellipsis
+				overflow:hidden
+			.titleoff
+				width:94px
+				display:inline-block
+				white-space:nowrap
+				-o-text-overflow:ellipsis
+				text-overflow:ellipsis
+				overflow:hidden
+			.fromexplain
+				width:165px
+				float:left;
+				overflow:hidden
+				vertical-align:bottom
+				margin-left:5px
+				font-size:12px
+				line-height:20px
+				.from_title
+					width:120px
+					display:inline-block
+					white-space:nowrap
+					vertical-align:bottom
+					-o-text-overflow:ellipsis
+					text-overflow:ellipsis
+					overflow:hidden
+		li.noat_nr
+			.title
+				color:#f9fbb6
+			.timecon
+				color:#2ec1e5
+			.fromexplain
+				color:#fff
+		li.hr_noat
+			color:#ccc
+		li.on
+			background-image: url($bgUrl + 'navmenu/inbox_mailline_light_bg.png')
+			cursor:pointer
+		li:hover
+			background-image: url($bgUrl + 'navmenu/inbox_mailline_light_bg.png')
+			cursor:pointer
+.email-edialog-on
+	.scrollbar
+		width:8px
+		background-color:#bfaca8
+		height:auto
+		margin-top:0
+	.thumb
+		width:8px
+		background-color:#4f231e
+	.openinbox
+		height: 300px
+		width: 270px
+		margin:0 auto
+		padding:0 10px
+		.center
+			margin:auto
+		.mailtitle
+			width:260px
+			height:37px
+			color:#fefefe
+			font-size:12px
+			span.title
+				color:#fcfbc1
+		.mailimg
+			position:relative
+			.count
+				width:40px
+				left:auto
+				right:0
+				text-align: right
+		.mailcontent
+			width:262px
+			.track
+				width:8px
+				background: #bfaca8
+				margin: 0
+			.maincon
+				color:#a14800
+				font-size:12px
+				width:238px
+				padding:10px 12px 0 12px
+				word-wrap: break-word;
+				p
+					margin-top:0px
+			.mailcontent1
+				height:151px
+				background:url($bgUrl + 'navmenu/mailcontent_bg1.png') no-repeat center center
+				.scrollbars
+					height:131px
+					width:228px
+					.viewport
+						width:238px
+						height:131px
+						margin:0 auto
+					.track
+						height:131px
+			.mailcontent2
+				height:134px
+				background:url($bgUrl + 'navmenu/mailcontent_bg1-2.png') no-repeat center center
+				.scrollbars
+					height:124px
+					width:228px
+					.viewport
+						width:238px
+						height:124px
+						margin:0 auto
+					.track
+						height:124px
+			.mailcontent3
+				height:182px
+				background:url($bgUrl + 'navmenu/mailcontentinfo_bg2-2.png') no-repeat center center
+				.scrollbars
+					width:228px
+					height:170px
+					.viewport
+						width:238px
+						height:170px
+						margin:0 auto
+					.track
+						height:170px
+			.mailcontent4
+				height:220px
+				background:url($bgUrl + 'navmenu/mailcontentinfo_bg2.png') no-repeat center center
+				.scrollbars
+					width:228px
+					height:200px
+					.viewport
+						width:238px
+						height:200px
+						margin:0 auto
+					.track
+						height:200px
+		.closebt
+			margin-top:7px
+		.att
+			width:262px
+			font-size:12px
+			color:#fefefe
+			padding-top:5px
+		.attline
+			width:265px
+		.attbg 
+			width:48px
+			height:48px
+			float:left
+			margin-right:5px
+		.attbgon
+			background-image:url($bgUrl + 'navmenu/att_bg.png')
+		.attbgoff
+			background-image:url($bgUrl + 'navmenu/att_bg_nobd.png')
+		.attbt
+			width:100px
+			height:27px
+			clear:none
+			font-size:14px
+			color:#fff
+			cursor:pointer
+			text-align:center
+			line-height:25px
+			margin-top:4px
+			background-image:url($bgUrl + 'navmenu/at_bg.png')
+			text-shadow:1px 1px rgba(0,0,0,.3)
+		.attbt1
+			width:100px
+			height:27px
+			clear:none
+			font-size:12px
+			color:#fff
+			cursor:pointer
+			text-align:center
+			line-height:25px
+			margin-top:5px
+			background-image:url($bgUrl + 'navmenu/at_bg.png')
+			text-shadow:1px 1px rgba(0,0,0,.3)
+.email-edialog-on
+	background: url($bgUrl + 'navmenu/open_inbox_bg.png')
+	width: 292px
+	height: 359px
+	border:none
+	.ui-dialog-close
+		top:24px
+	.fjList li
+		float:left
+		width:40px
+		height:40px
+		margin:0 6px
+		img
+			width:40px
+			height:40px
+			padding:1px;
+			background:url($bgUrl + "prop_icon/iconlink_42.png") no-repeat center center
+	.fjList li
+		img:hover
+			padding:3px
+			margin:-2px 0 0 -2px
+			background:url($bgUrl + "prop_icon/iconbg_hover_48.png") no-repeat center center
+	.gold_img
+		background: url($bgUrl + "prop_icon/bottolbg.png") no-repeat scroll -577px -68px
+		display: block;
+		height: 20px;
+		line-height: 20px;
+		padding-left: 25px;
+	.rewards_g span
+		color:#fff

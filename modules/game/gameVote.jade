@@ -1,0 +1,64 @@
+.financing_props
+  if isvote
+    .nostart_thevote_result.ml_5
+      .nostart_bet_con
+        .scrollbars.vote_scroll
+          .scrollbar
+            .scroll_up
+            .track
+              .thumb
+                .thumb_end
+            .scroll_down
+          .viewport
+            .overview
+              p.yellow.mt_3 当前投票情况
+              ul.thevote_result_list
+                - var total = 0;
+                -var i = 0;
+                while i <= 20
+                  - i++;
+                  - var field = locals['field' + i];
+                  if field && field.name
+                    - total += field.vote * 1
+                -var i = 0;
+                while i <= 20
+                  - i++;
+                  - var field = locals['field' + i];
+                  if field && field.name
+                    li(class=(i % 2 === 0 ? 'w172' : ''))
+                      span.fl.field_name= field.name
+                      .thevote_progress.fl
+                        span(style="width:" + (field.vote / total * 100) + "%;")
+  else
+    .financing_props_tit.cl.mt_2
+        p.fl.mt_2
+          span.red(data-module="countdown",data-seconds=countdown)
+          | 后结束
+        p.fr
+          span.get_drill.fl
+            - var imgSrc = window.resUrl + 'images/player3/blue_drill.png'
+            if bidtype == '1'
+              - imgSrc = window.resUrl + 'images/prop_icon/yellow_goldimg.png'
+            img(src=imgSrc)
+            = bid
+          a.w70.btn_4y.fl.btn_raise(href='javascript:;')
+            | 投&nbsp;&nbsp;票
+      .nostart_bet_con
+        .scrollbars.vote_scroll
+          .scrollbar
+            .scroll_up
+            .track
+              .thumb
+                .thumb_end
+            .scroll_down
+          .viewport
+            .overview
+              p.cl= content
+              ul.nostart_bet_list.cl
+                -var i = 0;
+                while i <= 20
+                  - i++;
+                  - var field = locals['field' + i];
+                  if field && field.name
+                    li(class='option' + (i == 1 ? ' on' : ''),data-optionid=i)= field.name
+                

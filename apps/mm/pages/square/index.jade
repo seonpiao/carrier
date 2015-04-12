@@ -1,16 +1,201 @@
-extends ../../layouts/layout
-block append head
-  title
-  if __env.NODE_ENV === "production"
-    link(type="text/css",rel="stylesheet",href="/css/page1.min.css")
-  else
-    link(type="text/css",rel="stylesheet",href="/css/page1.css")
+extends ../../layouts/index
 
-block append main
-  div 主内容
+block append title
+  title 女神的房间 - 玩乐云 -全球首款互联网互动真人游戏秀
 
-block append footer
-  if __env.NODE_ENV === "production"
-    script(type="text/javascript",src="/js/page1.min.js")
-  else
-    script(type="text/javascript",src="/js/page1/main.js")
+block append meta
+  meta(property='wb:webmaster', content='47dec89457353ad1')
+
+block append stylesheet
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/square.9ee4dd820400b909.css', rel='stylesheet', type='text/css')
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/square_page-980.d45c08349a41941a.css', rel='stylesheet', type='text/css')
+  style(type='text/css').
+    #timeline {
+      width: 300px;
+      height: 10px;
+      border: 1px solid 100px;
+      float: left;
+      background: #999;
+    }
+    #animation {
+      width: 600px;
+      height: 400px;
+      p#666;
+      margin-bottom: 7px;
+      display: none;
+    }
+    .paoMsg div {
+      position: absolute;
+      animation: text_marquee 8s;
+      -moz-animation: text_marquee 8s;
+      /* Firefox */
+      -webkit-animation: text_marquee 8s;
+      /* Safari and Chrome
+      */
+      -o-animation: text_marquee 8s;
+      /* Opera */
+      -webkit-animation-iteration-count: 1;
+    }
+    @keyframes text_marquee {
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    @-moz-keyframes text_marquee {
+      /* Firefox */
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    @-webkit-keyframes text_marquee {
+      /* Safari and Chrome */
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    @-o-keyframes text_marquee {
+      /* Opera */
+      0% {
+        left: 40px;
+      }
+      100% {
+        left: -550px;
+      }
+    }
+    .weibo_Con {
+      position: absolute;
+      z-index: 50;
+    }
+
+block append headjs
+  if query.from == '114la'
+    base(target="_blank")
+  script(type='text/javascript').
+    var girlid = 0;
+    var page = 'square';
+
+block append bg
+  include ../../../../modules/mm_roombg/index
+
+block append body
+  if query.from != '114la'
+    #header.header(data-module='header')
+  if query.from != '114la'
+    ul.active_box_980.ml_10.active_box_up.hide(data-module='activity')
+      include ../../../../modules/mm_activity980/index
+  #mbody.main.w1190.cl
+    include ../../../../modules/mm_calcMiddel/index
+    .goddess_left.fl
+      .goddess_ranking_top.mt_5.pr(data-module='popular')
+        .goddess_ranktitle
+          span
+        ul.ranking_type_list.cl
+          li.on(data-type='popularTop') 人 气 榜
+          li.ml_5(data-type='dreamMoneyTop') 梦想基金榜
+        .ranking_pk_main.cl
+      include ../../../../modules/mm_chat/index
+    .goddess_main.fl
+      #player.goddess_video(style='height:370px;')
+        #flash(style='width:100%;height:370px;')
+          iframe(src='http://minisite.letv.com/tuiguang/index.shtml?streamid=hz_nsfj_800&typeFrom=wanleyun&ark=100&wmode=opaque&ref=wanleyun&cid=11', frameborder='0', style='width:100%;height:100%;')
+      .goddess_show_list(data-module='girllist')
+        #PlayerShowItem.goddess_show_con.scrollbars
+          .scrollbar
+            .gift_leftbtn.scroll_up.prev.fl.hide
+            .gift_rightbtn.scroll_down.next.fr.hide
+          .goddess_show_listcon.fl.viewport
+            ul#goddessListS.overview.cl
+    .goddess_right.fl
+      // 女神的房间
+      .notice.goddess_room.pr.cl(data-module='feed')
+        p.goddess_show
+          span.notice_img.fl 公告
+          //
+            <span class="goddess_house">
+            女神的房间
+            </span>
+        .notice_firstbg
+        #feeds.noticeBoard.scrollbars(data-height='320')
+          .scrollbar.hide
+            .scroll_up
+            .track
+              .thumb
+                .thumb_end
+            .scroll_down
+          .viewport
+            ul#output.overview
+      // 女神日程
+      #girltaskBar.girldata_task.pr.scrollbars(data-module='girlschedule')
+        p.goddess_show
+          span.goddess_task_tit.fl 女神日程
+        .scrollbar
+          .scroll_up
+          .track
+            .thumb
+              .thumb_end
+          .scroll_down
+        .viewport
+          ul.overview.goddess_task_main.cl
+    ul.active_box.fr.ml_10.active_box_right(data-module='activity')
+      li
+        #ladyNotice.ladynotice_1
+      li.hide
+        #ladygameresult.ladygamereshow(data-module='ladygameresult')
+      li
+        #actionShow.active_2
+      li.hide
+        #firstRechange.first_charge_3
+      li
+        #vipBuy.vip_bug_4
+      li.hide
+        #DailySign.sign_package_5
+      li.hide
+        #ConstellAtion.constellation_6(data-module='constellation')
+      li.hide
+        #RankingList.ranking_list_7(data-module='rankinglist')
+      li.hide
+        #specialMerchants.persian_merchants_8(data-module='persiashop')
+      li.hide
+        #MysteriousTrader.mysterious_merchants_9
+      li.hide
+        #handbook.illustrated_10
+      li.BottleShow.hide(data-module='bottle')
+        .bottle_s_2
+        p.wish_bottle_word
+  div(data-module='flash')
+  div(data-module='pkg')
+  .exchange(data-module='exchange')
+  div(data-module='squarenotice',data-show="init")
+  div(data-module='lovetransfer',data-show="init")
+  #popWindow
+  #paoPopup(style='display:none;')
+    .paoPopup
+      .paoSkin.paoSkin1
+        .paoBg
+          img.followerImg(src='http://static.mm.' + __env.WLY_DOMAIN + '/orig/images/girl_photo.png')
+          span.followerPic
+          span.paoMsg
+            div
+              span.blueText
+                | 孤单北半球
+              |  送给
+              span.pinkText
+                | 月亮水晶
+              |  一辆
+              span.itemText
+                | 超级豪华跑车
+          img.item(src='http://static.mm.' + __env.WLY_DOMAIN + '/item/100102/50.png', width='50')
+  include ../../../../modules/mm_footer/index
+
+block append footjs
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/square.min.c5dcf104488dff6e.js')
+  include ../../../../modules/mm_feedback/index

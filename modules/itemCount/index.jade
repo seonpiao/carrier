@@ -1,0 +1,6 @@
+mixin itemCount(itemNum)
+  - itemNum = itemNum + '';
+  div.count.levelCount
+    - for(var i = 0; i < itemNum.length; i++){
+        i(class='num' + itemNum.charAt(i))
+    - }

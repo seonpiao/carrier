@@ -1,0 +1,24 @@
+include ../itemCount/index
+.pkg-dialog-inner
+  #itemListBar.scrollbars
+    .scrollbar
+      .scroll_up
+      .track
+        .thumb
+          .thumb_end
+      .scroll_down
+    .viewport
+      .pkg-item-list.overview.cl
+        - result = result || []
+        if result.length < 30
+          - result = result.concat(new Array(30 - result.length));
+        for it in result
+          if it
+            a(class="pkg-item pkg-item-level" + it.quality,href="javascript:;",itemid=it.itemid)
+              img.pgk-item-icon(src=window.resUrl + "item/"+ it.itemid +"/50",itemid=it.itemid)
+              - var num = Math.min(it.num,9999);
+              +itemCount(num)
+          else
+            a.pkg-item(href="javascript:;")
+              span.pgk-item-icon
+div(data-module="crit",data-module-crit="pkg")

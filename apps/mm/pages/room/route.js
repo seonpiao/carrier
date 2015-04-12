@@ -1,9 +1,9 @@
 var logger = require('log4js').getLogger('module:index');
-var resetctx = require('../../../../libs/resetctx');
-var response = require('../../../../libs/response');
+var resetctx = require('../../../../libs/server/resetctx');
+var response = require('../../../../libs/server/response');
+var settings = require('../../../../settings');
 var request = require('request');
 var thunkify = require('thunkify');
-var settings = require('../../../../settings');
 var DataPool = require('node-datapool');
 
 var dataPool = new DataPool({
@@ -70,4 +70,4 @@ module.exports = function(app) {
     }
     yield response.call(this, 'room/index');
   });
-};
+}

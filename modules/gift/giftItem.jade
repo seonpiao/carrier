@@ -1,0 +1,15 @@
+img(class="giftimg buy_gift" + (children ? " has_child" : ""),data-flash=name,data-id=(children ? children[0].id : id),data-pid=id,data-num="1",src=window.resUrl + 'item/' + id + '/60/1/' + quality)
+if locals['class'] === '7'
+  ins
+- var availableColors = ['gray','q_white','q_green','q_blue','q_purple','q_orange'];
+p(class=availableColors[quality - 1])= name
+p
+  span.get_drill
+    - var imgSrc = window.resUrl + 'images/player3/blue_drill.png'
+    if bidtype == '1'
+      - imgSrc = window.resUrl + 'images/prop_icon/yellow_goldimg.png'
+    - var width = 12;
+    if bidtype == '2'
+      - width = 14
+    img(src=imgSrc,style="width:" + width + "px;height:12px;")
+    = bid

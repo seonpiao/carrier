@@ -1,0 +1,15 @@
+img(src=window.resUrl + 'item/' + id + '/60/1/' + quality)
+- var percent = Math.min(100,curfunds / targetfunds * 100);
+if isusing == 1
+  ins(class="foodhv")
+- var availableColors = ['gray','white','q_green','q_blue','q_purple','q_orange'];
+- var titleColor = availableColors[quality - 1];
+if classval !== '4'
+  .cl.pross_pointer
+else 
+  .progress_bg
+    if percent == 100
+      .full_curiosity(style='')
+    else
+      .progress_con(style="width:" + (targetfunds ? percent : 0) + "%")
+p(class=titleColor)= name

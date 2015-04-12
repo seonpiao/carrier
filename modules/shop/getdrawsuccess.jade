@@ -1,0 +1,12 @@
+.Luckdraw_title
+	span
+	|            
+.wishsuccess_main.tc
+	p.yellow_2.mt_40.tc= "恭喜您抽到了："
+	|                 
+	ul.cl.prop_list.mt_25
+		for item in items
+			li
+				img(src=window.resUrl + "item/" + item.itemid + '/50/1/' + item.color)
+	.cl.mt_20.getaward_btnd
+		a#getdrawokbtn.w90.btn_2b.ml_40(href='javascript:void(0);') &#x786E;&#x5B9A;

@@ -1,0 +1,1205 @@
+.myLady 
+  background:url($bgUrl+"myladyBg.png") -3px -2px no-repeat
+  height:286px
+  padding:8px 12px
+  .basicInfo
+    position:relative
+    z-index:1
+    height:102px
+    .photo
+      width:80px
+      height:100px
+      position:absolute
+      top:-8px
+      left:4px
+      cursor:pointer
+    .mainInfo
+      width:152px
+      float:left
+      padding-left:80px
+      padding-top:5px
+      padding-bottom:5px
+    .ladyNameAndLevel
+      overflow:hidden
+      height:26px
+    .ladyName
+      display:inline-block
+      height:26px
+      float:left
+    .ladyLevel
+      display:inline-block
+      height:26px
+      float:left
+    .ladyName
+      width:100px
+      line-height:36px
+      margin-top:4px
+      background:url($bgUrl+"girlName_1.png") no-repeat
+      text-indent:9999em
+      overflow:hidden
+      cursor:pointer
+    .ladyLevel
+      width:50px
+      position:relative
+      z-index:0
+      .levelIcon
+        display:inline-block
+        width:40px
+        height:24px
+      .level1
+        background:url($bgUrl+"myladyBg.png") no-repeat -84px -384px
+      .level2
+        background:url($bgUrl+"myladyBg.png") no-repeat -124px -384px
+      .level3
+        background:url($bgUrl+"myladyBg.png") no-repeat -166px -384px
+      .level4
+        background:url($bgUrl+"myladyBg.png") no-repeat -210px -384px
+      .level5
+        background:url($bgUrl+"myladyBg.png") no-repeat -260px -384px
+      .level6
+        background:url($bgUrl+"myladyBg.png") no-repeat -260px -384px
+        
+    .winCount
+      //color:#f9f03a
+      //font-size:12px
+      line-height:26px
+      height:26px
+      padding-left:70px
+      background:url($bgUrl + 'pointCount.png') no-repeat left center
+      //-webkit-text-shadow:#2c3743 1px 0 0,#2c3743 0 1px 0,#2c3743 -1px 0 0,#2c3743 0 -1px 0
+      //-moz-text-shadow:#2c3743 1px 0 0,#2c3743 0 1px 0,#2c3743 -1px 0 0,#2c3743 0 -1px 0
+      //text-shadow:#2c3743 1px 0 0,#2c3743 0 1px 0,#2c3743 -1px 0 0,#2c3743 0 -1px 0
+      //*filter: Glow(Color=#2c3743, Strength=1)
+    .emotions
+      width:76px
+      height:80px
+      padding:15px 0 0
+      float:right
+      position:absolute
+      z-index:1
+      right:2px
+    .light
+      //background:url($bgUrl+"myladyBg.png") no-repeat -342px -80px
+      position:absolute
+      top:18px
+      left:0px
+      z-index:2
+      width:80px
+    .lightHover
+      background:url($bgUrl+"myladyBg.png") no-repeat -342px -80px
+    .emotion
+      background:url($bgUrl+"myladyBg.png") no-repeat -345px -0px
+      height:72px
+      cursor:pointer
+    .emotions .emotionBar
+      background:url($bgUrl+"myladyBg.png") no-repeat -344px -143px
+      width:80px
+      height:84px
+      position: absolute
+      top: 0px
+      left: 0px
+      z-index: 1
+    .emotions .currentEmotion
+      background:url($bgUrl+"myladyBg.png") no-repeat -345px -293px
+      width:32px
+      height:32px
+      top:21px
+      left:25px
+      position:absolute
+      z-index:3
+    .followInfo
+      position:absolute
+      top:77px
+      left:0
+    .followers
+      float:left
+      width:124px
+      height:24px
+      position:relative
+      z-index:100
+    .icons 
+      display:inline-block
+    .iconFollow
+      display:inline-block
+      float:left
+      background:url($bgUrl+"myladyBg.png")  no-repeat -41px -307px
+      width:20px
+      height:24px
+      margin:0 0px 0 10px
+    .countFollow
+      color:#fff
+      font-size : 12px
+      -webkit-transform : scale(0.84,0.84) 
+      *font-size:10px
+      line-height:28px
+      height:26px
+      float:left
+      display:inline-block
+      width:73px
+      text-align:center
+    .followBtn
+      background:#ffa0c4
+      display:inline-block
+      cursor:pointer
+      color:#fff
+      float:right
+      margin-top:4px
+      margin-right:1px
+      height:18px
+      width:18px
+    .popup-msg-blue-text
+      background: #00485c
+      border: 1px solid #3eacf8
+      display:inline-block
+      padding:2px 6px
+      line-height:16px
+      height:16px
+      color:#fff
+      border-radius:2px
+      position:absolute
+      top:23px
+      left:80px
+      z-index:101
+    .followBtn:hover
+      background:#fdbbd4
+    .followBtn:active
+      background:#c85e86
+    .followIcon
+      background:url($bgUrl+"myladyBg.png") no-repeat -84px -311px
+      width:18px
+      height:18px
+      display:block
+  .followInfo a.disabled,.followInfo a.already
+    background:#737171
+    cursor:normal
+  .followInfo a.disabled:hover,.followInfo a.already:hover
+    background:#737171
+  .followInfo a.disabled:active,.followInfo a.already:active
+    background:#737171
+  .followInfo a.disabled .followIcon
+    background:url($bgUrl+"myladyBg.png") no-repeat -111px -310px
+  .followInfo a.already .followIcon
+    background:url($bgUrl+"myladyBg.png") no-repeat -84px -311px
+  a.followInfo:hover .disabled .followIcon
+    background:url($bgUrl+"myladyBg.png") no-repeat -111px -310px
+  .followInfo .disabled:active .followIcon
+    background:url($bgUrl+"myladyBg.png") no-repeat -111px -310px
+  a.diary
+    float:left
+    width:101px
+    height:24px
+    color:#ccc
+    .text
+      line-height:25px
+      height:25px
+      float:left
+      display:inline-block
+      margin-top:1px
+      margin-left:4px
+      letter-spacing:0.5em
+    .iconDiary
+      display:inline-block
+      float:left
+      background:url($bgUrl+"myladyBg.png") no-repeat -20px -307px
+      width:20px
+      height:24px
+      margin:0 4px 0 15px
+  a.diary:hover
+    color:#fff
+    .iconDiary
+      background:url($bgUrl+"myladyBg.png") no-repeat -2px -307px
+    
+.ladyDetailInfo .progressBar
+  margin-left:10px
+  vertical-align:middle
+.ladyDetailInfo .progressBar .progress
+  width:114px
+.progressBar
+  position:relative
+  z-index:0
+  padding:2px 0 0 0
+  height:12px
+  margin-left:-18px
+  cursor:default
+  display:inline-block
+  span
+    display:inline-block   
+  .star
+    position:absolute
+    z-index:2
+    left:-14px
+    top:-6px
+    background:url($bgUrl+"myladyBg.png") no-repeat -97px -344px
+    width:24px
+    height:24px
+    font-size : 12px
+    -webkit-transform : scale(0.84,0.84) 
+    *font-size:10px
+    text-align:center
+    line-height:24px
+    color:#80350c
+    font-family:Arial
+  .progress
+    width:114px
+    height:11px
+    border:none
+    float:left
+    background:url($bgUrl + 'myladyBg.png') no-repeat -310px -391px
+    margin-top:1px
+  .currentPercent
+    height:6px
+    width:0%
+    background:#e75e3d
+    float:left
+    //position:relative
+    //z-index:1
+    margin-top:2px
+  .currentData
+    color:#fff
+    font-size : 12px
+    -webkit-transform : scale(0.84,0.84)
+    *font-size:10px
+    position:absolute
+    right:41px
+    top:0px
+    line-height:10px
+    cursor:default
+    display:inline-block
+  .starTitle
+    float:left
+    color:#fd9651
+    line-height:12px
+    padding-left:2px
+    font-size : 12px
+    letter-spacing:0px
+
+.ui-popup-focus .ladyStatus
+  background:url($bgUrl+'bg_white.png') repeat
+.ladyStatus
+  width:705px
+  //height:395px
+  border:none
+  background:url($bgUrl+'bg_white.png') repeat
+  .ui-dialog-body
+    padding:0
+  .ui-dialog-content
+    width:100%  
+  .ui-dialog-title span
+    background: url($bgUrl+'dialogBg.png') 0px 0px no-repeat
+    text-indent: 9999em
+    overflow: hidden
+    width: 140px
+    padding:6px 0 
+    left: -7px
+    top:3px
+    position:absolute
+    z-index:1 
+  .ui-dialog-header
+    position:relative
+    z-index:0
+    border:none
+  .ui-dialog-grid
+    width:100%
+  .ui-dialog-close
+    position:absolute
+    right:4px
+    top:4px
+    text-indent:100em
+    overflow:hidden
+    width:18px
+    height:15px
+    background:url($bgUrl + "bottle/bottolbg.png") no-repeat -583px 0
+  .ui-dialog-close:hover
+    background:url($bgUrl + "bottle/bottolbg.png") no-repeat -583px -15px
+
+.ladyStatusInner
+  padding:0 10px 10px 
+  .ladyOptions
+    text-align:center
+    position:relative
+    z-index:0 
+  .ladyOptionsWrap
+    position:absolute
+    z-index:1
+    left:180px
+    top:-36px
+  .ladyOption
+    display:inline-block
+    border:#8eabbf solid 1px
+    border-bottom:none
+    background:#2e2e2e
+    background:url($bgUrl+'bg_black3.png') repeat
+    height:28px
+    margin-right:4px
+    width:100px
+    position:relative
+    z-index:1
+    border-top-left-radius:2px
+    border-top-right-radius:2px
+    a
+      float:left
+      position:absolute
+      top:-20px
+    a.iconDetails
+      display:block;
+      border-bottom:none
+      width:64px
+      height:42px;
+      background:url($bgUrl+'dialogBg.png') no-repeat -9px -52px
+      left: 18px
+    a.iconDiaries
+      border-bottom:none
+      background:url($bgUrl+'dialogBg.png') no-repeat -80px -50px
+      width:82px
+      left: 12px
+    a.iconPresents
+      border-bottom:none
+      background:url($bgUrl+'dialogBg.png') no-repeat -170px -50px
+      left: 18px
+  .ladyOption.disable
+    a.iconDiaries
+      display:block;
+      width:80px;
+      height:44px;
+      background:url($bgUrl+'dialogBg.png') no-repeat -80px -104px
+      cursor:default
+    a.iconPresents
+      display:block;
+      width:64px;
+      height:45px;
+      background:url($bgUrl+'dialogBg.png') no-repeat -168px -104px
+      cursor:default
+.ladyStatus .curr
+   border-color:#a5d7fa
+   background:#0d1a26
+.ladyContent
+  border:#a5d7fa solid 1px
+  padding:10px 0 0 0
+  height:345px
+  background:#2e2e2e
+  background:#0d1a26
+  margin-top: -8px
+  display:none
+  //width:678px
+  border-radius:2px
+.ladyContentCurr
+   display:block
+.ladyPhoto2 
+  width:116px
+  float:left
+  margin-left:12px
+  .name
+    text-align:center
+    height:22px
+  .photo
+    text-align:center
+    width: 100px
+    padding-left:9px
+    img
+      width:98px
+      height:308px
+      border:#279ab9 solid 1px
+      background:url($bgUrl+'photoBg2.png') no-repeat center
+  .opera
+    padding-top:8px 
+.ladyDetailInfo
+  padding-left:7px
+  float:left
+  height:30px
+  width:196px
+  height:330px
+  padding-right:10px
+  background:url($bgUrl+'line1.png') no-repeat 211px 15px
+  .goal
+    line-height:32px
+    height:30px
+    margin-top:5px
+    color:#d87dfd
+    background:url($bgUrl+'goal.png') no-repeat left center
+    padding-left:88px
+    font-family: "微软雅黑"
+  .pointCount
+    margin-top:20px
+    background:url($bgUrl+'pointCount.png') no-repeat left center
+    line-height:18px
+    height:18px
+    font-weight:bold
+    padding-left:75px
+    color:#f9f03a
+    font-size:14px
+  .text
+    color:#feffff
+    font-size:12px
+    line-height:22px
+    word-break:break-all
+    word-wrap:break-word
+ .achievements
+   color:#00fe9b
+   font-size:12px
+   line-height:20px
+   margin-top:10px
+   dt
+     width:40px
+     float:left
+   dd
+     background:#000
+     border:#153f63 solid 1px
+     width:142px
+     height:120px
+     overflow:hidden
+     padding:0px 3px 3px 5px
+     border-radius:1px
+     .scrollbar
+       right:4px
+       .scroll_up
+         display:none
+       .scroll_down
+         display:none
+     .viewport
+       height:130px
+.otherItems
+  float:right
+  overflow:hidden
+  //height:340px
+  width:302px
+  padding-right:20px
+  .scrollbar
+    right:8px
+    //top:-4px
+    .scroll_up
+      //display:none
+    .scroll_down
+      //display:none
+  .viewport
+    height:333px
+.otherItem
+  background:url($bgUrl+'bg_blue.png') repeat
+  border:#1774a4 solid 1px
+  border-radius:2px
+  margin-bottom:5px
+  height:140px
+  padding:5px
+  width:286px
+  border-radius:2px
+  box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+  -webkit-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+  -moz-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset 
+  .item
+    width:108px
+    height:135px
+    text-align:center
+    float:left
+    margin-top:5px
+    background:url($bgUrl+'line2.png') right center no-repeat
+    position:static
+  .itemPic img
+    border:#1f3037 solid 1px
+    border-radius:4px
+    width:76px 
+  .itemInfo
+    margin-top:10px
+    font-size:12px
+  .itemListT
+    text-align:center
+  
+  .itemListC
+    font-size:12px
+    font-family:"微软雅黑"
+    line-height:20px
+    li
+      width:170px
+      height:18px
+      margin-bottom:1px
+      span
+        display:inline-block
+        height:18px
+        line-height:18px
+        float:left
+        img
+          vertical-align:middle
+          //*vertical-align:-1px
+          max-height:16px
+          margin-right:2px
+          margin-top:-2px
+    a
+      display:inline-block
+      width:160px
+      float:left
+      padding-right:10px
+      margin:0
+      height:18px
+      line-height:18px
+      white-space:nowrap
+      word-wrap: normal
+      overflow: hidden
+      text-overflow: ellipsis
+      vertical-align: middle
+      cursor:default
+    a:hover
+      background:url($bgUrl+'linebg2.png') 0px -20px no-repeat
+    a:active
+      background:url($bgUrl+'linebg2.png') -0px 0px no-repeat
+    a.curr
+    i
+      display:inline-block
+      float:left
+      width:30px
+      height:18px
+      margin:0 10px 0 2px
+      font-size:12px
+      font-weight:normal
+      font-style:normal
+      color:#fdfdfd
+      text-align:right
+      padding-left:15px
+      float:left
+    .line1
+      background:url($bgUrl+'linebg2.png') no-repeat 0px 0px
+      i
+        background:url($bgUrl+'linebg.png') no-repeat 5px 1px
+    .line2
+      background:url($bgUrl+'linebg2.png') no-repeat 0px -20px
+      i
+        background:url($bgUrl+'linebg.png') no-repeat 5px -19px
+    .line3
+      background:url($bgUrl+'linebg2.png') no-repeat -1px -40px
+      i
+        background:url($bgUrl+'linebg.png') no-repeat 5px -39px
+  .itemList
+    width:170px
+    float:left
+    margin-left:8px
+.otherItem .yText,.otherItem a.yText,.otherItem .yText:hover
+   color:#f9f03a
+   i
+     color:#f9f03a
+.otherItem .wText,.otherItem a.wText,.otherItem .aText:hover
+   color:#fdfdfd
+   i
+     color:#fdfdfd
+
+.preList
+  //background:url($bgUrl+'bg_blue.png') repeat
+  //border:#146087 solid 1px
+  border-radius:2px
+  padding:0px 0px 3px 0px
+  margin:-1px 5px 5px 10px
+  height:329px
+  overflow:hidden
+  .viewport
+    height:328px
+    width:650px
+  .overview
+    width:654px
+  .scrollbar
+    top:3px
+    right:5px
+  li
+    padding:3px 15px 3px 70px
+    background:url($bgUrl+'abg3.png') no-repeat center
+    float:left
+    width:132px
+    height:60px
+    font-size:12px
+    font-family:"微软雅黑"
+    line-height:28px
+    position:relative
+    z-index:100
+    -webkit-text-shadow:#2c3743 1px 0 0,#2c3743 0 1px 0,#2c3743 -1px 0 0,#2c3743 0 -1px 0
+    -moz-text-shadow:#2c3743 1px 0 0,#2c3743 0 1px 0,#2c3743 -1px 0 0,#2c3743 0 -1px 0
+    text-shadow:#2c3743 1px 0 0,#2c3743 0 1px 0,#2c3743 -1px 0 0,#2c3743 0 -1px 0
+    *filter: Glow(Color=#2c3743, Strength=1)
+    div span
+      display:inline-block
+      height:28px
+      line-height:28px
+    div img
+      vertical-align:middle
+    img.itemPic
+      position:absolute
+      top:8px
+      left:12px
+      z-index:101
+  li.textoverflow div
+    white-space: nowrap
+    word-wrap: normal
+    overflow: hidden
+    text-overflow: ellipsis
+    vertical-align: -2px
+  li.filled
+    background:url($bgUrl+'abg2.png') no-repeat center
+  li.lighted
+    background:url($bgUrl+'abg1.png') no-repeat 9px 3px
+
+  .rText
+    color:#505050
+    font-size:14px
+  .preNo
+    color:#ff4023
+  .preNow
+    color:#fff
+
+.preList .lighted .rText,.preList .filled .rText
+   color:#e65e3d 
+.preList .lighted .yText,.preList .filled .yText
+   color:#f9f03a
+
+.dateArea
+  border:#146087 solid 1px
+  margin:0 10px 0 10px
+  height:324px
+  width:322px
+  float:left
+  overflow:hidden
+  background:url($bgUrl+'bg_blue.png') repeat
+  border-radius:2px
+  box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+  -webkit-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+  -moz-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+  .dateDetail
+    margin:5px 0 5px 5px
+    border-radius:2px
+    .scrollbar
+      right:7px
+    .viewport
+      height:313px
+      width:294px
+  .dates
+    background:url($bgUrl+'bg_black1.png') repeat
+    padding:3px 0 2px 3px
+    margin-bottom:4px
+    border-radius:2px
+    li
+      float:left
+      width:48px
+      height:48px
+      margin:0px
+      display:inline-block
+    li.new
+      position:relative
+      z-index:0
+      i
+        position:absolute
+        z-index:1
+        top:-5px
+        right:-5px
+        background:url($bgUrl+'new.png') no-repeat center
+        display:block
+        width:28px
+        height:26px
+    .date1
+      background:url($bgUrl+'date1.png') no-repeat center left
+    .date2
+      background:url($bgUrl+'date2.png') no-repeat center left
+    .date3
+      background:url($bgUrl+'date3.png') no-repeat center left
+  
+    .dateC
+      a
+        background:url($bgUrl+'datebg2.png') no-repeat center
+        display:block
+        width:48px
+        height:48px 
+      img
+        width:40px
+        height:40px
+        margin-top:4px
+        margin-left:4px
+        border-radius:3px
+    li.hover,.dateC a:hover
+        background:url($bgUrl+'datebg1.png') no-repeat center
+    li.pkg-gray
+      a
+        cursor:default
+        &:hover
+          background:url($bgUrl+'datebg2.png') no-repeat center
+
+.playList
+  width:320px
+  height:330px
+  float:left
+  padding:0 6px 0 8px
+  background:url($bgUrl+'line1.png') no-repeat left center 
+  .playOperation 
+    color:#fff
+    line-height:20px
+    font-size:12px
+    font-family:"微软雅黑"
+    padding-left:12px
+    .fl
+      color:#e7337a
+    .blueText
+      color:#e7337a
+  a.playBack
+    text-decoration:underline
+    color:#2ec1e5
+  a.playBack:hover
+    color:#fff
+  .icons
+    display:inline-block
+  
+  .iconPlaySmall
+    background:url($bgUrl+'play.png') no-repeat center
+    width:20px
+    height:20px
+    float:left
+  .playArea
+    .iconShare
+      width:41px
+      height:18px
+      background:url($bgUrl+'share.png') no-repeat center
+      position:absolute
+      top:-18px
+      right:-3px
+    .iconPlay
+      width:38px
+      height:38px
+      background:url($bgUrl+'play1.png') no-repeat center
+      position:absolute
+      top:58px
+      left:62px
+      z-index:10
+    .iconPrev
+      width:12px
+      height:20px
+      position:absolute
+      top:68px
+      left:-32px
+      background:url($bgUrl+'prev.png') no-repeat center
+    .iconNext
+      width:12px
+      height:20px
+      position:absolute
+      top:68px
+      right:-32px
+      background:url($bgUrl+'next.png') no-repeat center
+    a.iconPlay:hover
+      background:url($bgUrl+'play2.png') no-repeat 0px -1px
+    a.disable
+      display:none
+    .play
+      position:relative
+      z-index:0
+      margin:7px auto
+      width:156px
+      height:156px
+      border:#1774a4 solid 1px
+      background:url($bgUrl+'bg_blue.png') repeat
+      border-radius:2px
+      box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+      -webkit-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+      -moz-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+      .viewport
+        overflow: hidden
+        position:relative
+        height:156px
+        width:156px
+      .overview
+        height:156px
+        word-break:keep-all
+        white-space:nowrap
+        position:absolute
+        z-index:1
+        li
+          float: left
+          overflow: hidden
+          height: 156px
+          width:156px
+          margin:0px
+          img
+            width:156px
+            height:156px
+
+.playInfo
+  background:#273851
+  border:#1774a4 solid 1px
+  margin-left:4px
+  height:134px
+  border-radius: 2px
+  .allFollowers
+    margin-top:14px
+    li
+      width:78px
+      margin-left:0
+      text-align:center
+      position:relative
+      z-index:1000
+      i.iconVip
+        background:url($bgUrl+"vip.png") no-repeat center
+        background-size:27px 15px
+        position:absolute
+        z-index:3
+        display:inline-block
+        width:72px
+        height:15px
+        bottom:15px
+        left:4px 
+    .icons
+      display:inline-block
+      height:14px
+      line-height:14px
+      width:80px
+      text-align:center
+      color:#f9f03a
+      position:absolute
+      top:-15px
+      left:0
+    .followerPic
+      left:15px
+    .iconrank1
+      background:url($bgUrl+'linebg.png') no-repeat 16px -2px
+    .iconrank2
+      background:url($bgUrl+'linebg.png') no-repeat 16px -22px
+    .iconrank3
+      background:url($bgUrl+'linebg.png') no-repeat 16px -42px
+    .iconrank0
+      display:inline-block
+      width:80px
+      font-size:12px
+      white-space: nowrap
+      word-wrap: normal
+      overflow: hidden
+      text-overflow: ellipsis
+      vertical-align: -2px
+    img
+      left:14px
+    .followerText
+      display:inline-block
+      width:80px
+      height:16px
+      line-height:16px
+      vertical-align:middle
+      font-size:12px
+      -webkit-transform:scale(1,1)
+      *font-size:12px
+      cursor:default
+      img
+        width:auto
+        height:auto
+        vertical-align:middle
+        background:none
+        padding:0
+        margin:0 2px 0 0
+        float:none
+        position:static
+  
+.pInfo 
+  background:url($bgUrl+'bg_blue2.png') no-repeat -3px -1px
+  color:#fff
+  font-size:12px
+  font-family:"微软雅黑"
+  line-height:20px
+  height:40px
+  padding:4px 25px 8px 25px
+
+.ui-popup .tip
+  display:inline-block
+  background:url($bgUrl+'tipbg.png') no-repeat
+  width:160px
+  height:30px
+  position:absolute
+  z-index:5
+  line-height:14px
+  font-size:12px
+  color:#a14800
+  top:-10px
+  left:80px
+  padding:9px 15px 21px 18px
+  .iconHeart
+    display:inline-block
+    background:url($bgUrl+'heart.png') no-repeat
+    width:28px
+    height:24px
+    position:absolute
+    z-index:6
+    top:-6px
+    left:170px
+.angelPop
+  background:url($bgUrl+'bg_white.png') repeat
+  border:none
+  font-family:"微软雅黑"
+  font-size:12px
+  .ui-dialog-header
+    border:none
+  .ui-dialog-title
+    text-align:center
+    overflow:hidden
+    position:relative
+    z-index:5
+    padding:0px 15px
+    height:6px
+    span
+      overflow:hidden 
+  .ui-dialog-close
+    z-index:10
+    right:4px
+    top:4px
+    text-indent:100em
+    overflow:hidden
+    width:18px
+    height:15px
+    background:url($bgUrl + "bottle/bottolbg.png") no-repeat -583px 0
+  .ui-dialog-close:hover
+    background:url($bgUrl + "bottle/bottolbg.png") no-repeat -583px -15px
+  .ui-dialog-body
+    padding: 0
+  .happyPopGirl
+    position:absolute
+    z-index:1
+    left:-42px
+    top:-31px
+  .angelMain
+    font-size:12px
+    background:#0c1924
+    border:#94bfdb solid 1px
+    width:627px
+    height:305px
+    padding:10px 7px 0
+    position:absolute
+    z-index:2
+    right:10px
+    top:10px
+    border-radius:2px
+    box-shadow:1px 0px 6px #1b3142 inset,0 1px 6px #1b3142 inset,0 -1px 6px #1b3142 inset,-1px 0 6px #1b3142 inset
+    -webkit-box-shadow:1px 0px 6px #1b3142 inset,0 1px 6px #1b3142 inset,0 -1px 6px #1b3142 inset,-1px 0 6px #1b3142 inset
+    -moz-box-shadow:1px 0px 6px #1b3142 inset,0 1px 6px #1b3142 inset,0 -1px 6px #1b3142 inset,-1px 0 6px #1b3142 inset
+    .angelMain_date
+      width:627px
+      text-align:right
+  .angelSilver
+    width:300px
+    height:236px
+    padding:0px 5px
+    margin-top:10px
+    background:#273851
+    border:#273851 solid 1px
+    border-radius:2px
+    box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+    -webkit-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+    -moz-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+  .angelSilver.hover
+    border:none
+    border-radius:2px
+    padding:1px 6px
+    background:url($bgUrl + 'angelPopBg.png') no-repeat 0px -72px #273851 
+  .angelGold
+    width:302px
+    height:236px
+    padding:0px 4px
+    margin-top:10px
+    background:#273851
+    border:#273851 solid 1px 
+    border-radius:2px
+    box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+    -webkit-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset
+    -moz-box-shadow:1px 0px 2px #384961 inset,0 1px 2px #384961 inset,0 -1px 2px #384961 inset,-1px 0 2px #384961 inset  
+  .angelGold.hover
+    border:none
+    border-radius:2px
+    padding:1px 5px
+    background:url($bgUrl + 'angelPopBg.png') no-repeat 0px -310px #273851
+  .angelMain h5,.angelMain h6
+    //background:url($bgUrl + 'angelPopBg.png') no-repeat
+    height:16px
+    line-height:16px
+    margin-top:1px
+    font-size:14px
+    color:#f7aa25
+    padding-top:3px
+    letter-space:1.2em
+  .angelSilver h5
+    background-position:0px 0px
+  .angelGold h5
+    background-position:0px -18px
+  .angelSilver h6 
+    padding-top:6px
+    background-position:-2px -36px
+  .angelGold h6
+    padding-top:6px
+    background-position:-2px -54px
+  .dBtn
+    text-align:center
+    padding-top:7px
+  .flyingPrice
+    height:75px
+    margin-top:3px
+    background:url($bgUrl+'line3.png') no-repeat bottom center 
+  .flying
+    width:63px
+    height:62px
+    float:left
+    padding:1px 4px 3px 3px
+    background:url($bgUrl+'flyingbg.png') no-repeat
+    margin:4px 0 5px 5px
+    img
+  
+  .flyingInfo
+    width:224px
+    float:right
+    padding-top:4px
+  .flyPrice
+    color:#fff
+    font-size:14px
+  .angelGold .flyPrice
+    color:#f9f03a
+  .flyBtn
+    padding-top:18px
+    margin-right:4px
+  .flyTools
+    padding:0 3px
+    ul
+      width:300px
+      li
+        width:58px
+        height:72px
+        float:left
+        margin-right:1px
+        text-align:center
+        font-size:12px
+    .flyC a
+      background:url($bgUrl+'itembg1.png') no-repeat center top
+      display:block
+      width:52px
+      height:52px
+      padding:3px
+.angelPop .flyTools .flyC a:hover
+   background:url($bgUrl+'itembg2.png') no-repeat center top
+   padding:3px
+.flyText
+  text-align:left
+  width:300px
+  line-height:16px
+  margin-top:-2px
+  margin-left:2px
+.angelSilver p.yellowText,.angelGold p.yellowText
+  line-height:18px
+  font-size:14px
+  margin-top:2px
+  letter-space:1.2em
+.yBtn,a.yBtn
+  text-align:center
+  background:#f7aa25
+  display:inline-block
+  height:30px
+  line-height:30px
+  width:100px
+  color:#fff
+  cursor:pointer
+  border-radius:2px
+.yBtn:hover,a.yBtn:hover
+  background:#f7d725
+  color:#fff
+.yBtn:active,a.yBtn:active
+  background:#ca8017
+  color:#fff
+.bBtn,a.bBtn
+  text-align:center
+  background:#2ec1e5
+  display:inline-block
+  height:30px
+  line-height:30px
+  width:100px
+  color:#fff
+  cursor:pointer
+  border-radius:2px
+.bBtn:hover,a.bBtn:hover
+  background:#43d1f4
+  color:#fff
+.bBtn:active,a.bBtn:active
+  background:#037aa2
+  color:#fff
+.oBtn,a.oBtn
+  text-align:center
+  background:#f7aa25
+  display:inline-block
+  height:26px
+  line-height:26px
+  width:100px
+  color:#fff
+  cursor:pointer
+  border-radius:2px
+.oBtn:hover,a.oBtn:hover
+  background:#f7d725
+.oBtn:active,a.oBtn:active
+  background:#91682e
+.zBtn,a.zBtn
+  text-align:center
+  background:#2ec1e5
+  display:inline-block
+  height:26px
+  line-height:26px
+  width:100px
+  color:#fff
+  cursor:pointer
+  border-radius:2px
+.zBtn:hover,a.zBtn:hover
+  background:#43d1f4
+  color:#fff
+.zBtn:active,a.zBtn:active
+  background:#037aa2
+  color:#fff
+a.aBtn
+  display:inline-block
+  width:54px
+  height:24px
+  line-height:24px
+  text-align:center
+  color:#fff
+  background:#2dC0e5
+  font-family:"微软雅黑"
+  font-size:12px
+  float:left
+  margin-left:3px
+  margin-bottom:6px
+  border-radius:2px
+a.aBtn:hover
+  background:#43d1f4
+  color:#fff
+a.aBtn:active
+  background:#037aa2
+  color:#fff
+a.aDisabled,a.aDisabled:hover
+  background:#6a6b6c
+
+.dateT.dateNum
+  text-align:center
+.dateNum
+  text-align:center
+  a
+    display:inline-block
+    padding-top:13px
+
+.attention_tips_tit
+  width:218px
+  height:50px
+  background:url($bgUrl+'player3/tips_wordbg.png') 0 -409px
+  left:18px
+  position: absolute
+  top:-40px
+  margin:0 auto
+  span
+    width:54px
+    height:20px
+    background:url($bgUrl+'player3/tips_wordbg.png') 0 -378px
+    display:block
+    margin:7px auto 0
+.attention_tips_con
+  width:250px
+.attention_tips_main
+  width:232px
+  padding: 0 5px 15px 11px
+  height:165px
+  a
+    margin-left:15px;
+.prop_list li
+    background: url($bgUrl+"bottle/iconlink_40.png") no-repeat 0 0
+    cursor: pointer
+    float: left
+    margin-right: 6px
+    width: 40px
+.attention_word
+  text-indent:2em
+  letter-spacing:1px
+  line-height:20px
+.ui-popup-focus .attentionFollw_dialog
+  width:252px;

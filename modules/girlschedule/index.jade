@@ -1,0 +1,236 @@
+if type==1 || type==2 || type==7 || type==8 || type==9
+	if type==1
+		if status==0
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single.cl
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '上课：' + name
+					if ready==1
+						span.girltask_start.video_kankan.fr= "即将开始"
+		else if status==1
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '上课：' + name
+					if(havecg==1)
+						a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		else if status==2
+			li.tips_redimg.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					span.video_kankan
+						em#girlTask_beginTime= starttime
+						span.girlTask_title= '上课：' + name
+		else
+	else if type==2
+		if status==0
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single.cl
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '小运动：' + name
+					if ready==1
+						span.girltask_start.video_kankan.fr= "即将开始"
+		else if status==1
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '小运动：' + name
+					if(havecg==1)
+						a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		else if status==2
+			li.tips_redimg.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					span.video_kankan
+						em#girlTask_beginTime= starttime
+						span.girlTask_title= '小运动：' + name
+		else
+	else
+		if status==0
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single.cl
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= name
+					if ready==1
+						span.girltask_start.video_kankan.fr= "即将开始"
+		else if status==1
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= name
+					if(havecg==1)
+						a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		else if status==2
+			li.tips_redimg.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					span.video_kankan
+						em#girlTask_beginTime= starttime
+						span.girlTask_title= name
+if type==3 || type==4
+	if type==3
+		if status==0
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single.cl
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '线索游戏：' + name
+					if ready==1
+						span.girltask_start.video_kankan.fr= "即将开始"
+		else if status==1
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '线索游戏：' + name
+					if(havecg==1)
+						a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		else if status==2
+			li.tips_redimg.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					span.video_kankan
+						em#girlTask_beginTime= starttime
+						span.girlTask_title= '线索游戏：' + name
+		else
+	else if type==4
+		if status==0
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single.cl
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '游戏：' + name
+					if ready==1
+						span.girltask_start.video_kankan.fr= "即将开始"
+		else if status==1
+			li.task_titleline.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					em#girlTask_beginTime= starttime
+					span.girlTask_title= '游戏：' + name
+					if(havecg==1)
+						a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		else if status==2
+			li.tips_redimg.cl(typeid= type,numid= id,status= status)
+				.goddess_single
+					span.video_kankan
+						em#girlTask_beginTime= starttime
+						span.girlTask_title= '游戏：' + name
+		else
+	else
+	if status==1
+		if top3 != null || (mygirl && mygirl.girlrank != null)
+			li.cl(typeid= type,numid= id,status= status)
+				.girlrak_Lm.ml_10
+					if(top3 && top3 != null)
+						for value,key in top3
+							if key==1
+								p#girlTask_userRank1.crown_yellow= "1st："
+									span#girlTask_userRank1name.name_color= value
+							if key==2
+								p#girlTask_userRank2.crown_gray= "2nd："
+									span#girlTask_userRank2name.name_color= value
+							if key==3
+								p#girlTask_userRank3.crown_orange= "3rd："
+									span#girlTask_userRank3name.name_color= value
+					if mygirl && mygirl != null
+						if mygirl.girlrank > 0 && mygirl.girlrank != null
+							p#girlTask_myRank.crown_no.name_color= mygirl.girlrank
+								span#girlTask_myRankName.name_color= mygirl.girlname
+				
+if type==5
+	if status==0
+		li.task_titleline.cl(typeid= type,numid= id,status= status)
+			.goddess_single
+				if subtype==1
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				else if subtype==2
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				else if subtype==3
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				else
+				if ready==1
+					span.girltask_start.video_kankan.fr= "即将开始"
+	else if status==1
+		li.task_titleline.cl(typeid= type,numid= id,status= status)
+			.goddess_single
+				if subtype==1
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				else if subtype==2
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				else if subtype==3
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				else
+				if(havecg==1)
+					a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+	else if status==2
+		li.tips_redimg.cl(typeid= type,numid= id,status= status)
+			.goddess_single
+				span.video_kankan
+					if subtype==1
+						em.girlTask_beginTime= starttime
+						span.girlTask_title= name
+					else if subtype==2
+						em.girlTask_beginTime= starttime
+						span.girlTask_title= name
+					else if subtype==3
+						em.girlTask_beginTime= starttime
+						span.girlTask_title= name
+	if(top)
+		if top.result && top.result != null
+			li.cl(typeid= type,numid= id,status= status)
+				.task_titleline
+					if top.girlname
+						span#girlTask_girlname.girlName.name_color= top.girlname
+						span.ml_5= "吃到"
+					span(class="quality" + top.result.quality).ml_5= top.result.food
+if type==6
+	if status==0
+		li.task_titleline(typeid= type,numid= id,status= status)
+			.goddess_single
+				em.girlTask_beginTime= starttime
+				span.girlTask_title= name
+				if ready==1
+					span.girltask_start.video_kankan.fr= "即将开始"
+	else if status==1
+		li.task_titleline(typeid= type,numid= id,status= status)
+			.goddess_single
+				em.girlTask_beginTime= starttime
+				span.girlTask_title= name
+				if havecg==1
+					a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		if defaultstr
+			li#wishCon.task_titleline(typeid= type,numid= id,status= status)
+				span.girlName.name_color= girlName
+				span.ml_5= defaultstr
+	else if status==2
+		li.tips_redimg.cl(typeid= type,numid= id,status= status)
+			.goddess_single.cl
+				span.video_kankan
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+if type==10
+	if status==0
+		li.task_titleline(typeid= type,numid= id,status= status)
+			.goddess_single
+				em.girlTask_beginTime= starttime
+				span.girlTask_title= name
+				if ready==1
+					span.girltask_start.video_kankan.fr= "即将开始"
+	else if status==1
+		li.task_titleline(typeid= type,numid= id,status= status)
+			.goddess_single
+				span.video_kankan
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name
+				if havecg==1
+					a.girlTask_playbackurl.blue1.fr.back_lookbtn(href="' + url + '")= "回看"
+		if dreamfunds
+			li#wishCon.task_titleline(typeid= type,numid= id,status= status)
+				span.girlName.name_color= girlName
+				span.ml_5= "被投杀"
+				span.ml_5= "梦想基金：" + dreamfunds
+	else if status==2
+		li.tips_redimg.cl(typeid= type,numid= id,status= status)
+			.goddess_single.cl
+				span.video_kankan
+					em.girlTask_beginTime= starttime
+					span.girlTask_title= name

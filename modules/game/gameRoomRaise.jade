@@ -1,0 +1,41 @@
+
+// 道具支持
+.financing_props
+  .financing_props_tit.cl
+    p.fl.mt_5(style="width:320px;")= content
+    - curfunds = curfunds * 1
+    - firstfunds = firstfunds * 1
+    - targetfunds = targetfunds * 1
+    - var reached = Math.max(curfunds,firstfunds) >= targetfunds
+    if !reached
+      p.fr
+        //- span.get_drill.fl
+        //-   - var imgSrc = window.resUrl + 'images/player3/blue_drill.png'
+        //-   if bidtype == '1'
+        //-     - imgSrc = window.resUrl + 'images/prop_icon/yellow_goldimg.png'
+        //-   img(src=imgSrc)
+        //-   = bid
+        a(class='w70 btn_4y fl btn_raise',href='javascript:;') 集&nbsp;&nbsp;资
+  .financing_props_con.support_prop.cl
+    ul.cl.support_prop_list
+      li.player_2.player_2_l
+        img(src=window.resUrl + 'girl/' + window.girlid + '/50',width="44")
+      li.ygold_prop
+        .fr.tc.financing_props_img.on
+          if reached
+            img(src=window.resUrl + 'item/' + roomitem.id + '/50')
+          else
+            img(src=window.resUrl + 'item/' + roomitem.id + '/50',style="background:initial")
+          p.yellow_5= roomitem.name
+      li.player_2.player_2_r
+        img(src=window.resUrl + 'girl/' + girl + '/50', width="44")
+    .financingProgress_bar.supportProgress_bar
+      .arrow_l.arrow.pr.fl
+        .Progress_smaillbar_img(style='width:' + (141 * (curfunds * 1 / targetfunds)) + 'px')
+          span.arrow_rightpointer
+            span.Progress_number(style="display:none;")= globalUtil.commafy(curfunds - targetfunds)
+      .arrow_r.arrow.pr.fr
+        .Progress_smaillbar_img(style='width:' + (141 * (firstfunds * 1 / targetfunds)) + 'px')
+          span
+            span.Progress_number(style="display:none;")= globalUtil.commafy(firstfunds - targetfunds)
+div(data-module="numtip",data-module-numtip="roomRaise")
