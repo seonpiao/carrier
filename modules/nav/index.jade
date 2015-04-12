@@ -15,7 +15,7 @@ if window.girlid
       a.cur(href="/room/" + window.girlid)= window.girlname + '的房间'
 else
   li
-    a(class=(window.page === 'square' ? 'cur' : ''),href="/square")= "女神广场"
+    a(class=((window.page === 'square' || window.page === 'vod') ? 'cur' : ''),href="/square")= "女神广场"
     if locals.girlid
       li.hide
         a(href="/room/" + locals.girlid) 我的女神
