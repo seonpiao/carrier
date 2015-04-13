@@ -11,7 +11,8 @@ module.exports = function*(view) {
     __env: {
       NODE_ENV: process.env.NODE_ENV,
       WLY_DOMAIN: process.env.WLY_DOMAIN
-    }
+    },
+    __global: this.global || {}
   };
 
   this.locals = this.locals || defaultLocals;

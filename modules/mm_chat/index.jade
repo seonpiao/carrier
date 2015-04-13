@@ -1,11 +1,15 @@
-#chat
+#chat(data-module='mm_chat')
   .chat_viewer
     ul.pr.chat_viewer_tab
-      li.on
-        | 聊天
-      li.hide
-        | 观众
-    .chat_wiew(data-module='mm_chat')
+      if __global.girlid > 0
+        li.on(data-channel='girl')
+          | 房间频道
+        li(data-channel='world')
+          | 世界频道
+      else
+        li.on(data-channel='world')
+          | 世界频道
+    .chat_wiew
       #recv_chat_window.chat_box.chat_window
         #chat_box_scrollbar.scrollbars
           .scrollbar

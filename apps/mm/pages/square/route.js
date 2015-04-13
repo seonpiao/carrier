@@ -5,11 +5,16 @@ var settings = require('../../../../settings');
 var request = require('request');
 var thunkify = require('thunkify');
 
-module.exports = function(app) {
-  app.route('/square$').all(function*(next) {
+module.exports = function(app, pageName) {
+  app.route('/' + pageName + '$').all(function*(next) {
     yield resetctx.call(this);
-    this.result = {};
-    this.result.query = this.request.query;
-    yield response.call(this, 'vod/index');
+    this.result = {
+      query: this.request.query
+    };
+    this.global = {
+      girlid: 0,
+      page: pageName
+    };
+    yield response.call(this, pageName + '/index');
   });
 }
