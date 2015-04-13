@@ -103,7 +103,7 @@ module.exports = function(grunt) {
       common: {
         expand: true,
         cwd: 'dist/js/temp',
-        src: 'apps/**/common.js',
+        src: ['apps/**/common.js', '!node_modules/**/*.js'],
         dest: 'dist/js',
         filter: 'isFile',
         rename: function(dest, filepath) {
