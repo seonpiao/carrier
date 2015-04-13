@@ -29,12 +29,14 @@ function init(app, pagePath) {
 
 var argv = process.argv;
 
-var apps = argv[2];
-if (apps) {
-    apps = apps.split(',');
+var apps = argv[2].split(',');
+
+var port = argv[3];
+if (port) {
+    port = port.split(',');
 }
 
-apps.forEach(function(appName) {
+apps.forEach(function(appName, i) {
     var appPath = path.join(APP_PATH, appName)
     var appConfig = require(path.join(appPath, 'config.js'));
     var pagePath = path.join(appPath, 'pages');
@@ -61,6 +63,10 @@ apps.forEach(function(appName) {
         yield resetctx.call(this);
         yield response.call(this);
     });
-    logger.info('App[' + appName + '] listening: ' + appConfig.port);
-    app.listen(appConfig.port);
+    var appPort = appConfig.port;
+    if (port && port[i]) {
+        appPort = port[i];
+    }
+    logger.info('App[' + appName + '] listening: ' + appPort);
+    app.listen(appPort);
 });
