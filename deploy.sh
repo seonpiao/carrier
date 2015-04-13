@@ -130,7 +130,7 @@ if [ "$choice" = "y" ]; then
     if [ "$env" = "production" ]; then
       ssh root@${hosts[i]} "dsh -M -r ssh -g node -q -- 'cd /root/code/carrier && git pull && /usr/local/node/bin/pm2 reload carrier'"
     else
-      ssh root@${hosts[i]} "cd /root/code/$2 && git co ${branch} && git pull && /usr/local/bin/pm2 reload ${user}"
+      ssh root@${hosts[i]} "cd /root/code/$2 && git chcekout ${branch} && git pull && /usr/local/bin/pm2 reload $2"
     fi
   done
 fi
