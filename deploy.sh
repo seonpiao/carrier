@@ -1,6 +1,6 @@
 #!/bin/bash
 
-test=(192.168.1.200)
+test=(121.201.7.134)
 production=(123.56.152.17)
 wlycn=(182.92.215.90)
 staticdir="../web/code/static/"
