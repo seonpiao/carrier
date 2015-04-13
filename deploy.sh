@@ -64,7 +64,7 @@ if [ $gitaheadcount -gt 0 ]; then
   exit
 fi
 
-if [ "$(git st |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
+if [ "$(git status |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
   echo "Please enter checkout ${branch}"
   exit
 fi
