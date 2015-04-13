@@ -15,6 +15,6 @@ module.exports = function(app, pageName) {
       girlid: 0,
       page: pageName
     };
-    yield response.call(this, pageName + '/index');
+    yield response.call(this, 'vod/index');
   });
 }
