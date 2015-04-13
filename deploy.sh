@@ -45,27 +45,25 @@ else
   exit
 fi
 
-if [ $(git st |awk 'NR==1 {print $3}') = $branch ]; then
-  echo '' > /dev/null
-else
-  echo "Please enter checkout ${branch}"
-  exit
-fi
-
 num=${#hosts[@]}
 
 gitchange=($(git status -bs | grep "^[^#]"))
 gitchangecount=${#gitchange[@]}
 
-if [ $gitchangecount -gt 2 ]; then
+if [ $gitchangecount -gt 0 ]; then
   echo '请先提交代码的修改'
+  exit
+fi
+
+if [ $(git st |awk 'NR==1 {print $3}') != ${branch} ]; then
+  echo "Please enter checkout ${branch}"
   exit
 fi
 
 gitahead=($(git status -bs | grep "ahead \d"))
 gitaheadcount=${#gitahead[@]}
 
-if [ $gitaheadcount -gt 2 ]; then
+if [ $gitaheadcount -gt 0 ]; then
   echo '请先把代码push到server'
   exit
 fi
