@@ -12,13 +12,14 @@ upload_dirs=(js css template)
 users=(master wujunlian piaoshihuang feng staging yange)
 
 env=$1
-user=($(echo $2 | sed s/\[0-9\]\$//))
+user=$2
+branch=$3
 
 if [ "$3" = "" ]; then
   branch=$user
-else
-  branch=$3
 fi
+
+user=($(echo $2 | sed s/\[0-9\]\$//))
 
 if [ "$env" = "production" ]; then
   hosts=(${production[@]})
