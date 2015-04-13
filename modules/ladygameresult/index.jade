@@ -1,1 +1,63 @@
-div.ladygameresult(data-module="ladygameresult")
+.ladygmresult_informbox
+	.laygmren_title
+		span
+	.ladygmresult_con.cl.pr
+		#itemListBar.scrollbars
+			.scrollbar
+				.scroll_up
+				.track
+					.thumb
+						.thumb_end
+				.scroll_down
+			.viewport
+				.overview.ladygmiticeC
+					dl.ladyroomset.cl
+						dt.fl.yellow_1.f14= "今日房间分配："
+						dd.ladyrewardr.fl
+							ul.ladylist
+								for value in result.rewardr
+									li
+										div.ladylistphoto
+											img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
+										p.pinkText= value.girlname
+						dd.ladypunishr.fl
+							ul.ladylist
+								for value in result.punishr
+									li
+										div.ladylistphoto
+											img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
+										p.pinkText= value.girlname
+					div.killresult.cl.yellow_2.f12
+						p.cl.f14.yellow_1= "昨日头杀结果："
+						div.cl.krcontent.ml_30= result.description
+						ul.kresultlist.cl.ml_30.mt_10
+							for item,index in result.content
+								if index < 3
+									li
+										div.kresult_l.fl
+											ins.fl(class="kre_" + (index+1))
+											span.fl.pinkText= item.name
+										div.kresult_r.fr
+											span="梦想基金："
+											span="扣除"
+												ins.red= item.deduct
+											if item.is_out <= 0
+												span="余额"
+													ins.red= item.balance
+											else
+												span.isoutimg
+								if index > 2
+									li
+										div.kresult_l.fl
+											ins.fl
+											span.fl.pinkText= item.name
+										div.kresult_r.fr
+											span="梦想基金："
+											span.tl="扣除"
+												ins.red= item.deduct
+											if item.is_out <= 0
+												span="余额"
+													ins.red= item.balance
+											else
+												span.isoutimg
+		#ladygmresult_btn.ladygmresult_btn.w150.btn_2b.="朕知道了"
