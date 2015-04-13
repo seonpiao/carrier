@@ -9,7 +9,7 @@ server_host="182.92.215.90"
 server_path="/data/wwwroot/wanleyun/static/dist"
 upload_dirs=(js css template)
 
-users=(master wujunlian piaoshihuang feng staging yange)
+users=(master wujunlian seon feng staging yange)
 
 env=$1
 user=$2
@@ -36,7 +36,7 @@ elif [ "$env" = "test" ]; then
   if [[ $userFlag = true ]]; then
     echo "${user}:"
   else
-    echo "请写出你的美名，wujunlian or piaoshihuang or feng"
+    echo "请写出你的美名，wujunlian or seon or feng"
     exit
   fi
 
@@ -45,7 +45,9 @@ else
   exit
 fi
 
-if [ $(git st |awk 'NR==1 {print $3}') != ${branch} ]; then
+if [ $(git st |awk 'NR==1 {print $3}') = $branch ]; then
+  echo '' > /dev/null
+else
   echo "Please enter checkout ${branch}"
   exit
 fi
