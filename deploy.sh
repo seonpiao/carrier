@@ -1,25 +1,17 @@
 #!/bin/bash
 
-test=(121.201.7.134)
+test=(192.168.1.200)
 production=(123.56.152.17)
-wlycn=(182.92.215.90)
 staticdir="../web/code/static/"
 staticurl="http://online.static.mm.wanleyun.com/"
 server_host="182.92.215.90"
 server_path="/data/wwwroot/wanleyun/static/dist"
 upload_dirs=(js css template)
 
-users=(master wujunlian piaoshihuang feng staging yange)
+users=(master wujunlian piaoshihuang feng staging)
 
 env=$1
 user=$2
-branch=$3
-
-if [ "$3" = "" ]; then
-  branch=$user
-fi
-
-user=($(echo $2 | sed s/\[0-9\]\$//))
 
 if [ "$env" = "production" ]; then
   hosts=(${production[@]})
@@ -34,7 +26,7 @@ elif [ "$env" = "test" ]; then
   done
 
   if [[ $userFlag = true ]]; then
-    echo "${user}:"
+    echo "$user"
   else
     echo "请写出你的美名，wujunlian or piaoshihuang or feng"
     exit
@@ -42,11 +34,6 @@ elif [ "$env" = "test" ]; then
 
 else
   echo '请指定正确的上线环境，test or production'
-  exit
-fi
-
-if [ $(git st |awk 'NR==1 {print $3}') != ${branch} ]; then
-  echo "Please enter checkout ${branch}"
   exit
 fi
 
@@ -70,7 +57,7 @@ fi
 
 # if [ "$env" = "production" ]; then
 #   choice="n"
-read -p "Deploy branch(${branch}) to ${hosts[*]}: (y/n)" choice
+read -p "Deploy to ${hosts[*]}: (y/n)" choice
 # fi
 
 if [ "$choice" = "y" ]; then
@@ -130,7 +117,7 @@ if [ "$choice" = "y" ]; then
     if [ "$env" = "production" ]; then
       ssh root@${hosts[i]} "dsh -M -r ssh -g node -q -- 'cd /root/code/carrier && git pull && /usr/local/node/bin/pm2 reload carrier'"
     else
-      ssh root@${hosts[i]} "cd /root/code/${user} && git co ${branch} && git pull && /usr/local/bin/pm2 reload ${user}"
+      ssh root@${hosts[i]} "cd /root/code/${user} && git pull && /usr/local/bin/pm2 reload ${user}"
     fi
   done
 fi
