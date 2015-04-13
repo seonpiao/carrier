@@ -55,10 +55,6 @@ if [ $gitchangecount -gt 0 ]; then
   exit
 fi
 
-if [ $(git st |awk 'NR==1 {print $3}') != ${branch} ]; then
-  echo "Please enter checkout ${branch}"
-  exit
-fi
 
 gitahead=($(git status -bs | grep "ahead \d"))
 gitaheadcount=${#gitahead[@]}
@@ -68,6 +64,10 @@ if [ $gitaheadcount -gt 0 ]; then
   exit
 fi
 
+if [ $(git st |awk 'NR==1 {print $3}') != ${branch} ]; then
+  echo "Please enter checkout ${branch}"
+  exit
+fi
 # if [ "$env" = "production" ]; then
 #   choice="n"
 read -p "Deploy branch(${branch}) to ${hosts[*]}: (y/n)" choice
