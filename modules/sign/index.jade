@@ -12,24 +12,19 @@ p.fr.username_title.mt_3
   if isLogin
     span.fl.up_pointer
 ul.cl
-  //- li
-  //-   div(class='user_photo fl ' + (usrangel === '0' ? '' : usrangel === '1' ? 'gray' : 'lights'))
-  //-     img(src=window.resUrl + "head/" + uid + "/40")
-  //-   .fr.w100
-  //-     .active_degree
-  //-     .user_grade.pr.cl
-  //-         .user_grade_number
-  //-           .p_vipgradei
-  //-             i.num_1
-  //-             i.num_2
-  //-         .user_grade_progress.fl
-  //-           span(style="width:30px;")
+  li
+    div(class='user_photo fl ' + (usrangel === '0' ? '' : usrangel === '1' ? 'gray' : 'lights'))
+      img(src=window.resUrl + "head/" + ssoid + "/40")
+    .fr.w100
+      .active_degree
+      .user_grade.pr.cl
+          .user_grade_number
+            .p_vipgradei
+          .user_grade_progress.fl
   //- li
   //-    a.my_space(href="javascript:;",target="_blank")= "我的空间"
   //- li
   //-   a.my_diary(href="javascript:;",target="_blank")= "我的日记"
-  //- li
-  //-   a.account_settings(href="javascript:;",target="_blank")= "账户设置"
   li
     a.account_settings(href='//i.wanleyun.com/setbasic', target='_blank')= "账户设置"
   li.no_bg
