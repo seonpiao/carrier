@@ -28,7 +28,7 @@
 											img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
 										p.pinkText= value.girlname
 					div.killresult.cl.yellow_2.f12
-						p.cl.f14.yellow_1= "昨日头杀结果："
+						p.cl.f14.yellow_1= " 最新头杀结果："
 						div.cl.krcontent.ml_30= result.description
 						ul.kresultlist.cl.ml_30.mt_10
 							for item,index in result.content
@@ -49,7 +49,7 @@
 								if index > 2
 									li
 										div.kresult_l.fl
-											ins.fl
+											span.kresult_num.fl.f18= (index + 1) + '.'
 											span.fl.pinkText= item.name
 										div.kresult_r.fr
 											span="梦想基金："
