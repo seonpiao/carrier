@@ -925,6 +925,8 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       strNew = strNew.replace('<re>', '<span class="rename">').replace('</re>', '</span>'); //成就名称
       strNew = strNew.replace('<t>', '<span class="taskname">').replace('</t>', '</span>'); //任务名称
       strNew = strNew.replace('<vip>', '<img width="18" src="' + window.resUrl + 'orig/images/vip.png">') //显示vip
+      strNew = strNew.replace('<girl>', '<img width="18" src="' + window.resUrl + 'orig/images/girl.png">') //显示女神
+      strNew = strNew.replace('<assist>', '<img width="18" src="' + window.resUrl + 'orig/images/assist.png">') //显示小管家
       strNew = strNew.replace('<angel>', '<img src="' + window.resUrl + 'orig/images/flying1.png" style="height:15px;">') //白银天使
       strNew = strNew.replace('<angel1>', '<img src="' + window.resUrl + 'orig/images/flying1.png" style="height:15px;">') //白银天使
       strNew = strNew.replace('<angel2>', '<img src="' + window.resUrl + 'orig/images/flying2.png" style="height:15px;">') //黄金天使
@@ -938,8 +940,13 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       var unameClass = 'uname';
       var realName = chat_word.nickname.replace(/&lt;.*?&gt;/g, '');
       var girlNameList = this.girlNameList;
-      if ((girlNameList.indexOf(realName) != -1) || (this.girlList.indexOf(realName.replace('的小管家', '')) != -1)) {
+      if ((girlNameList.indexOf(realName) != -1)) {
         unameClass = 'pinkText';
+        chat_word.nickname = chat_word.nickname.replace(/&lt;vip&gt;/, '&lt;girl&gt;');
+      }
+      if ((this.girlList.indexOf(realName.replace('的小管家', '')) != -1)) {
+        unameClass = 'pinkText';
+        chat_word.nickname = chat_word.nickname.replace(/&lt;vip&gt;/, '&lt;assist&gt;');
       }
       contentStr += '<span class="' + unameClass + ' chat_nickname chat_icons" onclick="self.showSingle(this)">' + self.transformStr(chat_word.nickname) + '</span>：' + '<span class="chat_word">' + chat_word.content + '</span>'
       return self.chatformEmotions(contentStr)
