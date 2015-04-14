@@ -7,19 +7,26 @@ var _ = require('underscore');
 
 var bases = {
   'nvshen.zongyi.letv.com': {
-    i: '2'
+    i: '2',
+    mm: '3'
   },
   'defaults': {
-    i: '1'
+    i: '1',
+    mm: '1'
   }
 };
 
 var rules = {
+  //同子域替换
   '1': function(host, subdomain) {
-    return host.replace(/^[^\.]+/, subdomain)
+    return host.replace(/^[^\.]+/, subdomain);
   },
   '2': function(host, subdomain) {
-    return host + '/' + subdomain
+    return host + '/' + subdomain;
+  },
+  //保持原域名
+  '3': function(host, subdomain) {
+    return host;
   }
 };
 
