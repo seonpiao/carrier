@@ -34,7 +34,7 @@ elif [ "$env" = "test" ]; then
   done
 
   if [[ $userFlag = true ]]; then
-    echo "${user}:"
+    echo "${user}:" > /dev/null
   else
     echo "请写出你的美名，wujunlian or seon or feng"
     exit
@@ -47,6 +47,17 @@ fi
 
 num=${#hosts[@]}
 
+gitmergeconfilict=($(grep ">>>>>>>" ./ -r | grep -v deploy.sh | awk -F ':' '{print $1}' | sed  's/\/\{1,\}/\//g'))
+gitmergeconfilictcount=${#gitmergeconfilict[@]}
+
+if [ $gitmergeconfilictcount -gt 0 ]; then
+  echo '有以下冲突没有处理：'
+  for((i=0;i<gitmergeconfilictcount;i++));do
+    echo ${gitmergeconfilict[i]}
+  done
+  exit
+fi
+
 gitchange=($(git status -bs | grep "^[^#]"))
 gitchangecount=${#gitchange[@]}
 
@@ -54,7 +65,6 @@ if [ $gitchangecount -gt 0 ]; then
   echo '请先提交代码的修改'
   exit
 fi
-
 
 gitahead=($(git status -bs | grep "ahead \d"))
 gitaheadcount=${#gitahead[@]}
