@@ -4,9 +4,7 @@ define(["models/newemailflicker"], function(model) {
       model.once('sync', done);
       model.once('error', done);
       model.fetch({
-        data: {
-          girlid: girlid
-        }
+        action: 'getMailTotal'
       });
     },
     init: function(options) {
