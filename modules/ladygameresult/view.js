@@ -1,6 +1,47 @@
-define(["libs/client/views/base"], function(Base) {
-  var View = Base.extend({
-    moduleName: "ladygameresult"
-  });
-  return View;
+define(["libs/client/views/base", 'models/ladygameresult'], function(Base, ladygameresult) {
+	var d;
+	var View = Base.extend({
+		moduleName: "ladygameresult",
+		init: function() {
+			//this.listenTo(ladygameresult, 'sync', this.show.bind(this));
+		},
+		show: function() {
+			var self = this;
+			ladygameresult.fetch();
+			ladygameresult.once('sync', function() {
+				self.loadTemplate('index', function(template) {
+					var data = ladygameresult.toJSON();
+					console.log(data)
+					if (data.success == 200 && data.result != null) {
+						var item = template(data);
+						//console.log(item)
+						d = dialog({
+							id: 'ladygresultShow-dialog-on',
+							title: ' ',
+							content: item,
+							padding: 0,
+							autofocus: true,
+							skin: 'dialogGames ladygreShow-dialog-on',
+							onclose: function() {
+								d.close();
+							}
+						});
+						$('.ladygreShow-dialog-on #itemListBar').tinyscrollbar({
+							trackSize: 280
+						});
+						d.show();
+						$('#ladygmresult_btn').on('click', self.CloseNticeShow.bind(self));
+						$('.ladygreShow-dialog-on .ui-dialog-close').html('');
+					}
+				})
+			})
+		},
+		CloseNticeShow: function() {
+			if (d) {
+				d.close().remove();
+				d = null;
+			}
+		}
+	});
+	return View;
 });

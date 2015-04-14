@@ -25,7 +25,7 @@
   .goddess_room
     width 225px
     height 322px
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat -1px 0
+    background url($bgUrl + "player3/square_boxbg_980.png") no-repeat -1px 0
     margin-bottom 10px
     padding 23px 10px 18px 5px
     .goddess_show
@@ -50,7 +50,7 @@
     height 32px
     line-height 32px
     vertical-align middle
-    background url('http://static.mm.wanleyun.cn/orig/images/player3/boxbg.png') no-repeat -744px -81px
+    background url($bgUrl + 'player3/boxbg.png') no-repeat -744px -81px
     padding-left 35px
     font-size 12px
   .goddess_task_list
@@ -62,7 +62,7 @@
     width 207px
     padding-left 15px
     margin-left 4px
-    background url('http://static.mm.wanleyun.cn/orig/images/player3/gooddes_task_line.png') repeat-y 0 0
+    background url($bgUrl + 'player3/gooddes_task_line.png') repeat-y 0 0
     li
       margin-top 5px
       margin-bottom 8px
@@ -75,11 +75,11 @@
   .task_titleline
     height 19px
     line-height 19px
-    background url('http://static.mm.wanleyun.cn/orig/images/player3/gooddes_task_titleline.png') no-repeat 0 0
+    background url($bgUrl + 'player3/gooddes_task_titleline.png') no-repeat 0 0
     padding-left 12px
     margin-left -15px
   .tips_redimg
-    background url('http://static.mm.wanleyun.cn/orig/images/player3/loddeng_look.png') no-repeat 0 5px
+    background url($bgUrl + 'player3/loddeng_look.png') no-repeat 0 5px
     padding-left 15px
     margin-left -18px
   .goddess_single
@@ -106,7 +106,7 @@
       right 15px
   .loadding_live
     height 15px
-    background url('http://static.mm.wanleyun.cn/orig/images/player3/boxbg.png') no-repeat -416px -206px
+    background url($bgUrl + 'player3/boxbg.png') no-repeat -416px -206px
     padding-left 18px
     vertical-align middle
   .goddess_task
@@ -114,15 +114,15 @@
     height 142px
     padding 30px 25px 20px 5px
     margin-top 15px
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat -246px -681px
+    background url($bgUrl + "player3/square_boxbg_980.png") no-repeat -246px -681px
     .goddess_task_list
       width 210px
   .active_box_980
     width 60px
     height 100%
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/active_bg.png") repeat-y 0 0
+    background url($bgUrl + "player3/active_bg.png") repeat-y 0 0
     margin-top -12px
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/active_bg_980.png") repeat-x
+    background url($bgUrl + "player3/active_bg_980.png") repeat-x
     height 60px
     margin 5px auto 0
     width 980px
@@ -142,24 +142,20 @@
       line-height 50px
       position relative
       div
-        background url('http://static.mm.wanleyun.cn/orig/images/player3/active_icon.png') no-repeat center center
+        background url($bgUrl + 'player3/active_icon.png') no-repeat center center
         margin 13px auto 0
         position absolute
         bottom 0
         left 50%
         margin-left -24px
-        &.bottle_s_1
-          background-position 0 0
-        &.bottle_s_2
-          background-position 0 -56px
-        &.bottle_s_3
-          background-position 0 -115px
-        &.bottle_s_4
-          background-position 0 -176px
         &.ladynotice_1
           width 50px
           height 46px
           background-position 0 -504px
+        &.ladygamereshow
+          width:48px
+          height:46px
+          background-position:0 -559px
         &.active_2
           width 33px
           height 43px
@@ -203,7 +199,7 @@
         &.bottle_img
           width 28px
           height 42px
-          background url("http://static.mm.wanleyun.cn/orig/images/bottle/bottle_smaillimg_28.png") no-repeat center center
+          background url($bgUrl + "bottle/bottle_smaillimg_28.png") no-repeat center center
           margin-left -15px
     .wish_bottle_word
       position absolute
@@ -216,7 +212,7 @@
   .wish_bottle_word
     width 38px
     height 14px
-    background url('http://static.mm.wanleyun.cn/orig/images/player3/active_icon.png') no-repeat 0 -480px
+    background url($bgUrl + 'player3/active_icon.png') no-repeat 0 -480px
     text-align center
     margin 0 auto
   .goddess_left
@@ -224,7 +220,7 @@
   .ranking_pk_main
     width 228px
     height 224px
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat -246px -392px
+    background url($bgUrl + "player3/square_boxbg_980.png") no-repeat -246px -392px
     .popular-scroll
       &.scrollbars
         .scrollbar
@@ -235,12 +231,12 @@
             height 220px
     .ranking_square_hr
       width 220px
-      background url("http://static.mm.wanleyun.cn/orig/images/player3/ranking_hr_220.png") no-repeat 0 0
+      background url($bgUrl + "player3/ranking_hr_220.png") no-repeat 0 0
   .goddess_ranking_top
     width 230px
     height 239px
     padding 43px 4px 10px 6px
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat -1px -366px
+    background url($bgUrl + "player3/square_boxbg_980.png") no-repeat -1px -366px
   .ranking_type_list
     width 240px
     margin-left 0
@@ -249,11 +245,11 @@
       width 112px
       height 22px
       line-height 22px
-      background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat -361px -365px
+      background url($bgUrl + "player3/square_boxbg_980.png") no-repeat -361px -365px
       &.on
         height 23px
         margin-bottom -1px
-        background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat -246px -365px
+        background url($bgUrl + "player3/square_boxbg_980.png") no-repeat -246px -365px
   .popularity_rankgin_pk
     height 132px
     padding 0 5px
@@ -277,14 +273,14 @@
       div
         width 90px
         height 100px
-        background url("http://static.mm.wanleyun.cn/orig/images/player3/ranking_photobg_90.png") no-repeat
+        background url($bgUrl + "player3/ranking_photobg_90.png") no-repeat
         margin 0 auto
         position relative
         z-index 1
         img
           width 32px
           height 31px
-          background url("http://static.mm.wanleyun.cn/orig/images/player3/purple_photobg_36.png") no-repeat 0 0
+          background url($bgUrl + "player3/purple_photobg_36.png") no-repeat 0 0
           padding 3px 2px 2px
           position absolute
         ins
@@ -313,7 +309,7 @@
             right 27px
             top 41px
   .goddess_ranktitle
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/ranking_img.png") no-repeat 0 -131px
+    background url($bgUrl + "player3/ranking_img.png") no-repeat 0 -131px
     height 46px
     left 2px
     position absolute
@@ -323,10 +319,10 @@
       display none
   .photobg
     &.lights2
-      background url("http://static.mm.wanleyun.cn/orig/images/boxbg.png") no-repeat scroll -334px -668px rgba(0, 0, 0, 0)
+      background url($bgUrl + "boxbg.png") no-repeat scroll -334px -668px rgba(0, 0, 0, 0)
       padding 4px
     &.lights1
-      background url("http://static.mm.wanleyun.cn/orig/images/boxbg.png") no-repeat scroll -303px -668px rgba(0, 0, 0, 0)
+      background url($bgUrl + "boxbg.png") no-repeat scroll -303px -668px rgba(0, 0, 0, 0)
       padding 4px
   .mt_028
     margin-top -28px
@@ -335,7 +331,7 @@
   .goddess_notice_con
     width 211px
     height 215px
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat scroll -246px 0
+    background url($bgUrl + "player3/square_boxbg_980.png") no-repeat scroll -246px 0
     padding 30px 15px 15px
     .goddess_notice_list
       li
@@ -362,7 +358,7 @@
   .mt_05
     margin-top -1px
   .chat_viewer
-    background url("http://static.mm.wanleyun.cn/orig/images/player3/square_boxbg_980.png") no-repeat scroll -498px 0
+    background url($bgUrl + "player3/square_boxbg_980.png") no-repeat scroll -498px 0
     font-size 12px
     height 256px
     margin-top 14px
@@ -427,7 +423,7 @@
     color #808080
   .chat_box
     .sending
-      background url("http://static.mm.wanleyun.cn/orig/images/sending.gif") no-repeat left center
+      background url($bgUrl + "sending.gif") no-repeat left center
       background-size 12px 12px
     .sent
       background none
@@ -443,19 +439,28 @@
 .w980 .video_kankan,.w980 .video_kankan em
   color #e73378
 
-.w980 .active_box_980 li div.bottle_s_1,.w980 .active_box_980 li div.bottle_s_2,.w980 .active_box_980 li div.bottle_s_3,.w980 .active_box_980 li div.bottle_s_4
+.w980 .active_box_980 li.BottleShow div
   width 34px
   height 50px
-  background url("http://static.mm.wanleyun.cn/orig/images/bottle/bottle_smaillimg_h50.png") no-repeat center center
+  background url($bgUrl + "bottle/bottle_smaillimg_h50.png") no-repeat center center
   padding-left 0
   margin-left -20px
+  &.bottle_s_1
+    background-position 0 0
+  &.bottle_s_2
+    background-position 0 -56px
+  &.bottle_s_3
+    background-position 0 -115px
+  &.bottle_s_4
+    background-position 0 -176px
+
 
 .w980 .ranking_pk_main .popular-scroll.scrollbars,.w980 .ranking_pk_main .popular-scroll.scrollbars .viewport
   width 210px
   height 220px
 
 .w980 .photobg.lights1, .w980 .photobg.lights2, .w980 .photobg.link, .w980 .photobg.lights0
-  background url("http://static.mm.wanleyun.cn/orig/images/boxbg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0)
+  background url($bgUrl + "boxbg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0)
   display block
   height 18px
   left 0
@@ -465,7 +470,7 @@
   width 18px
 
 .w980 .photobg.link, .w980 .photobg.lights0
-  background url("http://static.mm.wanleyun.cn/orig/images/boxbg.png") no-repeat scroll -367px -668px rgba(0, 0, 0, 0)
+  background url($bgUrl + "boxbg.png") no-repeat scroll -367px -668px rgba(0, 0, 0, 0)
   padding 4px
 
 .w980 .goddess_notice_con .goddess_notice_list,.goddess_notice_con .goddess_notice_list li

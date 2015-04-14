@@ -98,6 +98,15 @@ define(["libs/client/views/base"], function(Base) {
           $playerBox.remove();
         });
       })
+
+      $('#videohref li a').on('mouseenter', function() {
+        var nowhref = $(this).attr('href');
+        if (nowhref != '') {
+          $(this).append('<i class="vd_hoverbg"></i>');
+        }
+      }).on('mouseleave', function() {
+        $(this).children().siblings('i.vd_hoverbg').remove();
+      })
     }
   });
   return View;

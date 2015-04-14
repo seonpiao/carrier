@@ -12,7 +12,8 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
       'click #specialMerchants': 'openpersiashop',
       'click .BottleShow': 'openBottle',
       'click #ladyNotice': 'openLadyNotice',
-      'click #RankingList': 'openRankingList'
+      'click #RankingList': 'openRankingList',
+      'click #ladygameresult': 'openLadyGameResult'
     },
     init: function() {
       $('input').placeholder();
@@ -1328,6 +1329,13 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
       this.module('rank', function(rank) {
         if (rank) {
           rank.show();
+        }
+      });
+    },
+    openLadyGameResult: function() {
+      this.module('ladygameresult', function(ladygameresult) {
+        if (ladygameresult) {
+          ladygameresult.show();
         }
       });
     }
