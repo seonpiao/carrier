@@ -64,9 +64,11 @@ if [ $gitaheadcount -gt 0 ]; then
   exit
 fi
 
-if [ "$(git status |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
-  echo "Please enter checkout ${branch}"
-  exit
+if [ "$env" = "test" ]; then
+  if [ "$(git status |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
+    echo "Please enter checkout ${branch}"
+    exit
+  fi
 fi
 # if [ "$env" = "production" ]; then
 #   choice="n"
