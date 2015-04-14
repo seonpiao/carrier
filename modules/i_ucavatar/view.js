@@ -10,6 +10,8 @@ define(["libs/client/views/base", "models/userVitality"], function(Base, userVit
           str += '<i class="num_' + vitalityLevel[i] + '"> </i>';
         }
         $('.p_vipgrade').html(str);
+        var width = (parseInt(data.vitality) - data.vitalitylevelmin) / (data.vitalitylevelmax - data.vitalitylevelmin) * 100;
+        $('.p_degreescroll').html('<span style="width:' + width + 'px;"></span>');
       });
       userVitality.fetch();
 

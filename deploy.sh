@@ -45,6 +45,11 @@ else
   exit
 fi
 
+if [ $(git st |awk 'NR==1 {print $3}') != ${branch} ]; then
+  echo "Please enter checkout ${branch}"
+  exit
+fi
+
 num=${#hosts[@]}
 
 gitchange=($(git status -bs | grep "^[^#]"))
