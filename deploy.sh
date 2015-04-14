@@ -64,6 +64,14 @@ if [ $gitaheadcount -gt 0 ]; then
   exit
 fi
 
+gitmergeconfilict=($(grep ">>>>>>>" ./ -r))
+gitmergeconfilictcount=${#gitmergeconfilict[@]}
+
+if [ $gitmergeconfilictcount -gt 0 ]; then
+  echo '有未解决的冲突: ${gitmergeconfilict}'
+  exit
+fi
+
 if [ "$env" = "test" ]; then
   if [ "$(git status |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
     echo "Please enter checkout ${branch}"
