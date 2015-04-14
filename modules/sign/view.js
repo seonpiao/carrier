@@ -26,7 +26,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       // 	});
       // });
 
-      this.listenTo(userVitality, 'change', function(data) {
+      this.listenTo(userVitality, 'sync', function(data) {
         var data = userVitality.toJSON();
         var vitalityLevel = data.vitalitylevel + '';
         var str = '';
