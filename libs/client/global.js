@@ -185,7 +185,6 @@ var globalUtil = {
   },
   lightemailNew: function() { //收件箱图标和文字都变量
     var tdiv = $('#unmail');
-    console.log(tdiv)
     var times = 0;
     var timer = setInterval(function() {
       times++;

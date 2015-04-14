@@ -5,8 +5,9 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
     d: null,
     init: function() {
       var self = this;
-      this.listenTo(email, 'change', this.showMaillist.bind(this));
       self.newemailF();
+      newemailflicker.fetch();
+      self.listenTo(email, 'sync', this.showMaillist.bind(this));
     },
     showMaillist: function(mailid) {
       var self = this,
@@ -44,7 +45,6 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
     },
     //显示邮件详情
     showContent: function() {
-      //console.log($('.email-dialog-on .emailList li').html())
       var self = this;
       $('.email-dialog-on .emailList li').click(function(e) {
         e.preventDefault();
@@ -56,7 +56,6 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
         }
         emailContent.once('sync', function() {
           var data = emailContent.toJSON()
-            //console.log(data)
           self.loadTemplate('email', function(template) {
             var item = template(data);
             self.d = dialog({
@@ -126,22 +125,16 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
       })
     },
     newemailF: function() {
-      newemailflicker.once('sync', function() {
+      newemailflicker.on('sync', function() {
         var data = newemailflicker.toJSON();
         if (data.success == 200) {
-          var newemailnum = data.result.inboxNum;
+          var newemailnum = data.result;
           if (newemailnum > 0) {
-            //console.log(newemailnum)
             globalUtil.emailNew();
             globalUtil.lightemailNew();
           }
         }
 
-      });
-      newemailflicker.fetch({
-        data: {
-          girlid: girlid
-        }
       });
     },
     emailEtialC: function() {
