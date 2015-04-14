@@ -4,14 +4,16 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
     moduleName: "chat",
     template: 'index',
     events: {
-      'click .chat_viewer_tab li': 'chatTab',
+      // 'click .chat_viewer_tab li': 'chatTab',
       'focus #recv_chat_window': '',
       'blur #recv_chat_window': '',
       'click #post': 'post_chat',
       'submit .chat_form': 'send_chat',
       'keydown #chat_text': 'writeInputText',
-      'click #btnlol.emoticon': 'showDropDown'
+      'click #btnlol.emoticon': 'showDropDown',
+      'click .chat_viewer_tab li': 'switchChannel'
     },
+    chid: window.girlid,
     init: function() {
       var self = this;
       this.contentPoint = 0;
@@ -32,33 +34,71 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
             return item.talkname;
           });
           self.initChat();
-          self.loadHistory();
+          self.loadHistory(function() {
+            self.join();
+          });
         });
+      });
+      this.listenTo(feedHistory, 'sync', this.showHistory.bind(this));
+    },
+    switchChannel: function(e) {
+      var $target = $(e.currentTarget);
+      $target.siblings().removeClass('on');
+      $target.addClass('on');
+      if (comet) {
+        comet.stop();
+      }
+      var signUrl;
+      if (this.$el.attr('data-sign') != '0') {
+        signUrl = this.base.sign_url;
+      }
+      this.chid = ($target.attr('data-channel') === 'world' ? '0' : window.girlid);
+      var self = this;
+      comet = new iComet({
+        channel: 'girl_' + this.chid,
+        signUrl: signUrl,
+        subUrl: this.base.sub_url,
+        pubUrl: this.base.pub_url,
+        callback: function(content) {
+          self.msgCb(content)
+        }
+      });
+      this.$('.overview').html('');
+      feedHistory.fetch({
+        data: {
+          girlid: this.chid
+        }
       });
     },
     render: function() {
 
     },
-    loadHistory: function() {
+    showHistory: function(model) {
+      var data = model.toJSON();
+      var talk = data.talk;
+      var self = this;
+      _.each(talk, function(item) {
+        try {
+          item = decodeURIComponent(item);
+          var msg = JSON.parse(item);
+          self.addmsg(msg.uid ? msg.uid : '', msg.nickname, item, true);
+        } catch (e) {}
+      });
+    },
+    loadHistory: function(callback) {
       var self = this;
       feedHistory.cache(function() {
-        var data = feedHistory.toJSON();
-        var talk = data.talk;
-        _.each(talk, function(item) {
-          try {
-            item = decodeURIComponent(item);
-            var msg = JSON.parse(item);
-            self.addmsg(msg.uid ? msg.uid : '', msg.nickname, item, true);
-          } catch (e) {}
-        });
-        self.join();
+        self.showHistory(feedHistory);
+        if (callback) {
+          callback();
+        }
       });
     },
     initChat: function() {
       var self = this;
-      $('.chat_viewer_tab li').click(function(e) {
-        self.chatTab(e);
-      });
+      // $('.chat_viewer_tab li').click(function(e) {
+      //   self.chatTab(e);
+      // });
       //bind mouse out event to automatically close the menu
       if ($('.chat_bottom').length > 0) {
         $("#emoticonDropDown").bind("mouseleave", function() {
@@ -800,7 +840,9 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
         var item = $(this).attr('item');
         if (!$(this).hasClass('hover')) {
           $(this).addClass('hover').siblings('a').removeClass('hover');
-          $('#emoticonDropDown .emoticonsArea[item=' + item + ']').show().siblings('.emoticonsArea').hide();
+          var $area = $('#emoticonDropDown .emoticonsArea[item=' + item + ']');
+          $area.show().siblings('.emoticonsArea').hide();
+          $area.data('plugin_tinyscrollbar').update('top');
         }
       });
       $("#emoticonDropDown").fadeIn();
@@ -1028,7 +1070,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
     },
     join: function() {
       var self = this;
-      var channel = 'girl_' + girlid;
+      var channel = 'girl_' + this.chid;
       var signUrl;
       if (this.$el.attr('data-sign') != '0') {
         signUrl = self.base.sign_url;

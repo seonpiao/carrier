@@ -9,7 +9,7 @@ server_host="182.92.215.90"
 server_path="/data/wwwroot/wanleyun/static/dist"
 upload_dirs=(js css template)
 
-users=(master wujunlian piaoshihuang feng staging yange)
+users=(master wujunlian seon feng staging yange)
 
 env=$1
 user=$2
@@ -36,7 +36,7 @@ elif [ "$env" = "test" ]; then
   if [[ $userFlag = true ]]; then
     echo "${user}:"
   else
-    echo "请写出你的美名，wujunlian or piaoshihuang or feng"
+    echo "请写出你的美名，wujunlian or seon or feng"
     exit
   fi
 
@@ -55,19 +55,26 @@ num=${#hosts[@]}
 gitchange=($(git status -bs | grep "^[^#]"))
 gitchangecount=${#gitchange[@]}
 
-if [ $gitchangecount -gt 2 ]; then
+if [ $gitchangecount -gt 0 ]; then
   echo '请先提交代码的修改'
   exit
 fi
 
+
 gitahead=($(git status -bs | grep "ahead \d"))
 gitaheadcount=${#gitahead[@]}
 
-if [ $gitaheadcount -gt 2 ]; then
+if [ $gitaheadcount -gt 0 ]; then
   echo '请先把代码push到server'
   exit
 fi
 
+if [ "$env" = "test" ]; then
+  if [ "$(git status |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
+    echo "Please enter checkout ${branch}"
+    exit
+  fi
+fi
 # if [ "$env" = "production" ]; then
 #   choice="n"
 read -p "Deploy branch(${branch}) to ${hosts[*]}: (y/n)" choice

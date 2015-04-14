@@ -61,13 +61,17 @@ var fetch = function*() {
   this.status = 404;
 };
 
-module.exports = function(app) {
-  app.route('/room/:girlid$').all(function*(next) {
+module.exports = function(app, pageName) {
+  app.route('/' + pageName + '/:girlid$').all(function*(next) {
     yield resetctx.call(this);
     yield fetch.call(this);
     if (this.result) {
       this.result.query = this.request.query;
     }
-    yield response.call(this, 'room/index');
+    this.global = {
+      girlid: this.request.params.girlid * 1,
+      page: pageName
+    };
+    yield response.call(this, pageName + '/index');
   });
 }

@@ -47,13 +47,17 @@ apps.forEach(function(appName, i) {
         var routePath = path.join(pagePath, pageName, 'route.js');
         if (fs.existsSync(routePath)) {
             var route = require(routePath);
-            route(app);
+            route(app, pageName);
         } else {
             app.route('/' + pageName).all(function*(next) {
                 yield resetctx.call(this);
                 this.result = {
                     query: this.request.query
                 }
+                this.global = {
+                    girlid: 0,
+                    page: pageName
+                };
                 yield response.call(this, pageName + '/index');
             });
         }
@@ -61,6 +65,10 @@ apps.forEach(function(appName, i) {
     //如果前面没有匹配的路由，就走默认路由响应404
     app.route('*').all(function*(next) {
         yield resetctx.call(this);
+        this.global = {
+            girlid: 0,
+            page: '404'
+        };
         yield response.call(this);
     });
     var appPort = appConfig.port;

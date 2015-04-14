@@ -40,7 +40,7 @@ define(["libs/client/views/base", "libs/client/swf/swfobject"], function(Base, S
         id: "FaustCplus"
       };
 
-      swfobject.embedSWF(window.resUrl + "flash/FaustCplus.swf", "flashcontent", "650", "500", "11", "expressInstall.swf", flashvars, params, attributes);
+      swfobject.embedSWF(window.resUrl + "flash/FaustCplus.swf", "flashcontent", "660", "500", "11", "expressInstall.swf", flashvars, params, attributes);
     },
     follow: function() {
       var d = dialog({
