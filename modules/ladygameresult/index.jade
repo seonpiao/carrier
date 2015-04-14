@@ -15,18 +15,20 @@
 						dt.fl.yellow_1.f14= "今日房间分配："
 						dd.ladyrewardr.fl
 							ul.ladylist
-								for value in result.rewardr
-									li
-										div.ladylistphoto
-											img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
-										p.pinkText= value.girlname
+								for value,index in result.rewardr
+									if index < 2
+										li
+											div.ladylistphoto
+												img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
+											p.pinkText= value.girlname
 						dd.ladypunishr.fl
 							ul.ladylist
-								for value in result.punishr
-									li
-										div.ladylistphoto
-											img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
-										p.pinkText= value.girlname
+								for value,index in result.punishr
+									if index < 2
+										li
+											div.ladylistphoto
+												img(src=window.resUrl + 'girl/' + value.girlid + '/50',widht="50",height="50")
+											p.pinkText= value.girlname
 					div.killresult.cl.yellow_2.f12
 						p.cl.f14.yellow_1= " 最新头杀结果："
 						div.cl.krcontent.ml_30= result.description
