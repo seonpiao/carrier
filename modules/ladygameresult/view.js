@@ -5,6 +5,7 @@ define(["libs/client/views/base", 'models/ladygameresult'], function(Base, ladyg
 		init: function() {
 			//this.listenTo(ladygameresult, 'sync', this.show.bind(this));
 		},
+		ladygamersscrool: null,
 		show: function() {
 			var self = this;
 			ladygameresult.fetch();
@@ -26,10 +27,11 @@ define(["libs/client/views/base", 'models/ladygameresult'], function(Base, ladyg
 								d.close();
 							}
 						});
-						$('.ladygreShow-dialog-on #itemListBar').tinyscrollbar({
+						d.show();
+						this.ladygamersscrool = $('.ladygreShow-dialog-on #itemListBar');
+						this.ladygamersscrool.tinyscrollbar({
 							trackSize: 280
 						});
-						d.show();
 						$('#ladygmresult_btn').on('click', self.CloseNticeShow.bind(self));
 						$('.ladygreShow-dialog-on .ui-dialog-close').html('');
 					}
