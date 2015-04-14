@@ -2,10 +2,9 @@ define(["libs/client/views/base", "models/userInfo"], function(Base, userInfo) {
   var View = Base.extend({
     moduleName: "i_base",
     init: function() {
-      this.listenTo(userInfo, 'change:isLogin', function() {
-        console.log(userInfo.toJSON());
-        var isLogin = userInfo.toJSON().isLogin;
-        if (!isLogin) {
+      this.listenTo(userInfo, 'change:username', function() {
+        var username = userInfo.toJSON().username;
+        if (!username) {
           location.href = '//account.wanleyun.com/login';
         }
       });
