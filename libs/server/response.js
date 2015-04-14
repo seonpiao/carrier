@@ -5,6 +5,28 @@ var errorMsgs = {
 
 var _ = require('underscore');
 
+var bases = {
+  'nvshen.zongyi.letv.com': {
+    i: '2'
+  },
+  'defaults': {
+    i: '2'
+  }
+};
+
+var rules = {
+  '1': function(host, subdomain) {
+    return host.replace(/^[^\.]+/, subdomain)
+  },
+  '2': function(host, subdomain) {
+    return host + '/' + subdomain
+  }
+};
+
+var sanitize = function(s) {
+  return s.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
 module.exports = function*(view) {
 
   var defaultLocals = {
@@ -14,6 +36,26 @@ module.exports = function*(view) {
     },
     __global: this.global || {}
   };
+
+  var self = this;
+
+  var baseRule;
+  _.some(bases, function(item, key) {
+    var exp = new RegExp(sanitize(key));
+    if (self.host.match(exp)) {
+      baseRule = item;
+      return true;
+    }
+    return false;
+  });
+  if (!baseRule) {
+    baseRule = bases.defaults;
+  }
+  defaultLocals.__global.base = {};
+  _.forEach(baseRule, function(val, key) {
+    defaultLocals.__global.base[key] = rules[val](self.host, key);
+  });
+
 
   this.locals = this.locals || defaultLocals;
 
