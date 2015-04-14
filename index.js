@@ -35,6 +35,8 @@ var port = argv[3];
 if (port) {
     port = port.split(',');
 }
+var domain = argv[4];
+global.WLY_DOMAIN = domain;
 
 apps.forEach(function(appName, i) {
     var appPath = path.join(APP_PATH, appName)
