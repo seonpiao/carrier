@@ -10,7 +10,7 @@ var bases = {
     i: '2'
   },
   'defaults': {
-    i: '2'
+    i: '1'
   }
 };
 
