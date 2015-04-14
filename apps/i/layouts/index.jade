@@ -8,6 +8,7 @@ html
     link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/i/setbasic.b168c05bc270b036.css', rel='stylesheet', type='text/css')
     include ../../../modules/mm_headjs/index
     block headjs
+    script!= 'var __global = ' + JSON.stringify(__global)
     script(src='http://tjs.sjs.sinajs.cn/open/api/js/wb.js', type='text/javascript', charset='utf-8')
   body
     script.
