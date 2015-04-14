@@ -37,6 +37,10 @@ define(["libs/client/views/base", 'models/squarenotice'], function(Base, squaren
       var self = this;
       var data = squarenotice.toJSON();
       // shalUtil.hex_sha1($("#password").val())
+      var initShow = this.$el.attr('data-show') === 'init';
+      if (!initShow && data.length == 0) {
+        return;
+      }
       if (data != null) {
         this.loadTemplate('index', function(template) {
           var item = template(data);
@@ -58,7 +62,7 @@ define(["libs/client/views/base", 'models/squarenotice'], function(Base, squaren
           });
           // var scollbar = $scollbar.data('plugin_tinyscrollbar');
           // scollbar.update('relative');
-          // 公告内容处理
+          // å¬ååå®¹å¤ç
           var datanotie = data.result;
           $.each(datanotie, function(i, v) {
             noticeid = v.seq;
