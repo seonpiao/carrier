@@ -68,7 +68,7 @@ gitmergeconfilict=($(grep ">>>>>>>" ./ -r))
 gitmergeconfilictcount=${#gitmergeconfilict[@]}
 
 if [ $gitmergeconfilictcount -gt 0 ]; then
-  echo '有未解决的冲突: ${gitmergeconfilict}'
+  echo '有未解决的冲突: ${#gitchange[@]}'
   exit
 fi
 
