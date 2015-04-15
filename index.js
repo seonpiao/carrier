@@ -36,7 +36,7 @@ if (port) {
     port = port.split(',');
 }
 var domain = argv[4];
-global.WLY_DOMAIN = domain;
+global.WLY_DOMAIN = domain || 'wanleyun.com';
 
 apps.forEach(function(appName, i) {
     var appPath = path.join(APP_PATH, appName)

@@ -39,7 +39,7 @@ module.exports = function*(view) {
   var defaultLocals = {
     __env: {
       NODE_ENV: process.env.NODE_ENV,
-      WLY_DOMAIN: global.WLY_DOMAIN || 'wanleyun.com'
+      WLY_DOMAIN: global.WLY_DOMAIN
     },
     __global: this.global || {}
   };
