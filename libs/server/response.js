@@ -37,6 +37,10 @@ module.exports = function*(view) {
 
   this.locals = this.locals || defaultLocals;
 
+  if (this.status === 301 || this.status === 302) {
+    return;
+  }
+
   if (!this.result) {
     this.status = 404;
     try {
