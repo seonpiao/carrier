@@ -1,7 +1,7 @@
 module.exports = {
   api: {
-    apiBase: 'http://api.mm.wanleyun.com',
-    accountApiBase: 'http://account.wanleyun.com',
+    apiBase: 'http://api.mm.' + global.WLY_DOMAIN,
+    accountApiBase: 'http://account.' + global.WLY_DOMAIN,
   },
   http: {
     timeout: 5000
