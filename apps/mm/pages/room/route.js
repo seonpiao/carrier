@@ -63,15 +63,7 @@ var fetch = function*() {
 
 module.exports = function(app, pageName) {
   app.route('/' + pageName + '/:girlid$').all(function*(next) {
-    yield resetctx.call(this);
     yield fetch.call(this);
-    if (this.result) {
-      this.result.query = this.request.query;
-    }
-    this.global = {
-      girlid: this.request.params.girlid * 1,
-      page: pageName
-    };
-    yield response.call(this, pageName + '/index');
+    this.global.girlid = this.request.params.girlid * 1;
   });
 }

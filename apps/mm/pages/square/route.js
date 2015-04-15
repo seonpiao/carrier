@@ -7,14 +7,8 @@ var thunkify = require('thunkify');
 
 module.exports = function(app, pageName) {
   app.route('/' + pageName + '$').all(function*(next) {
-    yield resetctx.call(this);
-    this.result = {
-      query: this.request.query
-    };
-    this.global = {
-      girlid: 0,
-      page: pageName
-    };
-    yield response.call(this, 'vod/index');
+    this.result = {};
+    this.global.girlid = 0;
+    this.page = 'vod';
   });
 }
