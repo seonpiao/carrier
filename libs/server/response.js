@@ -5,35 +5,6 @@ var errorMsgs = {
 
 var _ = require('underscore');
 
-var bases = {
-  'nvshen.zongyi.letv.com': {
-    i: '2', //把i拼到后面
-    mm: '3' //保持域名不变
-  },
-  'defaults': {
-    i: '1', //替换同级子域
-    mm: '1' //替换同级子域
-  }
-};
-
-var rules = {
-  //同子域替换
-  '1': function(host, subdomain) {
-    return host.replace(/^[^\.]+/, subdomain);
-  },
-  '2': function(host, subdomain) {
-    return host + '/' + subdomain;
-  },
-  //保持原域名
-  '3': function(host, subdomain) {
-    return host;
-  }
-};
-
-var sanitize = function(s) {
-  return s.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
-}
-
 module.exports = function*(view) {
 
   var defaultLocals = {
@@ -65,6 +36,10 @@ module.exports = function*(view) {
 
 
   this.locals = this.locals || defaultLocals;
+
+  if (this.status === 301 || this.status === 302) {
+    return;
+  }
 
   if (!this.result) {
     this.status = 404;
