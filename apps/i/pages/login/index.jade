@@ -1,0 +1,198 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 登录-玩乐云
+    link(href='http://static.mm.<{$domain}>/orig/css/base.css', rel='stylesheet', type='text/css')
+    link(src='http://static.mm.<{$domain}>/orig/css/ui-dialog.js', rel='stylesheet', type='text/css')
+    link(href='http://static.mm.<{$domain}>/orig/css/sign.css', rel='stylesheet', type='text/css')
+    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/jquery-1.8.0.min.js')
+    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/jquery.validate.js')
+    script(src='http://static.mm.<{$domain}>/orig/js/dialog-plus.js')
+    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/global.js')
+    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/sha1.js')
+  body
+    .nav
+      .inside
+        a.nav_f1(href='//www.wanleyun.com/')
+          img(src='http://www.wanleyun.com/images/logo_img.png', width='121', height='41')
+        .register_text_18px
+          a(href='javascript:;') 登录
+    .content
+      .content_left
+      .content_right.fl
+        input#backurl(type='hidden', value='<{$backurl}>')
+        form#loginForm.cl(action='', onsubmit='', method='')
+          input#login_token(type='hidden', name='login_token', value='')
+          dl.login_item.cl
+            dt.left.fl 用户名
+            dd.right.login_item_wrap.fl
+              input#username.sign_input.input_288_38(name='username', type='text', placeholder='', autocomplete='off')
+              span.signItem_tip 请输入用户名
+            dd.sign_error(for='username')
+          dl.login_item.cl
+            dt.left.fl 密码
+            dd.right.login_item_wrap.fl
+              input#password.sign_input.input_288_38(name='password', type='password', placeholder='', autocomplete='off')
+              span.signItem_tip 请输入不少于6位密码
+            dd.sign_error(for='password')
+          dl#loginVerify.login_item.cl(style='display: none;')
+            dt.left.fl 验证码
+            dd.right.login_item_wrap.fl
+              input#verify_code.sign_input.input_confrom(name='verify_code', type='text', autocomplete='off')
+              span.signItem_tip(style='width: 100px;') 验证码
+              span
+                a(href='#')
+                  img#verify_img(src='http://account.mm.<{$domain}>/verifycode', width='110', height='38', hspace='10', vspace='0', border='0')
+                a#refresh_verify_img(href='javascript:void(0)') 点击刷新
+            dd.sign_error(for='verify_code')
+          .remember
+            span
+              label(for='remember')
+                input#remember(type='checkbox', name='remember', value='1', checked='checked')
+                |  记住我
+            // <a class="forget_pw" href="/findpassword">找回密码</a>
+          div
+            input.reg_bt(type='submit', value='登录')
+          .remember
+            span
+              | 没有账号？
+              a(href='/register')  立即注册
+        script(type='text/javascript').
+          window.ssoLoginCallback = function() {
+            if (window.__weibo_login) {
+              window.__weibo_login.close();
+            }
+          }
+        .otherMethods.cl
+          p(style='line-height:22px;')
+            span(color='#7f7f7f') 使用合作网站账号一键登录
+          a.oMsgBtn.wx(href="javascript:window.__weibo_login=window.open('http://account.<{$domain}>/weixinauth/login');", style='margin-right:10px;')
+            i
+            em 微信登录
+          a.oMsgBtn.qq(href="javascript:window.__weibo_login=window.open('http://account.<{$domain}>/qqauth/login');", style='margin-right:10px;')
+            i
+            em QQ登录
+          a.oMsgBtn.wb(href="javascript:window.__weibo_login=window.open('http://account.<{$domain}>/weiboauth/login');")
+            i
+            em 微博登录
+
+    script(type='text/javascript').
+      $('#refresh_verify_img,#verify_img').click(function() {
+        getLoginToken();
+      });
+      $('.login_item_wrap .signItem_tip').click(function() {
+        $(this).parent().find('.sign_input').focus();
+      });
+      $('.login_item_wrap .sign_input').blur(function() {
+        var tip = $(this).parent().find('.signItem_tip');
+        if ($.trim($(this).val()) == '') {
+          tip.show();
+        };
+      }).each(function() {
+        var tip = $(this).parent().find('.signItem_tip');
+        if ($.trim($(this).val()) != '') {
+          tip.hide();
+        };
+      }).on('input', function() {
+        $(this).parent().find('.signItem_tip').hide();
+      });
+
+      $('#loginForm').validate({
+        singleLabel: true,
+        rules: {
+          username: {
+            required: true
+          },
+          password: {
+            required: true
+          },
+          verify_code: {
+            required: function() {
+              return $('#loginVerify:visible').length > 0 ? true : false
+            }
+          }
+        },
+        message: {
+          username: {
+            required: '请输入用户名'
+          },
+          password: {
+            required: '请输入密码'
+          },
+          verify_code: {
+            required: '请输入验证码'
+          }
+        },
+        errorPlacement: function(error, element) {
+          error.appendTo($('.sign_error[for=' + $(element).attr('name') + ']'));
+        },
+        submitHandler: function(form) {
+          $('#loginForm :submit').attr('disabled', 'disabled');
+          doLogin();
+        }
+      });
+      $('#remember').click(function() {
+        if (this.checked) {
+          $(this).attr({
+            'value': '1',
+            'checked': 'checked'
+          });
+        } else {
+          $(this).attr('value', '0').removeAttr('checked');
+        }
+      });
+
+      function doLogin() {
+        $.ajax({
+          type: "GET",
+          url: "http://account.<{$domain}>/user/Login",
+          data: {
+            username: $("#username").val(),
+            password: hex_sha1($("#password").val()),
+            remember: $('#remember').attr('value'),
+            login_token: $("#login_token").val(),
+            verify_code: $("#verify_code").val()
+          },
+          dataType: "jsonp",
+          jsonp: "jsonpCallback",
+          success: function(data) {
+            if (data.code == 1) {
+              location.href = 'http://mm.<{$domain}>/square'
+            } else {
+              var error_num = data.data.error_num;
+              if (error_num > 1) {
+                getLoginToken();
+              }
+              var tdiv = $('.login_item .sign_error:visible:last');
+              tdiv.html('<label for="' + tdiv.attr('for') + '" generated="true" class="error">' + data.msg + '</label>');
+              $('#loginForm :submit').removeAttr('disabled');
+            }
+          }
+        });
+      }
+
+      function getLoginToken() {
+        $.ajax({
+          type: "GET",
+          url: "http://account.<{$domain}>/user/GetLoginToken",
+          data: {},
+          dataType: "jsonp",
+          jsonp: "jsonpCallback",
+          success: function(data) {
+            if (data.code === 1) {
+              data = data.data;
+              if (data.show_verify_code) {
+                $("#verify_img").attr("src", "http://api.mm.<{$domain}>/verifycode/index/token/" + data.login_token + "/");
+              }
+              $("#login_token").val(data.login_token);
+              if (data.show_verify_code) {
+                $('#loginVerify').show();
+              } else {
+                $('#loginVerify').remove();
+              }
+            }
+          }
+        });
+      }
+

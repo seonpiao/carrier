@@ -56,7 +56,7 @@ var fetchUserinfo = function*() {
       // 没有登录
       logger.info('no login')
       this.status = 301;
-      this.redirect('http://account.wanleyun.com/login');
+      this.redirect('http://' + __global.base.i + '/login');
       return;
     }
   }
