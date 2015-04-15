@@ -70,7 +70,7 @@ module.exports = function*(view) {
     this.status = 404;
     try {
       //如果有自定义的404页面，就渲染404页面
-      yield this.render('404/index');
+      yield this.render(this.page + '/' + this.view);
     } catch (e) {
       this.body = 'Not found';
     }
@@ -86,7 +86,7 @@ module.exports = function*(view) {
   if (!this.json) {
     _.extend(this.locals, defaultLocals);
     this.status = 200;
-    yield this.render(view);
+    yield this.render(this.page + '/' + this.view);
   } else if (this.body === null) {
     this.status = !isNaN(this.status) ? this.status : 500;
     this.body = errorMsgs[this.status];

@@ -66,19 +66,6 @@ var fetchUserinfo = function*() {
 
 module.exports = function(app) {
   app.route('/setbasic').all(function*(next) {
-    var dirname = __dirname;
-    var expectFile = path.normalize(dirname + '/../views' + this.url + '.jade');
-    // TODO 没有登录的话，跳到登录页 http://account.wanleyun.com/login
-    yield resetctx.call(this);
-    logger.info(this.url);
-    if (this.url == '/setpwd' || this.url == '/setbasic' || this.url == '/setphoto') {
-      yield fetchUserinfo.call(this);
-    }
-    logger.info('result');
-    logger.info(this.result);
-    if (this.result) {
-      this.result.query = this.request.query;
-      yield response.call(this, 'setbasic/index');
-    }
+    yield fetchUserinfo.call(this);
   });
 }
