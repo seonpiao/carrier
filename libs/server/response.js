@@ -6,6 +6,9 @@ var errorMsgs = {
 var _ = require('underscore');
 
 module.exports = function*(view) {
+  if (this.status === 301 || this.status === 302) {
+    return;
+  }
 
   var defaultLocals = {
     __env: {
@@ -15,31 +18,8 @@ module.exports = function*(view) {
     __global: this.global || {}
   };
 
-  var self = this;
-
-  var baseRule;
-  _.some(bases, function(item, key) {
-    var exp = new RegExp(sanitize(key));
-    if (self.host.match(exp)) {
-      baseRule = item;
-      return true;
-    }
-    return false;
-  });
-  if (!baseRule) {
-    baseRule = bases.defaults;
-  }
-  defaultLocals.__global.base = {};
-  _.forEach(baseRule, function(val, key) {
-    defaultLocals.__global.base[key] = rules[val](self.host, key);
-  });
-
-
   this.locals = this.locals || defaultLocals;
 
-  if (this.status === 301 || this.status === 302) {
-    return;
-  }
 
   if (!this.result) {
     this.status = 404;
