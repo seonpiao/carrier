@@ -65,7 +65,7 @@ var defaultRoute = function(app) {
       this.page = '404';
     } else {
       this.result.query = this.request.query;
-      this.page = this.page || this.path.substring(1);
+      this.page = this.page || this.path.substring(1).replace(/\/.*$/, '');
     }
     this.global.page = this.page;
     this.view = this.view || 'index';
