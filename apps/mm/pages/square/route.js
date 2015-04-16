@@ -6,9 +6,9 @@ var request = require('request');
 var thunkify = require('thunkify');
 
 module.exports = function(app, pageName) {
-  app.route('/' + pageName + '$').all(function*(next) {
-    this.result = {};
-    this.global.girlid = 0;
-    this.page = 'vod';
-  });
+	app.route('/' + pageName + '$').all(function*(next) {
+		this.result = {};
+		this.global.girlid = 0;
+		this.page = 'vod';
+	});
 }
