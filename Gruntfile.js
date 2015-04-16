@@ -224,6 +224,18 @@ module.exports = function(grunt) {
         stylPrefix: "../../../../",
         path: ""
       }
+    },
+    shell: {
+      devbr: {
+        command: function(brname) {
+          return [
+            'git checkout master',
+            'git pull',
+            'git branch ' + brname,
+            'git checkout ' + brname
+          ].join('&&');
+        }
+      }
     }
   });
   grunt.loadNpmTasks("grunt-requirejs");
@@ -235,6 +247,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("private-grunt-jade-runtime");
   grunt.loadNpmTasks("grunt-filerev");
+  grunt.loadNpmTasks("grunt-shell");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-carrier-helper");
   grunt.registerTask("default", ["watch"]);
