@@ -27,9 +27,8 @@ define(["libs/client/views/base", 'models/squarenotice'], function(Base, squaren
       var initShow = this.$el.attr('data-show') === 'init';
       if (!noticeFlag && initShow) {
         this.listenTo(squarenotice, 'sync', this.ReportContShow.bind(this));
-        squarenotice.fetch();
       }
-
+      squarenotice.fetch();
     },
     ReportContShow: function(noticeinit) {
       var self = this;
