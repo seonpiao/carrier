@@ -3,14 +3,17 @@ html
   head
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
     title 登录-玩乐云
-    link(href='http://static.mm.<{$domain}>/orig/css/base.css', rel='stylesheet', type='text/css')
-    link(src='http://static.mm.<{$domain}>/orig/css/ui-dialog.js', rel='stylesheet', type='text/css')
-    link(href='http://static.mm.<{$domain}>/orig/css/sign.css', rel='stylesheet', type='text/css')
-    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/jquery-1.8.0.min.js')
-    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/jquery.validate.js')
-    script(src='http://static.mm.<{$domain}>/orig/js/dialog-plus.js')
-    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/global.js')
-    script(type='text/javascript', src='http://static.mm.<{$domain}>/orig/js/sha1.js')
+    link(href= __global.resBase + '/orig/css/base.css', rel='stylesheet', type='text/css')
+    link(src= __global.resBase + '/orig/css/ui-dialog.js', rel='stylesheet', type='text/css')
+    link(href= __global.resBase + '/orig/css/sign.css', rel='stylesheet', type='text/css')
+    script(type='text/javascript', src= __global.resBase + '/orig/js/jquery-1.8.0.min.js')
+    script(type='text/javascript', src= __global.resBase + '/orig/js/jquery.validate.js')
+    script(src= __global.resBase + '/orig/js/dialog-plus.js')
+    script(type='text/javascript', src= __global.resBase + '/orig/js/global.js')
+    script(type='text/javascript', src= __global.resBase + '/orig/js/sha1.js')
+    script(type='text/javascript', src= __global.resBase + '/orig/js/base64.js')
+    script!= 'var __global = ' + JSON.stringify(__global)
+
   body
     .nav
       .inside
@@ -43,7 +46,7 @@ html
               span.signItem_tip(style='width: 100px;') 验证码
               span
                 a(href='#')
-                  img#verify_img(src='http://account.mm.<{$domain}>/verifycode', width='110', height='38', hspace='10', vspace='0', border='0')
+                  img#verify_img(src='http://account.mm.wanleyun.com/verifycode', width='110', height='38', hspace='10', vspace='0', border='0')
                 a#refresh_verify_img(href='javascript:void(0)') 点击刷新
             dd.sign_error(for='verify_code')
           .remember
@@ -59,21 +62,120 @@ html
               | 没有账号？
               a(href='/register')  立即注册
         script(type='text/javascript').
-          window.ssoLoginCallback = function() {
-            if (window.__weibo_login) {
-              window.__weibo_login.close();
+          window.ssoLoginCallback = function(data) {
+            data = JSON.parse(utf8to16(decode64(data)));
+            var originData = data;
+            var code = data.code;
+            if (code == 3) {
+              var nameHandle = {
+                nameDialog: null,
+                closeNameDialog: function() {
+                  if (this.nameDialog) {
+                    this.nameDialog.close().remove();
+                  }
+                },
+                init: function() {
+                  var namestr = '<div class="nameHandle"><div class="nameHandleInner clearfix"><form action="" onsubmit="" method="" id="nameHandle">' + '<h3>好名字总是被重复，换一个名字让我们重新认识下</h3>' + '<div class="photo"><img src="' + resUrl + 'orig/images/photo.png" width="60" height="60"/></div>' + '<ul class="nameInfo"><li class="nameArea"><input class="nameInput" name="username" id="username_handle" autocomplete="off"/></li><li class="nameSubmit">'
+                    //+'<a href="javascript:void(0);" class="submit">'
+                    + '<input type="submit" class="nameHandleSubmit" value="修改" />'
+                    //+'</a>'
+                    + '</li></ul>' + '</form></div></div>'
+                  var d = dialog({
+                    id: 'popup-nameHanle',
+                    title: '完善资料',
+                    content: namestr,
+                    width: 500,
+                    skin: 'popup-nameHandle'
+                  });
+                  d.show();
+                  nameHandle.nameDialog = d;
+                  nameHandle.initValidate();
+                },
+                initValidate: function() {
+                  $('#nameHandle').validate({
+                    rules: {
+                      username: {
+                        required: true,
+                        isUsername: true,
+                        maxlengthBytes: 16,
+                        minlengthBytes: 4,
+                        remote: {
+                          url: apiUrl + "user/CheckUserName", //后台处理程序,只能返回true或false
+                          data: {
+                            username: function() {
+                              return $("#username_handle").val()
+                            }
+                          },
+                          type: "GET", //数据发送方式
+                          dataType: "jsonp" //接受数据格式
+                        }
+                      }
+                    },
+                    messages: {
+                      username: {
+                        required: '请输入昵称',
+                        isUsername: '昵称不能含特殊符号',
+                        minlengthBytes: '昵称最少2个汉字或4个字符',
+                        maxlengthBytes: '昵称最多8个汉字或16个字符',
+                        remote: '昵称已经被使用了'
+                      }
+                    },
+                    singleLabel: true,
+                    submitHandler: function(form) {
+                      $('#nameHandle :submit').attr('disabled', 'disabled');
+                      nameHandle.doSaveName(originData);
+                    }
+                  });
+                },
+                doSaveName: function(data) {
+                  $.ajax({
+                    url: apiUrl + 'user/SetNickname',
+                    data: {
+                      nickname: $.trim($('#username_handle').val())
+                    },
+                    dataType: "jsonp",
+                    jsonp: "jsonpCallback",
+                    success: function(data) {
+                      $('#nameHandle :submit').removeAttr('disabled');
+                      var code = data.code;
+                      if (code == 1) {
+                        nameHandle.closeNameDialog();
+                        location.href= 'http://' + __global.base.mm + '/square';
+                        //- userInfo.fetch();
+                      }
+                    },
+                    error: function() {
+                      $('#nameHandle :submit').removeAttr('disabled');
+                      $('#username_handle').addClass('error');
+                      $('#username_handle-error').html('服务器打瞌睡了，请稍后重试').show();
+                    }
+                  });
+                }
+              };
+              nameHandle.init();
+              var data = data.data;
+              $('#username_handle').addClass('error').after('<label id="username_handle-error" class="error" for="username_handle">昵称已经被使用了</label>')
+              $('#username_handle').val(data.usrnick);
+              $('.nameHandleInner .photo img').attr('src', data.avatar);
+              return false;
+            } else if (code == 0) {
+              alert(data.msg);
+            } else {
+              location.href= 'http://' + __global.base.mm + '/square';
             }
+            //- self.signDialog.close().remove();
+            //- userInfo.fetch();
           }
         .otherMethods.cl
           p(style='line-height:22px;')
             span(color='#7f7f7f') 使用合作网站账号一键登录
-          a.oMsgBtn.wx(href="javascript:window.__weibo_login=window.open('http://account.<{$domain}>/weixinauth/login');", style='margin-right:10px;')
+          a.oMsgBtn.wx(href="javascript:window.open('http://account.wanleyun.com/weixinauth/login');", style='margin-right:10px;')
             i
             em 微信登录
-          a.oMsgBtn.qq(href="javascript:window.__weibo_login=window.open('http://account.<{$domain}>/qqauth/login');", style='margin-right:10px;')
+          a.oMsgBtn.qq(href="javascript:window.open('http://account.wanleyun.com/qqauth/login');", style='margin-right:10px;')
             i
             em QQ登录
-          a.oMsgBtn.wb(href="javascript:window.__weibo_login=window.open('http://account.<{$domain}>/weiboauth/login');")
+          a.oMsgBtn.wb(href="javascript:window.open('http://account.wanleyun.com/weiboauth/login');")
             i
             em 微博登录
 
@@ -88,7 +190,7 @@ html
         var tip = $(this).parent().find('.signItem_tip');
         if ($.trim($(this).val()) == '') {
           tip.show();
-        };
+        }
       }).each(function() {
         var tip = $(this).parent().find('.signItem_tip');
         if ($.trim($(this).val()) != '') {
@@ -146,7 +248,7 @@ html
       function doLogin() {
         $.ajax({
           type: "GET",
-          url: "http://account.<{$domain}>/user/Login",
+          url: "http://account.wanleyun.com/user/Login",
           data: {
             username: $("#username").val(),
             password: hex_sha1($("#password").val()),
@@ -158,7 +260,7 @@ html
           jsonp: "jsonpCallback",
           success: function(data) {
             if (data.code == 1) {
-              location.href = 'http://mm.<{$domain}>/square'
+              location.href = 'http://mm.wanleyun.com/square'
             } else {
               var error_num = data.data.error_num;
               if (error_num > 1) {
@@ -175,7 +277,7 @@ html
       function getLoginToken() {
         $.ajax({
           type: "GET",
-          url: "http://account.<{$domain}>/user/GetLoginToken",
+          url: "http://account.wanleyun.com/user/GetLoginToken",
           data: {},
           dataType: "jsonp",
           jsonp: "jsonpCallback",
@@ -183,7 +285,7 @@ html
             if (data.code === 1) {
               data = data.data;
               if (data.show_verify_code) {
-                $("#verify_img").attr("src", "http://api.mm.<{$domain}>/verifycode/index/token/" + data.login_token + "/");
+                $("#verify_img").attr("src", "http://api.mm.wanleyun.com/verifycode/index/token/" + data.login_token + "/");
               }
               $("#login_token").val(data.login_token);
               if (data.show_verify_code) {

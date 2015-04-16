@@ -68,6 +68,7 @@ var defaultRoute = function(app) {
       this.page = this.page || this.path.substring(1);
     }
     this.global.page = this.page;
+    this.global.resBase = 'http://static.mm.' + global.WLY_DOMAIN;
     this.view = this.view || 'index';
     yield response.call(this);
   });
