@@ -1,4 +1,4 @@
-define(["libs/client/views/base", "models/userVitality"], function(Base, userVitality) {
+define(["libs/client/views/base", "models/userVitality", "models/userInfo"], function(Base, userVitality, userInfo) {
   var View = Base.extend({
     moduleName: "i_ucavatar",
     init: function() {
@@ -14,7 +14,9 @@ define(["libs/client/views/base", "models/userVitality"], function(Base, userVit
         $('.p_degreescroll').html('<span style="width:' + width + 'px;"></span>');
       });
       userVitality.fetch();
-
+      this.listenTo(userInfo, 'change', function() {
+        $('.personalL_photo .username').html(userInfo.toJSON().username);
+      });
     }
   });
   return View;

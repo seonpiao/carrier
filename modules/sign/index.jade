@@ -4,7 +4,7 @@ p.fr.username_title.mt_3
       if usrangel !== '0'
         span(class='angle_btn_lights_' + usrangel)
       span(class=(usrvip === '0' ? 'vip_btn_gray' : 'vip_btn_lights'))
-      span.white= username
+      span.username.white= username
     else
       a.btn_login(href="javascript:;")= "登录"
       span &nbsp;&nbsp;
@@ -26,6 +26,6 @@ ul.cl
   //- li
   //-   a.my_diary(href="javascript:;",target="_blank")= "我的日记"
   li
-    a.account_settings(href='http://' + __global.base.i + '/setbasic', target='_blank')= "账户设置"
+    a.account_settings(href=__global.base.i + '/setbasic', target='_blank')= "账户设置"
   li.no_bg
     a.signout_login(href="javascript:;")= "退出登录"
