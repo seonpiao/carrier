@@ -1318,10 +1318,11 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
         }
       });
     },
-    openLadyNotice: function() {
+    openLadyNotice: function(noticeinit) {
+      var noticeinit = $(this).attr('data-show');
       this.module('squarenotice', function(squarenotice) {
         if (squarenotice) {
-          squarenotice.ReportContShow();
+          squarenotice.ReportContShow(noticeinit);
         }
       });
     },
@@ -1335,7 +1336,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
     openLadyGameResult: function() {
       this.module('ladygameresult', function(ladygameresult) {
         if (ladygameresult) {
-          ladygameresult.show();
+          ladygameresult.ladygRshow();
         }
       });
     }

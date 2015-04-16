@@ -23,56 +23,47 @@ define(["libs/client/views/base", 'models/squarenotice'], function(Base, squaren
     moduleName: "squarenotice",
     init: function() {
       var self = this;
-      this.listenTo(squarenotice, 'sync', this.noticeContShow.bind(this));
       var noticeFlag = getCookie('notice-flag');
       var initShow = this.$el.attr('data-show') === 'init';
       if (!noticeFlag && initShow) {
+        this.listenTo(squarenotice, 'sync', this.ReportContShow.bind(this));
         squarenotice.fetch();
       }
+
     },
-    ReportContShow: function() {
-      squarenotice.fetch();
-    },
-    noticeContShow: function() {
+    ReportContShow: function(noticeinit) {
       var self = this;
       var data = squarenotice.toJSON();
-      // shalUtil.hex_sha1($("#password").val())
-      var initShow = this.$el.attr('data-show') === 'init';
-      if (!initShow && data.length == 0) {
+      if (noticeinit && data.result.length == 0) {
         return;
       }
-      if (data != null) {
-        this.loadTemplate('index', function(template) {
-          var item = template(data);
-          d = dialog({
-            id: 'noticeShow-dialog-on',
-            title: ' ',
-            content: item,
-            padding: 0,
-            autofocus: true,
-            skin: 'dialogGames noticeShow-dialog-on',
-            onclose: function() {
-              d.close();
-            }
-          });
-          d.show();
-          var $scollbar = $('.noticeShow-dialog-on #itemListBar');
-          $scollbar.tinyscrollbar({
-            trackSize: 280
-          });
-          // var scollbar = $scollbar.data('plugin_tinyscrollbar');
-          // scollbar.update('relative');
-          // å¬ååå®¹å¤ç
-          var datanotie = data.result;
-          $.each(datanotie, function(i, v) {
-            noticeid = v.seq;
-            setCookie('notice-flag', noticeid, 0.5);
-          })
-
-          $('#notice_btn').on('click', self.CloseNticeShow.bind(self));
-          $('.noticeShow-dialog-on .ui-dialog-close').html('');
+      this.loadTemplate('index', function(template) {
+        var item = template(data);
+        d = dialog({
+          id: 'noticeShow-dialog-on',
+          title: ' ',
+          content: item,
+          padding: 0,
+          autofocus: true,
+          skin: 'dialogGames noticeShow-dialog-on',
+          onclose: function() {
+            d.close();
+          }
+        });
+        d.show();
+        var $scollbar = $('.noticeShow-dialog-on #itemListBar');
+        $scollbar.tinyscrollbar({
+          trackSize: 280
+        });
+        var datanotie = data.result;
+        $.each(datanotie, function(i, v) {
+          noticeid = v.seq;
+          setCookie('notice-flag', noticeid, 0.5);
         })
-      }
+
+        $('#notice_btn').on('click', self.CloseNticeShow.bind(self));
+        $('.noticeShow-dialog-on .ui-dialog-close').html('');
+      })
     },
     CloseNticeShow: function() {
       if (d) {
