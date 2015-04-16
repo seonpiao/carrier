@@ -140,7 +140,7 @@ html
                       var code = data.code;
                       if (code == 1) {
                         nameHandle.closeNameDialog();
-                        location.href= 'http://' + __global.base.mm + '/square';
+                        location.href= __global.base.mm + '/square';
                         //- userInfo.fetch();
                       }
                     },
@@ -161,7 +161,7 @@ html
             } else if (code == 0) {
               alert(data.msg);
             } else {
-              location.href= 'http://' + __global.base.mm + '/square';
+              location.href= __global.base.mm + '/square';
             }
             //- self.signDialog.close().remove();
             //- userInfo.fetch();
@@ -260,7 +260,7 @@ html
           jsonp: "jsonpCallback",
           success: function(data) {
             if (data.code == 1) {
-              location.href = 'http://' + __global.base.mm + '/square'
+              location.href = __global.base.mm + '/square'
             } else {
               var error_num = data.data.error_num;
               if (error_num > 1) {

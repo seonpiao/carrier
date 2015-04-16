@@ -5,7 +5,7 @@ define(["libs/client/views/base", "models/userInfo"], function(Base, userInfo) {
       this.listenTo(userInfo, 'change:username', function() {
         var username = userInfo.toJSON().username;
         if (!username) {
-          location.href = 'http://' + __global.base.i + '/login';
+          location.href = __global.base.i + '/login';
         }
       });
     }

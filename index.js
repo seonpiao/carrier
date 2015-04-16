@@ -88,14 +88,14 @@ var bases = {
 var rules = {
   //同子域替换
   '1': function(host, subdomain) {
-    return host.replace(/^[^\.]+/, subdomain);
+    return 'http://' + host.replace(/^[^\.]+/, subdomain);
   },
   '2': function(host, subdomain) {
-    return host + '/' + subdomain;
+    return 'http://' + host + '/' + subdomain;
   },
   //保持原域名
   '3': function(host, subdomain) {
-    return host;
+    return 'http://' + host;
   }
 };
 

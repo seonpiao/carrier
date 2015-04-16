@@ -142,7 +142,7 @@ html
                         var code = data.code;
                         if (code == 1) {
                           nameHandle.closeNameDialog();
-                          location.href= 'http://' + __global.base.mm + '/square';
+                          location.href= __global.base.mm + '/square';
                           //- userInfo.fetch();
                         }
                       },
@@ -163,7 +163,7 @@ html
               } else if (code == 0) {
                 alert(data.msg);
               } else {
-                location.href= 'http://' + __global.base.mm + '/square';
+                location.href= __global.base.mm + '/square';
               }
               //- self.signDialog.close().remove();
               //- userInfo.fetch();
@@ -217,7 +217,7 @@ html
             success: function(data) {
               //alert(data.error_code);
               if (data.code === 1) {
-                location.href = 'http://' + __global.base.mm + '/square'
+                location.href = __global.base.mm + '/square'
               } else {
                 showServerMsg(data);
               }
