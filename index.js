@@ -68,6 +68,7 @@ var defaultRoute = function(app) {
       this.page = this.page || this.path.substring(1).replace(/\/.*$/, '');
     }
     this.global.page = this.page;
+    this.global.resBase = 'http://static.mm.' + global.WLY_DOMAIN;
     this.view = this.view || 'index';
     yield response.call(this);
   });
@@ -87,14 +88,14 @@ var bases = {
 var rules = {
   //同子域替换
   '1': function(host, subdomain) {
-    return host.replace(/^[^\.]+/, subdomain);
+    return 'http://' + host.replace(/^[^\.]+/, subdomain);
   },
   '2': function(host, subdomain) {
-    return host + '/' + subdomain;
+    return 'http://' + host + '/' + subdomain;
   },
   //保持原域名
   '3': function(host, subdomain) {
-    return host;
+    return 'http://' + host;
   }
 };
 

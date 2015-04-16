@@ -1,4 +1,4 @@
-define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dialog-plus', 'libs/client/validate/jquery.validator', 'libs/client/chalUtil', "models/userInfo"], function(Base, userVitality, DIALOG, VALIDATOR, SHALUTIL, userInfo) {
+define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dialog-plus', 'libs/client/validate/jquery.validator', 'libs/client/chalUtil', "libs/client/base64", "models/userInfo"], function(Base, userVitality, DIALOG, VALIDATOR, SHALUTIL, base64, userInfo) {
   var View = Base.extend({
     moduleName: "sign",
     template: 'index',
@@ -19,13 +19,119 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       this.listenTo(this.model, 'change', this.render.bind(this));
       this.model.cache(this.render.bind(this));
       // this.loadTemplate('index', function(template) {
-      // 	self.model.cache(function() {
-      // 		var data = self.model.toJSON();
-      // 		var html = template(data);
-      // 		self.$el.html(html);
-      // 	});
+      //  self.model.cache(function() {
+      //    var data = self.model.toJSON();
+      //    var html = template(data);
+      //    self.$el.html(html);
+      //  });
       // });
+      window.ssoLoginCallback = function(data) {
+        // 'msg' => '登录成功', 'code' => 1);
+        // 'msg' => '请完善用户信息', 'code' => 2);
+        // 'msg' => '请重新命名昵称', 'code' => 3);
+        // 'msg' => '登录错误，请重试', 'code' => 0);
+        data = JSON.parse(base64.utf8to16(base64.decode64(data)));
+        var originData = data;
+        var code = data.code;
+        if (code == 3) {
+          self.closeSignDialog();
 
+          var nameHandle = {
+            nameDialog: null,
+            closeNameDialog: function() {
+              if (this.nameDialog) {
+                this.nameDialog.close().remove();
+              }
+            },
+            init: function() {
+              var namestr = '<div class="nameHandle"><div class="nameHandleInner clearfix"><form action="" onsubmit="" method="" id="nameHandle">' + '<h3>好名字总是被重复，换一个名字让我们重新认识下</h3>' + '<div class="photo"><img src="' + resUrl + 'orig/images/photo.png" width="60" height="60"/></div>' + '<ul class="nameInfo"><li class="nameArea"><input class="nameInput" name="username" id="username_handle" autocomplete="off"/></li><li class="nameSubmit">'
+                //+'<a href="javascript:void(0);" class="submit">'
+                + '<input type="submit" class="nameHandleSubmit" value="修改" />'
+                //+'</a>'
+                + '</li></ul>' + '</form></div></div>'
+              var d = dialog({
+                id: 'popup-nameHanle',
+                title: '完善资料',
+                content: namestr,
+                width: 500,
+                skin: 'popup-nameHandle'
+              });
+              d.show();
+              nameHandle.nameDialog = d;
+              nameHandle.initValidate();
+            },
+            initValidate: function() {
+              $('#nameHandle').validate({
+                rules: {
+                  username: {
+                    required: true,
+                    isUsername: true,
+                    maxlengthBytes: 16,
+                    minlengthBytes: 4,
+                    remote: {
+                      url: apiUrl + "user/CheckUserName", //后台处理程序,只能返回true或false
+                      data: {
+                        username: function() {
+                          return $("#username_handle").val()
+                        }
+                      },
+                      type: "GET", //数据发送方式
+                      dataType: "jsonp" //接受数据格式
+                    }
+                  }
+                },
+                messages: {
+                  username: {
+                    required: '请输入昵称',
+                    isUsername: '昵称不能含特殊符号',
+                    minlengthBytes: '昵称最少2个汉字或4个字符',
+                    maxlengthBytes: '昵称最多8个汉字或16个字符',
+                    remote: '昵称已经被使用了'
+                  }
+                },
+                singleLabel: true,
+                submitHandler: function(form) {
+                  $('#nameHandle :submit').attr('disabled', 'disabled');
+                  nameHandle.doSaveName(originData);
+                }
+              });
+            },
+            doSaveName: function(data) {
+              $.ajax({
+                url: apiUrl + 'user/SetNickname',
+                data: {
+                  nickname: $.trim($('#username_handle').val())
+                },
+                dataType: "jsonp",
+                jsonp: "jsonpCallback",
+                success: function(data) {
+                  $('#nameHandle :submit').removeAttr('disabled');
+                  var code = data.code;
+                  if (code == 1) {
+                    nameHandle.closeNameDialog();
+                    userInfo.fetch();
+                  }
+                },
+                error: function() {
+                  $('#nameHandle :submit').removeAttr('disabled');
+                  $('#username_handle').addClass('error');
+                  $('#username_handle-error').html('服务器打瞌睡了，请稍后重试').show();
+                }
+              });
+            }
+          };
+          nameHandle.init();
+          var data = data.data;
+          $('#username_handle').addClass('error').after('<label id="username_handle-error" class="error" for="username_handle">昵称已经被使用了</label>')
+          $('#username_handle').val(data.usrnick);
+          $('.nameHandleInner .photo img').attr('src', data.avatar);
+          return false;
+        } else if (code == 0) {
+          alert(data.msg);
+        }
+        self.signDialog.close().remove();
+        userInfo.fetch();
+      };
       this.listenTo(userVitality, 'sync', function(data) {
         var data = userVitality.toJSON();
         var vitalityLevel = data.vitalitylevel + '';
@@ -344,7 +450,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
     signTitleStr: '<div class="signPopwinTab"><span class="hover" item="login">登录</span><span class="" item="register">注册</span></div>',
     signLoginStr: '<div class="popwinLeft" item="login"><form action="" onsubmit="" method="" id="loginForm" class="cl">' + '<input id="login_token" type="hidden" name="login_token" value=""/>' + '<dl class="login_item cl"><dd class="right login_item_wrap fl"><input name="username" type="text" id="username" placeholder="请输入用户名" class="sign_input input_288_38"  autocomplete="off"/></dd><dd class="sign_error" for="username"></dd></dl>' + '<dl class="login_item cl"><dd class="right login_item_wrap fl"><input name="password" type="password" id="password"  placeholder="请输入不少于6位密码" class="sign_input input_288_38"  autocomplete="off"/></dd><dd class="sign_error" for="password"></dd></dl>' + '<dl class="login_item cl" style="display: none;" id="loginVerify"><dd class="right login_item_wrap fl"><input name="verify_code" type="text" id="verify_code" class="sign_input input_confrom" placeholder="验证码" autocomplete="off"/><span><a href="#"><img src="" width="110" height="38" hspace="10" vspace="0" border="0" id="verify_img"/></a><a href="javascript:void(0)" id="refresh_verify_img">点击刷新</a></span></dd><dd class="sign_error" for="verify_code"></dd></dl>' + '<div class="remember cl"><span><label for="remember"><input type="checkbox" name="remember" id="remember" value="1" checked="checked"/> 记住我</label></span><a class="forget_pw hide" href="/findpassword" style="margin-left:5px">找回密码</a></div>' + '<div class="cl" style="margin-top:5px;"><input class="reg_bt signToLogin" type="submit" value="登录" style="margin-left:0px;"/></div>' + '<div class="remember cl" style="line-height:24px;margin-top:10px;"><span>没有账号？</span></div>' + '</form></div>',
     signRegistStr: '<div class="popwinLeft" item="register" style="display:none"><form action="" onsubmit="" method="" id="registerForm">' + '<input id="reg_token" type="hidden" name="reg_token" value=""/>' + '<dl class="login_item cl"><dd class="right login_item_wrap fl"><input name="reg_username" type="text" autocomplete="off" id="reg_username" placeholder="请输入用户名" class="sign_input input_288_38 "/></dd><dd class="sign_error" for="reg_username"></dd></dl>' + '<dl class="login_item cl"><dd class="right login_item_wrap fl"><input name="reg_password" type="password" autocomplete="off" id="reg_password"  placeholder="请输入不少于6位密码" class="sign_input input_288_38" /></dd><dd class="sign_error" for="reg_password"></dd></dl>' + '<dl class="login_item cl"><dd class="right login_item_wrap fl"><input name="confirm" type="password" autocomplete="off" id="confirm"  placeholder="再次输入密码" class="sign_input input_288_38" /></dd><dd class="sign_error" for="confirm"></dd></dl>' + '<dl class="login_item cl"><dd class="right login_item_wrap fl"><input name="reg_verify_code" type="text" autocomplete="off" id="reg_verify_code" placeholder="验证码" class="sign_input input_confrom" /><span><a href="#"><img src="" width="110" height="38" hspace="10" vspace="0" border="0" id="reg_verify_img"/></a><a href="javascript:void(0)" id="reg_refresh_verify_img">点击刷新</a></span></dd><dd class="sign_error" for="reg_verify_code"></dd></dl>' + '<div class="remember" style=""><a href="http://www.wanleyun.com/user_agreement.html" class="login">《玩乐云用户使用协议》</a></div>' + '<div class="line cl" style="line-height:24px; margin-top:5px;"><input class="reg_bt signToRegister" type="submit" value="同意并注册" style="margin-left:0px;"/></div><div class="remember cl" style="margin-top:10px;"><span>已有账号？ </span></div>' + '</form></div>',
-    cooperationStr: '<div class="popwinRight hide"><div class="otherMethods cl"><p style="line-height:22px;"><span color="#7f7f7f">使用合作网站账号一键登录</span></p><p><a href="javascript:;" class="oMsgBtn wx" style="margin-right:10px;"><i></i><em>微信登录</em></a><a href="javascript:;" class="oMsgBtn qq" style="margin-right:10px;"><i></i><em>QQ登录</em></a><a href="javascript:window.open(\'' + accountUrl + 'oauth/goauth?pt=weibo\');" class="oMsgBtn wb"><i></i><em>微博登录</em></a></p></div></div>',
+    cooperationStr: '<div class="popwinRight"><div class="otherMethods cl"><p style="line-height:22px;"><span color="#7f7f7f">使用合作网站账号一键登录</span></p><p><a href="javascript:window.open(\'' + accountUrl + 'weixinauth/login\');" class="oMsgBtn wx" style="margin-right:10px;"><i></i><em>微信登录</em></a><a href="javascript:window.open(\'' + accountUrl + 'qqauth/login\');" class="oMsgBtn qq" style="margin-right:10px;"><i></i><em>QQ登录</em></a><a href="javascript:window.open(\'' + accountUrl + 'weiboauth/login\');" class="oMsgBtn wb"><i></i><em>微博登录</em></a></p></div></div>',
     signDialog: null,
     closeSignDialog: function() {
       if (this.signDialog) {
@@ -407,7 +513,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
         title: ' ',
         content: finalStr,
         padding: '17px 29px 15px 29px',
-        width: 300,
+        width: 520,
         skin: 'popup-sign-dialog'
       });
       signDialog.showModal();
