@@ -39,6 +39,10 @@ define(["libs/client/views/base", "models/popRank"], function(Base, popRank) {
       this.loadTemplate('rank', function(template) {
         var html = template(model.toJSON());
         self.$('.popularity_1').html(html);
+        self.$scrollbar = $('#ladyrankListBar');
+        self.$scrollbar.tinyscrollbar({
+          trackSize: 340
+        });
       });
     },
     changeType: function(e) {

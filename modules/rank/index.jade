@@ -1,19 +1,20 @@
-.goddess_rankinggirls.fl
-  img(src=window.resUrl + 'girl/'+girlid+'/200x450')
-.goddess_ranking_main.fr.pr
-  .goddess_ranking_title
-    span
-  ul.goddess_ranking_tab.cl
-    li.on 人气贡献
-    li.hide 幸福度贡献
-    li.hide 亲密度榜
-    li.hide 送 礼 量
-  ul.goddess_ranking_list.cl
-    li.on(data-type="1")
-      div 总
-      div 榜
-    li(data-type="2")
-      div 日
-      div 榜
-  .goddess_ranking_con
-    .popularity_1
+.ladycamprank
+  .goddess_rankinggirls.fl
+    img(src=window.resUrl + 'girl/'+girlid+'/200x450')
+  .goddess_ranking_main.fr.pr
+    .goddess_ranking_title
+      span
+    ul.goddess_ranking_tab.cl
+      li.on 人气贡献
+      li.hide 幸福度贡献
+      li.hide 亲密度榜
+      li.hide 送 礼 量
+    ul.goddess_ranking_list.cl
+      li.on(data-type="1").hide
+        div 总
+        div 榜
+      li(data-type="2").hide
+        div 日
+        div 榜
+    .goddess_ranking_con
+      .popularity_1
