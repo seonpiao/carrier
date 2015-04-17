@@ -10,7 +10,7 @@ var urlBase = 'http://' + 'account.' + global.WLY_DOMAIN
 
 module.exports = function(app) {
   app.route('/api/user/Login$').all(function*(next) {
-    this.json = true;
+    this.text = true;
     var result =
       yield thunkify(request)({
         url: urlBase + '/user/Login',
@@ -22,13 +22,12 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
-        this.result = JSON.parse(body);
         this.set(result[0].headers)
       }
     }
   });
   app.route('/api/user/Logout$').all(function*(next) {
-    this.json = true;
+    this.text = true;
     var result =
       yield thunkify(request)({
         url: urlBase + '/user/Logout',
@@ -40,13 +39,12 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
-        this.result = JSON.parse(body);
         this.set(result[0].headers)
       }
     }
   });
   app.route('/api/user/GetLoginToken$').all(function*(next) {
-    this.json = true;
+    this.text = true;
     var result =
       yield thunkify(request)({
         url: urlBase + '/user/GetLoginToken',
@@ -58,13 +56,12 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
-        this.result = JSON.parse(body);
         this.set(result[0].headers)
       }
     }
   });
   app.route('/api/user/GetRegToken$').all(function*(next) {
-    this.json = true;
+    this.text = true;
     var result =
       yield thunkify(request)({
         url: urlBase + '/user/GetRegToken',
@@ -76,13 +73,12 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
-        this.result = JSON.parse(body);
         this.set(result[0].headers)
       }
     }
   });
   app.route('/api/user/UserRegister$').all(function*(next) {
-    this.json = true;
+    this.text = true;
     var result =
       yield thunkify(request)({
         url: urlBase + '/user/UserRegister',
@@ -94,7 +90,6 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
-        this.result = JSON.parse(body);
         this.set(result[0].headers)
       }
     }
