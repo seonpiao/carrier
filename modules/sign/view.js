@@ -140,7 +140,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
           str += '<i class="num_' + vitalityLevel[i] + '"> </i>';
         }
         $('.p_vipgradei').html(str);
-        var width = (parseInt(data.vitality) - data.vitalitylevelmin) / (data.vitalitylevelmax - data.vitalitylevelmin) * 100;
+        var width = (parseInt(data.vitality) - data.vitalitylevelmin) / (data.vitalitylevelmax - data.vitalitylevelmin) * 67;
         $('.user_grade_progress').html('<span style="width:' + Math.round(width) + 'px;"></span>');
       });
     },
