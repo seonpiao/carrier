@@ -301,7 +301,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + "user/Login",
+        url: window.proxyAccountUrl + "user/Login",
         data: {
           username: $("#username").val(),
           password: shalUtil.hex_sha1($("#password").val()),
@@ -335,7 +335,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + 'user/GetLoginToken',
+        url: window.proxyAccountUrl + 'user/GetLoginToken',
         data: {},
         dataType: "jsonp",
         cache: false,
@@ -379,7 +379,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + "user/GetRegToken",
+        url: window.proxyAccountUrl + "user/GetRegToken",
         data: {},
         dataType: "jsonp",
         cache: false,
@@ -397,7 +397,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + "user/UserRegister",
+        url: window.proxyAccountUrl + "user/UserRegister",
         data: {
           username: $("#reg_username").val(),
           password: shalUtil.hex_sha1($("#reg_password").val()),
