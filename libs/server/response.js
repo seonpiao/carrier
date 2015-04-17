@@ -32,8 +32,10 @@ module.exports = function*(view) {
     return;
   }
 
-  if (this.json || this.text) {
-    this.body = this.result
+  if (this.json) {
+    this.body = this.result || {};
+  } else if (this.text) {
+    this.body = this.result || '';
   } else {
     this.locals = this.result
   }
@@ -43,10 +45,7 @@ module.exports = function*(view) {
     _.extend(this.body, defaultLocals);
   } else if (this.text) {
     this.status = 200;
-  } else if (this.body === null) {
-    this.status = !isNaN(this.status) ? this.status : 500;
-    this.body = errorMsgs[this.status];
-  } else if (typeof this.body.pipe === 'function') {
+  } else if (this.body && typeof this.body.pipe === 'function') {
     this.status = 200;
   } else {
     _.extend(this.locals, defaultLocals);
