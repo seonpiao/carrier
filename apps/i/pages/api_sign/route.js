@@ -16,7 +16,7 @@ module.exports = function(app) {
         url: urlBase + '/user/Login',
         qs: this.request.query,
         headers: {
-          'Cookie': this.headers.Cookie
+          'Cookie': this.headers.Cookie || ''
         }
       });
     if (result) {
@@ -34,7 +34,7 @@ module.exports = function(app) {
         url: urlBase + '/user/Logout',
         qs: this.request.query,
         headers: {
-          'Cookie': this.headers.Cookie
+          'Cookie': this.headers.Cookie || ''
         }
       });
     if (result) {
@@ -52,7 +52,7 @@ module.exports = function(app) {
         url: urlBase + '/user/GetLoginToken',
         qs: this.request.query,
         headers: {
-          'Cookie': this.headers.Cookie
+          'Cookie': this.headers.Cookie || ''
         }
       });
     if (result) {
@@ -70,7 +70,7 @@ module.exports = function(app) {
         url: urlBase + '/user/GetRegToken',
         qs: this.request.query,
         headers: {
-          'Cookie': this.headers.Cookie
+          'Cookie': this.headers.Cookie || ''
         }
       });
     if (result) {
@@ -88,7 +88,7 @@ module.exports = function(app) {
         url: urlBase + '/user/UserRegister',
         qs: this.request.query,
         headers: {
-          'Cookie': this.headers.Cookie
+          'Cookie': this.headers.Cookie || ''
         }
       });
     if (result) {
