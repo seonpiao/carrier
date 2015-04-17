@@ -77,13 +77,11 @@ var defaultRoute = function(app) {
 var bases = {
   'nvshen.zongyi.letv.com': {
     i: '2', //把i拼到后面
-    mm: '3', //保持域名不变
-    account: '2'
+    mm: '3' //保持域名不变
   },
   'defaults': {
     i: '1', //替换同级子域
-    mm: '1', //替换同级子域
-    account: '1'
+    mm: '1' //替换同级子域
   }
 };
 
