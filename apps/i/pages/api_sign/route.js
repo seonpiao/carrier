@@ -22,6 +22,7 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
+        this.result = body;
         this.set(result[0].headers)
       }
     }
@@ -39,6 +40,7 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
+        this.result = body;
         this.set(result[0].headers)
       }
     }
@@ -56,6 +58,7 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
+        this.result = body;
         this.set(result[0].headers)
       }
     }
@@ -73,6 +76,7 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
+        this.result = body;
         this.set(result[0].headers)
       }
     }
@@ -90,6 +94,7 @@ module.exports = function(app) {
     if (result) {
       var body = result[1];
       if (body) {
+        this.result = body;
         this.set(result[0].headers)
       }
     }
