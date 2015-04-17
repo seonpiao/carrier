@@ -146,9 +146,9 @@ block append body
           ul.overview.goddess_task_main.cl
     ul.active_box.fr.ml_10.active_box_right(data-module='activity')
       li
-        #ladyNotice.ladynotice_1
+        #ladyNotice.ladynotice_1(data-show='ldnotice')
       li
-        #ladygameresult.ladygamereshow(data-module='ladygameresult')
+        #ladygameresult.ladygamereshow
       li
         #actionShow.active_2
       li.hide
@@ -159,6 +159,8 @@ block append body
         #DailySign.sign_package_5
       li.hide
         #ConstellAtion.constellation_6(data-module='constellation')
+      li.hide
+        #RankingList.ranking_list_7
       li.hide
         #specialMerchants.persian_merchants_8(data-module='persiashop')
       li.hide
@@ -173,6 +175,7 @@ block append body
   .exchange(data-module='exchange')
   div(data-module='squarenotice',data-show="init")
   div(data-module='lovetransfer',data-show="init")
+  div(data-module='ladygameresult',data-show="init")
   #popWindow
   #paoPopup(style='display:none;')
     .paoPopup
@@ -194,5 +197,5 @@ block append body
   include ../../../../modules/mm_footer/index
 
 block append footjs
-  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/square.min.f6f4e8fe05800e2f.js')
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/square.min.b4be65527934b8be.js')
   include ../../../../modules/mm_feedback/index
