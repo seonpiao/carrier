@@ -2,8 +2,8 @@ define(["libs/client/views/base"], function(Base) {
   var View = Base.extend({
     moduleName: "i_ucnav",
     init: function() {
-      var pathname = location.pathname;
-      curId = pathname.replace('/', 'nav-');
+      var page = __global.page;
+      curId = 'nav-' + page;
       $('#' + curId).addClass('on');
     }
   });
