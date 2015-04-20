@@ -52,7 +52,7 @@ html
               span.signItem_tip(style='width: 100px;') 验证码
               span
                 a(href='#')
-                  img#verify_img(src='http://account.mm.wanleyun.cn/verifycode', width='110', height='38', hspace='10', vspace='0', border='0')
+                  img#verify_img(src= '', width='110', height='38', hspace='10', vspace='0', border='0')
                 a#refresh_verify_img(href='javascript:void(0)') 点击刷新
             dd.sign_error(for='verify_code')
           .remember
@@ -185,14 +185,14 @@ html
       function getRegToken() {
         $.ajax({
           type: "GET",
-          url: "http://account.wanleyun.cn/user/GetRegToken",
+          url:  window.accountUrl + "user/GetRegToken",
           data: {},
           dataType: "jsonp",
           jsonp: "jsonpCallback",
           success: function(data) {
             if (data.code === 1) {
               data = data.data;
-              $("#verify_img").attr("src", "http://api.mm.wanleyun.cn/verifycode/index/token/" + data.reg_token + "/v/" + (new Date()).getTime());
+              $("#verify_img").attr("src", apiUrl + "verifycode/index/token/" + data.reg_token + "/v/" + (new Date()).getTime());
               $("#reg_token").val(data.reg_token);
             }
           }
@@ -202,7 +202,7 @@ html
       function createUser() {
           $.ajax({
             type: "GET",
-            url: "http://account.wanleyun.cn/user/UserRegister",
+            url:  window.accountUrl + "user/UserRegister",
             // xhrFields: {
             //   withCredentials: true
             // },
@@ -274,7 +274,7 @@ html
           rules: {
             username: {
               remote: {
-                url: "http://api.mm.wanleyun.cn/user/CheckUserName", //后台处理程序,只能返回true或false
+                url: apiUrl + "user/CheckUserName", //后台处理程序,只能返回true或false
                 data: {
                   username: function() {
                     return $("#username").val()

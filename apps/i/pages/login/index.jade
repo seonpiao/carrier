@@ -8,6 +8,7 @@ html
     link(href= __global.resBase + '/orig/css/sign.css', rel='stylesheet', type='text/css')
     script(type='text/javascript', src= __global.resBase + '/orig/js/jquery-1.8.0.min.js')
     script(type='text/javascript', src= __global.resBase + '/orig/js/jquery.validate.js')
+    script(type='text/javascript', src= __global.resBase + '/orig/js/jquery.placeholder.js')
     script(src= __global.resBase + '/orig/js/dialog-plus.js')
     script(type='text/javascript', src= __global.resBase + '/orig/js/global.js')
     script(type='text/javascript', src= __global.resBase + '/orig/js/sha1.js')
@@ -30,20 +31,17 @@ html
           dl.login_item.cl
             dt.left.fl 用户名
             dd.right.login_item_wrap.fl
-              input#username.sign_input.input_288_38(name='username', type='text', placeholder='', autocomplete='off')
-              span.signItem_tip 请输入用户名
+              input#username.sign_input.input_288_38(name='username', type='text', placeholder='请输入用户名', autocomplete='off')
             dd.sign_error(for='username')
           dl.login_item.cl
             dt.left.fl 密码
             dd.right.login_item_wrap.fl
-              input#password.sign_input.input_288_38(name='password', type='password', placeholder='', autocomplete='off')
-              span.signItem_tip 请输入不少于6位密码
+              input#password.sign_input.input_288_38(name='password', type='password', placeholder='请输入不少于6位密码', autocomplete='off')
             dd.sign_error(for='password')
           dl#loginVerify.login_item.cl(style='display: none;')
             dt.left.fl 验证码
             dd.right.login_item_wrap.fl
               input#verify_code.sign_input.input_confrom(name='verify_code', type='text', autocomplete='off')
-              span.signItem_tip(style='width: 100px;') 验证码
               span
                 a(href='#')
                   img#verify_img(src='http://account.mm.wanleyun.com/verifycode', width='110', height='38', hspace='10', vspace='0', border='0')
@@ -62,6 +60,7 @@ html
               | 没有账号？
               a(href='/register')  立即注册
         script(type='text/javascript').
+          $('input').placeholder();
           window.ssoLoginCallback = function(data) {
             data = JSON.parse(utf8to16(decode64(data)));
             var originData = data;
