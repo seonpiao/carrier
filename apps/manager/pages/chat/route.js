@@ -12,23 +12,29 @@ var urlBase = 'http://' + 'account.' + global.WLY_DOMAIN
 
 module.exports = function(app) {
   app.route('/chat').all(function*(next) {
-    yield fetchUserinfo.call(this);
+    console.log('chat');
+    this.result = {};
+    this.template = 'chat/index';
   });
-  app.route('/api/userLogin$').all(function*(next) {
+
+  app.route('/api/userLogin').all(function*(next) {
     console.log('/api/userLogin');
     this.text = true;
-    var result =
-      yield thunkify(request)({
-        url: urlBase + '/user/Login',
-        qs: this.request.query,
-        headers: {
-          'Cookie': this.headers.Cookie || ''
-        }
-      });
+    // var result =
+    //   yield thunkify(request)({
+    //     url: urlBase + '/user/Login',
+    //     qs: this.request.query,
+    //     headers: {
+    //       'Cookie': this.headers.Cookie || ''
+    //     }
+    //   });
+    var result = {
+      a: 1
+    };
     if (result) {
-      var body = result[1];
+      var body = result;
       if (body) {
-        this.set(result[0].headers)
+        this.set(result)
       }
     }
   });
