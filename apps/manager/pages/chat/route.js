@@ -8,24 +8,28 @@ var DataPool = require('node-datapool');
 var fs = require('fs');
 var path = require('path');
 
-
+var urlBase = 'http://' + 'account.' + global.WLY_DOMAIN
 
 module.exports = function(app) {
-  app.route('/setbasic').all(function*(next) {
+  app.route('/chat').all(function*(next) {
     yield fetchUserinfo.call(this);
   });
-  app.route('/userlogin').all(function*(next) {
-    console.log('userlogin');
-    this.json = true;
-    var result = yield thunkify(request)({
-      url: settings.api.accountApiBase + '/ucenter/GetUserBaseInfo',
-      timeout: settings.http.timeout,
-      // proxy: 'http://127.0.0.1:8888',
-      headers: {
-        'Cookie': ctx.header.cookie || ''
+  app.route('/api/userLogin$').all(function*(next) {
+    console.log('/api/userLogin');
+    this.text = true;
+    var result =
+      yield thunkify(request)({
+        url: urlBase + '/user/Login',
+        qs: this.request.query,
+        headers: {
+          'Cookie': this.headers.Cookie || ''
+        }
+      });
+    if (result) {
+      var body = result[1];
+      if (body) {
+        this.set(result[0].headers)
       }
-    });
-    console.log(result);
-
+    }
   });
 }
