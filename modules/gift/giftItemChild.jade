@@ -1,15 +1,19 @@
 if children
   .gift_sigel_list
-    ul.cl
-      - var description = ['每分每秒','长长久久','陪你每一天','我爱你','一生一世'];
-      - var descriptionimg = ['play_games_star.png','play_games_mouth.png','play_games_wing.png','play_games_heart.png','play_games_fly.png'];
+    ul.giftSigel.cl
+      - var description = ['一心一意','每分每秒','长长久久','陪你每一天','我爱你','一生一世'];
+      - var descriptionimg = ['play_games_one.png','play_games_star.png','play_games_mouth.png','play_games_wing.png','play_games_heart.png','play_games_fly.png'];
       - var flashMovies = ['num_24','num_99','num_365','num_520','num_1314'];
       - var childIndex = 0;
       for item,index in children
-        if item.itemnum == 1
-          - continue
-        else
-          li(data-baidu,data-baidu-category="gift",data-baidu-action="buy_item",data-baidu-label=item.id,data-baidu-value=item.bid)
-            img.buy_gift(data-flash=flashMovies[childIndex],data-id=item.id,data-pid=id,data-num=item.itemnum,src=window.resUrl + 'images/player3/' + descriptionimg[childIndex])
-            .play_game_iconhover= '送' + item.itemnum + '个：' + description[childIndex]
+        li(data-baidu,data-baidu-category="gift",data-baidu-action="buy_item",data-baidu-label=item.id,data-baidu-value=item.bid,class=(item.itemnum == 1) ? 'cur' : ' ')
+          img.buy_gift(data-flash=flashMovies[childIndex],data-id=item.id,data-pid=id,data-num=item.itemnum,src=window.resUrl + 'images/player3/' + descriptionimg[childIndex])
+          .play_gameitem.hide
+            p.white='送' + item.itemnum + '个：' + description[childIndex]
+            p.green='人气值：' + item.popbuf
           - childIndex++
+    div.giftsigel_item
+      p.white='送' + children[0].itemnum + '个：' + description[0]
+      p.green='人气值：' + children[0].popbuf
+    div.gift_arrow.tc
+      | &diams;
