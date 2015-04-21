@@ -2,7 +2,8 @@ var apiUrl = 'http://api.mm.' + window.domain + '/';
 var resUrl = 'http://static.mm.' + window.domain + '/';
 var accountUrl = 'http://account.' + window.domain + '/';
 var mmUrl = 'http://mm.' + window.domain + '/';
-var proxyAccountUrl = __global.base.i + '/api/';
+// var proxyAccountUrl = __global.base.i + '/api/';
+var proxyAccountUrl = accountUrl;
 
 if (!window.JSON) {
   window.JSON = {};
