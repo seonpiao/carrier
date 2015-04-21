@@ -2,7 +2,7 @@ define(["libs/client/models/base"], function(Base) {
   var Model = Base.extend({
     module: 'user',
     action: 'Login',
-    baseUrl: 'http://account.' + window.domain + '/',
+    baseUrl: window.proxyAccountUrl,
     signIn: function() {
       this.fetch({
         action: 'Login'

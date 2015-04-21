@@ -37,12 +37,15 @@ define(["libs/client/views/base", "models/popRank"], function(Base, popRank) {
     switchRank: function(model) {
       var self = this;
       this.loadTemplate('rank', function(template) {
-        var html = template(model.toJSON());
-        self.$('.popularity_1').html(html);
-        self.$scrollbar = $('#ladyrankListBar');
-        self.$scrollbar.tinyscrollbar({
-          trackSize: 340
-        });
+        var data = model.toJSON(); 
+        if(data.result != null){
+          var html = template(data);
+          self.$('.popularity_1').html(html);
+          self.$scrollbar = $('#ladyrankListBar');
+          self.$scrollbar.tinyscrollbar({
+            trackSize: 340
+          });
+        }
       });
     },
     changeType: function(e) {

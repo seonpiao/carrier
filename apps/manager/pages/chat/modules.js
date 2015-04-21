@@ -1,6 +1,6 @@
-define([ "modules/moduleRunner/index", "modules/mm_chat/multi", "modules/managerChat/index" ], function(ModuleRunner, mm_chatmulti, managerChat) {
+define([ "modules/moduleRunner/index", "modules/mm_chat/multi", "modules/managerChat/index" ], function(ModuleRunner, mm_chatMulti, managerChat) {
   var modules = {
-    mm_chatmulti: mm_chatmulti,
+    mm_chatMulti: mm_chatMulti,
     managerChat: managerChat
   };
   ModuleRunner.run(modules);

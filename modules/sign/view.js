@@ -140,7 +140,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
           str += '<i class="num_' + vitalityLevel[i] + '"> </i>';
         }
         $('.p_vipgradei').html(str);
-        var width = (parseInt(data.vitality) - data.vitalitylevelmin) / (data.vitalitylevelmax - data.vitalitylevelmin) * 100;
+        var width = (parseInt(data.vitality) - data.vitalitylevelmin) / (data.vitalitylevelmax - data.vitalitylevelmin) * 67;
         $('.user_grade_progress').html('<span style="width:' + Math.round(width) + 'px;"></span>');
       });
     },
@@ -301,7 +301,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + "user/Login",
+        url: window.proxyAccountUrl + "user/Login",
         data: {
           username: $("#username").val(),
           password: shalUtil.hex_sha1($("#password").val()),
@@ -335,7 +335,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + 'user/GetLoginToken',
+        url: window.proxyAccountUrl + 'user/GetLoginToken',
         data: {},
         dataType: "jsonp",
         cache: false,
@@ -379,7 +379,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + "user/GetRegToken",
+        url: window.proxyAccountUrl + "user/GetRegToken",
         data: {},
         dataType: "jsonp",
         cache: false,
@@ -397,7 +397,7 @@ define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dia
       var self = this;
       $.ajax({
         type: "GET",
-        url: window.accountUrl + "user/UserRegister",
+        url: window.proxyAccountUrl + "user/UserRegister",
         data: {
           username: $("#reg_username").val(),
           password: shalUtil.hex_sha1($("#reg_password").val()),

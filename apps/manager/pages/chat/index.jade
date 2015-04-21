@@ -5,6 +5,12 @@ block append head
 block append  body
   .wraper(style="color:#000;")
     .content.managerChat(data-module="managerChat")
-      .add.item
-
-  .sign(data-module="sign")
+      for girl in girlList
+        .item
+          form.login-form(data-girlid= girl.id)
+            div= girl.id
+            input(name="username",type="text",class="username",placeholder="请输入用户名")
+            input(name="password",type="text",class="password",placeholder="请输入密码")
+            input(type="submit", class="submit", value="登陆")
+          .chat-wraper(data-girlid= girl.id)
+            include ../../../../modules/mm_chat/multi 

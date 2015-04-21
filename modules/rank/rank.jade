@@ -10,19 +10,21 @@
     .viewport
       .overview.popularrank_scrooll.cl
         ul.popularity_offer_pk.pr.cl
-          for user,index in result.ranks
-            if index < 3
-              li(class="user_photo_" + (index + 1))
-                div(class="pk_user_photpbg" + (index + 1))
-                  img(src=window.resUrl + 'head/' + user.ssoid + '/50')
-                  ins
-                .cl.mt_020.photo_downC
-                  if user.usrangel != '0'
-                    span(class=(user.usrangel == '1' ? "angel_icon_gray" : 'angel_icon_lingts'))
-                  if user.usrvip != '0'
-                    img(width="20",src=window.resUrl + "orig/images/vip.png")
-                  span.blue2= user.usrnick
-                p.yellow_4.mt_2= '人气贡献值：' + globalUtil.commafy(user.pop)
+          if(result.ranks && result.ranks.length>0)
+            for user,index in result.ranks
+              if index < 3
+                li(class="user_photo_" + (index + 1))
+                  div(class="pk_user_photpbg" + (index + 1))
+                    img(src=window.resUrl + 'head/' + user.ssoid + '/50')
+                    ins
+                  .cl.mt_020.photo_downC
+                    if user.usrangel != '0'
+                      span(class=(user.usrangel == '1' ? "angel_icon_gray" : 'angel_icon_lingts'))
+                    if user.usrvip != '0'
+                      img(width="20",src=window.resUrl + "orig/images/vip.png")
+                    span.blue2= user.usrnick
+                  p.yellow_4.mt_2= '人气贡献值：' + globalUtil.commafy(user.pop)
+
         .cl.ranking_hr
         ol.cl.popularity_offer_rank
           //li.populargx_title.hide
@@ -30,18 +32,19 @@
               //div.pvrank= "特权"
               //div.u_namerank= "玩家昵称"
               //div.popularrank= "人气贡献值"
-          for user,index in result.ranks  
-            if index > 2
-              li
-                div.qtrank= index + 1
-                div.u_namerank.blue= user.usrnick
-                  if user.usrangel != '0'
-                    img(src=window.resUrl + "orig/images/flying" + user.usrangel + ".png",style="height:15px;")
-                  if user.usrvip != '0'
-                    img(width="18",src=window.resUrl + "orig/images/vip.png")
-                div.popurlarlist
-                  div.populargx.yellow_4="人气贡献值："
-                  div.popularrank.yellow_4.tl= globalUtil.commafy(user.pop)
+          if(result.ranks && result.ranks.length>0)
+            for user,index in result.ranks  
+              if index > 2
+                li
+                  div.qtrank= index + 1
+                  div.u_namerank.blue= user.usrnick
+                    if user.usrangel != '0'
+                      img(src=window.resUrl + "orig/images/flying" + user.usrangel + ".png",style="height:15px;")
+                    if user.usrvip != '0'
+                      img(width="18",src=window.resUrl + "orig/images/vip.png")
+                  div.popurlarlist
+                    div.populargx.yellow_4="人气贡献值："
+                    div.popularrank.yellow_4.tl= globalUtil.commafy(user.pop)
 if result.myrank &&  result.myrank>1
   .ranking_footerbg.tc.cl
     .have_partaked.cl
