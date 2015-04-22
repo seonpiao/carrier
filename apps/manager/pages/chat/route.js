@@ -18,7 +18,7 @@ dataPool.define(/GetgirlNameList/, function*(key, ctx) {
   var result =
     yield thunkify(request)({
       url: 'http://api.mm.wanleyun.com/girlstatus/GetgirlNameList',
-      proxy: 'http://127.0.0.1:8888'
+      // proxy: 'http://127.0.0.1:8888'
     });
   if (result) {
     var body = result[1];
@@ -49,7 +49,6 @@ var getgirlNameList = function*() {
       if (result.result) {
         this.result = this.result || {};
         this.result.girlList = result.result;
-        console.log(result.result)
         return;
       }
     }
@@ -62,9 +61,6 @@ var urlBase = 'http://' + 'account.' + global.WLY_DOMAIN
 var cookieMap = {};
 module.exports = function(app) {
   app.route('/chat').all(function*(next) {
-    // console.log('chat');
-    // this.result = {};
-    // this.template = 'chat/index';
     this.template = 'chat/index';
     yield getgirlNameList.call(this);
   });
@@ -79,19 +75,14 @@ module.exports = function(app) {
         // proxy: 'http://127.0.0.1:8888'
       });
     if (result) {
-      console.log(result[0].body);
-      if (result[0].body.code == 1) {
+      this.result = this.result || {};
+      if (JSON.parse(result[0].body).code == 1) {
         cookieMap[username] = result[0].headers['set-cookie'];
-        console.log(cookieMap);
-        this.result = result;
-      } else {
-        this.result = {
-          msg: result[0].body.msg
-        };
       }
+      this.result = JSON.parse(result[0].body);
     } else {
       this.result = {
-        msg: 'noLogin'
+        msg: '登录失败'
       };
     }
   });

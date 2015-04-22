@@ -43,23 +43,26 @@ define(["libs/client/views/base", "libs/client/global", 'libs/client/chalUtil'],
           password: shalUtil.hex_sha1(data.password)
         },
         success: function(resp) {
-          console.log(resp);
-          form.after(data.username + '成功登录' + data.girlid);
-          form.remove();
-          for (var key in this.roomMap) {
-            var roomInfo = this.roomMap[key];
-            this.doLogin(roomInfo);
+          if (resp.code == 1) {
+            form.after(data.username + '成功登录' + data.girlid);
+            form.remove();
+            for (var key in this.roomMap) {
+              var roomInfo = this.roomMap[key];
+              this.doLogin(roomInfo);
+            }
+            self.roomMap[girlid] = {
+              girlid: girlid,
+              username: data.username,
+              password: data.password
+            };
+            localStorage.roomMap = JSON.stringify(self.roomMap);
+            $('.chat-wraper').removeClass('hide');
+          } else {
+            alert(resp.msg);
           }
-          self.roomMap[girlid] = {
-            girlid: girlid,
-            username: data.username,
-            password: data.password
-          };
-          localStorage.roomMap = JSON.stringify(self.roomMap);
-          $('.chat-wraper').removeClass('hide');
         },
         error: function(data) {
-          console.log(data);
+          alert(data.msg);
         }
       })
     }

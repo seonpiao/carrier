@@ -16,7 +16,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
     init: function() {
       var self = this;
       self.girlid = this.$el.parent().attr('data-girlid') || window.girlid;
-      console.log(self.girlid);
+      this.channelid = self.girlid;
       this.contentPoint = 0;
       this.contentList = this.contentList || [];
       girlList.cache(function() {
@@ -53,10 +53,10 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       if (this.$el.attr('data-sign') != '0') {
         signUrl = this.base.sign_url;
       }
-      this.girlid = ($target.attr('data-channel') === 'world' ? '0' : this.girlid);
+      this.channelid = ($target.attr('data-channel') === 'world' ? '0' : this.girlid);
       var self = this;
       comet = new iComet({
-        channel: 'girl_' + this.girlid,
+        channel: 'girl_' + this.channelid,
         signUrl: signUrl,
         subUrl: this.base.sub_url,
         pubUrl: this.base.pub_url,
@@ -67,7 +67,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       this.$('.overview').html('');
       feedHistory.fetch({
         data: {
-          girlid: this.girlid
+          girlid: this.channelid
         }
       });
     },
@@ -1078,7 +1078,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
     },
     join: function() {
       var self = this;
-      var channel = 'girl_' + this.girlid;
+      var channel = 'girl_' + this.channelid;
       var signUrl;
       if (this.$el.attr('data-sign') != '0') {
         signUrl = self.base.sign_url;
@@ -1142,12 +1142,12 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       $.ajax({
         url: 'api/push',
         data: {
-          cname: 'girl_' + this.girlid,
+          cname: 'girl_' + this.channelid,
           content: content,
-          username: localStorage.roomMap[this.girlid]
+          username: JSON.parse(localStorage.roomMap)[this.girlid].username
         }
-      })
-
+      });
+      t.val('');
       if (self.contentList.length > 9) {
         self.contentList.pop();
       }
