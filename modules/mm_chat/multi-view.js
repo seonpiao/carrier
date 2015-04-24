@@ -1140,7 +1140,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       this.$('#chat_error_msg').remove();
 
       $.ajax({
-        url: 'api/push',
+        url: '/api/push',
         data: {
           cname: 'girl_' + this.channelid,
           content: content,
