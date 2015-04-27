@@ -41,6 +41,24 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
         });
       });
       this.listenTo(feedHistory, 'sync', this.showHistory.bind(this));
+      this.listenChannel0();
+    },
+    listenChannel0: function() {
+      var self = this;
+      var $managerChat = $('.managerChat');
+      if (!$managerChat.attr('data-listenChannel0')) {
+        var signUrl = "http://ic.mm.wanleyun.com/demo/web/php/sign.php";
+        comet = new iComet({
+          channel: 'girl_0',
+          signUrl: signUrl,
+          subUrl: this.base.sub_url,
+          pubUrl: this.base.pub_url,
+          callback: function(content) {
+            self.msgCb(content)
+          }
+        });
+        $managerChat.attr('data-listenChannel0', '1')
+      }
     },
     switchChannel: function(e) {
       var $target = $(e.currentTarget);
@@ -55,21 +73,23 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       }
       this.channelid = ($target.attr('data-channel') === 'world' ? '0' : this.girlid);
       var self = this;
-      comet = new iComet({
-        channel: 'girl_' + this.channelid,
-        signUrl: signUrl,
-        subUrl: this.base.sub_url,
-        pubUrl: this.base.pub_url,
-        callback: function(content) {
-          self.msgCb(content)
-        }
-      });
-      this.$('.overview').html('');
-      feedHistory.fetch({
-        data: {
-          girlid: this.channelid
-        }
-      });
+      if (this.channelid != 0) {
+        comet = new iComet({
+          channel: 'girl_' + this.channelid,
+          signUrl: signUrl,
+          subUrl: this.base.sub_url,
+          pubUrl: this.base.pub_url,
+          callback: function(content) {
+            self.msgCb(content)
+          }
+        });
+        this.$('.overview').html('');
+        feedHistory.fetch({
+          data: {
+            girlid: this.channelid
+          }
+        });
+      }
     },
     render: function() {
 
@@ -1017,13 +1037,26 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
         } else {
           this.$("#" + self.msgs[content]).removeClass("sent");
         }
-
-        this.$('#chat_box').append(html);
-        var ii = this.$('#chat_box p').length - 3000
-        if (ii > 0) {
-          this.$('#chat_box p:lt(' + ii + ')').remove();
+        if (this.channelid == 0) {
+          var p = $('.managerChat .chat_viewer_tab .on[data-channel="world"]').parent().parent();
+          p.find('#chat_box').append(html);
+          var ii = p.find('#chat_box p').length - 3000
+          if (ii > 0) {
+            p.find('#chat_box p:lt(' + ii + ')').remove();
+          }
+          var chat_box_scrollbar = p.find('#chat_box_scrollbar').tinyscrollbar()
+            //}
+            //if(!this.$('#chat_box_scrollbar .scrollbar').hasClass('disable')){
+          var scrollbar = chat_box_scrollbar.data("plugin_tinyscrollbar");
+          scrollbar.update('bottom');
+        } else {
+          this.$('#chat_box').append(html);
+          var ii = this.$('#chat_box p').length - 3000
+          if (ii > 0) {
+            this.$('#chat_box p:lt(' + ii + ')').remove();
+          }
+          self.chat_box_scrollbar_update('bottom');
         }
-        self.chat_box_scrollbar_update('bottom');
       } catch (e) {
 
       }
@@ -1124,7 +1157,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       var t = this.$('#chat_text');
       var content = $.trim(t.val());
       content = self.htmlEntities(content);
-      
+
       if (content.length == 0) {
         self.chatMsg('消息内容不能为空');
         return false;
