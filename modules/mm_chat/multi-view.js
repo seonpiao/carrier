@@ -1038,17 +1038,19 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
           this.$("#" + self.msgs[content]).removeClass("sent");
         }
         if (this.channelid == 0) {
-          var p = $('.managerChat .chat_viewer_tab .on[data-channel="world"]').parent().parent();
-          p.find('#chat_box').append(html);
-          var ii = p.find('#chat_box p').length - 3000
-          if (ii > 0) {
-            p.find('#chat_box p:lt(' + ii + ')').remove();
+          var p = $('.managerChat .chat_viewer_tab .on[data-channel="world"]').parent().parent().toArray();
+          for (var i = 0, l = p.length; i < l; i++) {
+            $(p[i]).find('#chat_box').append(html);
+            var ii = $(p[i]).find('#chat_box p').length - 3000
+            if (ii > 0) {
+              $(p[i]).find('#chat_box p:lt(' + ii + ')').remove();
+            }
+            var chat_box_scrollbar = $(p[i]).find('#chat_box_scrollbar').tinyscrollbar()
+              //}
+              //if(!this.$('#chat_box_scrollbar .scrollbar').hasClass('disable')){
+            var scrollbar = chat_box_scrollbar.data("plugin_tinyscrollbar");
+            scrollbar.update('bottom');
           }
-          var chat_box_scrollbar = p.find('#chat_box_scrollbar').tinyscrollbar()
-            //}
-            //if(!this.$('#chat_box_scrollbar .scrollbar').hasClass('disable')){
-          var scrollbar = chat_box_scrollbar.data("plugin_tinyscrollbar");
-          scrollbar.update('bottom');
         } else {
           this.$('#chat_box').append(html);
           var ii = this.$('#chat_box p').length - 3000
