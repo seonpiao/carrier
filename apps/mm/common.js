@@ -63,7 +63,7 @@ if (!Object.keys) {
   };
 }
 
-require(["oz", "jquery", "jquery-cookie", "underscore", "backbone", "jaderuntime"], function(io) {
+require(["oz", "jquery", "jquery-cookie", "underscore", "backbone", "jaderuntime", "tween"], function(io) {
   var trigger = jQuery.fn.trigger;
   jQuery.fn.trigger = function(type, data) {
     var globalEvents = ["login", "logout", "DOMNodeRemoved", "DOMNodeInserted"];
@@ -78,5 +78,5 @@ require(["oz", "jquery", "jquery-cookie", "underscore", "backbone", "jaderuntime
   jQuery.extend(jQuery.ajaxSettings, {
     cache: false
   });
-  jQuery.fn.html;
+  createjs.CSSPlugin.install(createjs.Tween);
 });
