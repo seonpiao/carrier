@@ -1,14 +1,10 @@
-#chat(data-module='mm_chat')
+#chat(data-module='mm_chatMulti')
   .chat_viewer
     ul.pr.chat_viewer_tab
-      if __global.girlid > 0
-        li.on(data-channel='girl')
-          | 房间频道
-        li(data-channel='world')
-          | 世界频道
-      else
-        li.on(data-channel='world')
-          | 世界频道
+      li.on(data-channel='girl')
+        | 房间频道
+      li(data-channel='world')
+        | 世界频道
     .chat_wiew
       #recv_chat_window.chat_box.chat_window
         #chat_box_scrollbar.scrollbars

@@ -13,6 +13,7 @@ var dataPool = new DataPool({
 });
 
 dataPool.define(/GetUserBaseInfo/, function*(key, ctx) {
+  console.log(ctx.header.cookie);
   var result =
     yield thunkify(request)({
       url: settings.api.accountApiBase + '/ucenter/GetUserBaseInfo',
