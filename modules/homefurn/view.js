@@ -3,17 +3,25 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
     moduleName: "homefurn",
     progressTemplate: 'progress',
     events: {
-      'click [data-homef-tab]': 'switchHomefTab',
+      //'click [data-homef-tab]': 'switchHomefTab',
       'click .raise_homefurn': 'raiseHomefurn'
     },
     init: function() {
       this.collection = homefurn;
       this.render();
+      //this.listenTo(homefurn, 'sync', this.render.bind(this));
+      homefurn.fetch();
+      //this.collection = homefurn;
+      //this._timer = setInterval(homefurn.fetch.bind(homefurn), 60000);
+    },
+    destroy: function() {
+      //clearInterval(this._timer);
     },
     render: function() {
       var self = this;
       this.loadTemplate('index', function(template) {
         var data = homefurn.toJSON();
+        console.log(data)
         self.$el.html(template({
           result: data,
           now: homefurn.now
@@ -49,11 +57,11 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       this.updateProgress();
     },
     renderStyle: function() {
-      var $title = this.$('.on[data-homef-tab]');
-      var templateName = $title.attr('data-template');
+      //var $title = this.$('.on[data-homef-tab]');
+      //var templateName = $title.attr('data-template');
       var self = this;
-      this.loadTemplate(templateName, function(template) {
-        self.$('.homef_con_right').html(template({}));
+      this.loadTemplate('homefurnStyle2', function(template) {
+        self.$('.game_listbox_homefurn').html(template({}));
         homefurn.remove(homefurn.models);
         self.stopListening(homefurn);
         self.renderItems();
@@ -101,14 +109,23 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
         }));
       });
     },
+    // renderItems: function() {
+    //   var self = this;
+    //   this.collection.forEach(function(model) {
+    //     self.renderItem(model);
+    //     // self.initCarousel();
+    //   });
+    // },
     renderItems: function() {
+      var self = this;
       this.listenTo(homefurn, 'sync', this.synced.bind(this));
       this.listenTo(homefurn, 'add', this.renderItem.bind(this));
       var params = {
         data: {}
       };
-      var $title = this.$('.on[data-homef-tab]');
-      params.data['class'] = $title.attr('data-homef-tab');
+      //var $title = this.$('.on[data-homef-tab]');
+      //console.log($title)
+      //params.data['class'] = $title.attr('data-homef-tab');
       this.$('.homef_show_list').html('');
       homefurn.fetch(params);
     },
