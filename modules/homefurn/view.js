@@ -3,19 +3,17 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
     moduleName: "homefurn",
     progressTemplate: 'progress',
     events: {
-      'click [data-homef-tab]': 'switchHomefTab',
+      //'click [data-homef-tab]': 'switchHomefTab',
       'click .raise_homefurn': 'raiseHomefurn'
     },
     init: function() {
-      this.listenTo(homefurn, 'sync', this.render.bind(this));
-      homefurn.fetch();
       this.collection = homefurn;
+      this.render();
     },
     render: function() {
       var self = this;
       this.loadTemplate('index', function(template) {
         var data = homefurn.toJSON();
-        console.log(data);
         self.$el.html(template({
           result: data,
           now: homefurn.now
@@ -36,9 +34,9 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       this.$carousel = $carousel;
       var carousel = $carousel.tinycarousel({
         step: 5,
-        infinite: false,
-        children: '.homef_show_list li'
+        infinite: false
       });
+      console.log(this.carousel);
       this.carousel = carousel.data('plugin_tinycarousel');
       this.carousel.update();
       this.carousel.move(0);
@@ -55,7 +53,7 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       var templateName = $title.attr('data-template');
       var self = this;
       this.loadTemplate(templateName, function(template) {
-        self.$('.homef_con_right').html(template({}));
+        self.$('.homef_novstyle2').html(template({}));
         homefurn.remove(homefurn.models);
         self.stopListening(homefurn);
         self.renderItems();
@@ -90,7 +88,6 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       this.loadTemplate(this.progressTemplate, function(template) {
         var progresses = [];
         var itemList = (list || self.collection).toJSON();
-        console.log(itemList)
         if (itemList.slice(-1)[0].status != '0') {
           self.$carousel.find('.next').removeClass('lock_img');
         } else {
@@ -105,8 +102,8 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       });
     },
     renderItems: function() {
-      this.listenTo(homefurn, 'add', this.renderItem.bind(this));
       this.listenTo(homefurn, 'sync', this.synced.bind(this));
+      this.listenTo(homefurn, 'add', this.renderItem.bind(this));
       var params = {
         data: {}
       };

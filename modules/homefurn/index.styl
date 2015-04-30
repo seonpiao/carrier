@@ -3,18 +3,22 @@
   .bed_style,.homef_style2
     //width:415px
     width:468px
-    height:150px
+    height:125px
     position:relative
     background-color: #0c1924;
     border:1px solid #1774a4;
+    padding-top:25px;
     .viewport
-      width:395px
-      height:150px
+      width:430px
+      height:125px
       overflow:hidden
+      position:absolute;
+      left:18px;
     ul
       li
+        width:76px;
         p
-          width:70px
+          width:76px
           overflow:hidden
           -o-text-overflow: ellipsis
           text-overflow: ellipsis
@@ -51,3 +55,11 @@
     .send_goodbtn
       width:415px
       height:20px
+    .left_btn.prev,.gift_leftbtn.prev,.left_btn.disable,.gift_leftbtn.disable
+      position:absolute;
+      left:8px;
+      top:40px;
+    .right_btn.next,.gift_rightbtn.next,.right_btn.disable,.gift_rightbtn.disable
+      position:absolute;
+      right:8px;
+      top:40px;
