@@ -55,7 +55,7 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       var templateName = $title.attr('data-template');
       var self = this;
       this.loadTemplate(templateName, function(template) {
-        self.$('.game_listbox_homefurn').html(template({}));
+        self.$('.homef_con_right').html(template({}));
         homefurn.remove(homefurn.models);
         self.stopListening(homefurn);
         self.renderItems();
