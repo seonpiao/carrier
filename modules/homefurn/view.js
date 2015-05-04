@@ -36,7 +36,6 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
         step: 5,
         infinite: false
       });
-      console.log(this.carousel);
       this.carousel = carousel.data('plugin_tinycarousel');
       this.carousel.update();
       this.carousel.move(0);
