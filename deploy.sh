@@ -9,7 +9,7 @@ server_host="182.92.215.90"
 server_path="/data/wwwroot/wanleyun/static/dist"
 upload_dirs=(js css template)
 
-users=(master wujunlian seon feng staging yange)
+users=(master wujunlian seon feng staging yange manager)
 
 env=$1
 user=$2
