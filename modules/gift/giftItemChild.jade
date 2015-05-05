@@ -10,10 +10,10 @@ if children
           img.buy_gift(data-flash=flashMovies[childIndex],data-id=item.id,data-pid=id,data-num=item.itemnum,src=window.resUrl + 'images/player3/' + descriptionimg[childIndex])
           .play_gameitem.hide
             p.white='送' + item.itemnum + '个：' + description[childIndex]
-            p.mt_2.green='人气值贡献值：' + item.popbuf
+            p.mt_2.green='人气贡献值：' + item.popbuf
           - childIndex++
     div.clear.cl
     div.giftsigel_item.cl
       p.white='送' + children[0].itemnum + '个：' + description[0]
-      p.mt_2.green='人气值贡献值：' + children[0].popbuf
+      p.mt_2.green='人气贡献值：' + children[0].popbuf
     div.gift_arrow
