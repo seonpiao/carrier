@@ -26,7 +26,10 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
           var html = template(self.model.toJSON());
           if (html) {
             self.$child = $(html);
-            self.$child.on('mouseenter', function() {
+            self.$child.find('.giftSigel').children('li').on('mouseenter', function() {
+              $(this).siblings().removeClass('cur');
+              var sigleitem = $(this).children('div.play_gameitem').html();
+              $(this).parent().siblings('div.giftsigel_item').html(sigleitem);
               clearTimeout(self._hideChildTimer);
             });
             self.$child.on('mouseleave', function() {
@@ -37,7 +40,7 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
             self.$child.css({
               position: 'absolute',
               left: itemPos.left,
-              top: itemPos.top - 50
+              top: itemPos.top - 90
             });
             self.$body.append(self.$child);
           }

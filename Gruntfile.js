@@ -88,6 +88,8 @@ module.exports = function(grunt) {
           }, {
             name: "apps/mm/common"
           }, {
+            name: "apps/i/pages/api_sign/main"
+          }, {
             name: "apps/i/pages/login/main"
           }, {
             name: "apps/i/pages/register/main"
@@ -206,6 +208,13 @@ module.exports = function(grunt) {
         }
       }
     },
+    shell: {
+      devbr: {
+        command: function(brname) {
+          return [ "git checkout master", "git pull", "git branch " + brname, "git checkout " + brname ].join("&&");
+        }
+      }
+    },
     newapp: {
       options: {
         dest: ""
@@ -246,6 +255,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-stylus");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-shell");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("private-grunt-jade-runtime");
   grunt.loadNpmTasks("grunt-filerev");

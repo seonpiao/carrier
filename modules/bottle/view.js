@@ -53,21 +53,21 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
       $('.bottleGames .ui-dialog-title').html('');
       $('.bottleGames .ui-dialog-close').text('');
     },
-    init_getWishBottleInfo: function() { //许愿瓶基础信息显示
+    init_getWishBottleInfo: function() { //出题瓶基础信息显示
       var self = this;
       this.loadTemplate('index', function(template) {
         var data = bottle.toJSON();
         self.d.content(template(data));
         if (data.success == 200) {
 
-          // wishCd => ’’, 许愿开启倒计时 countdown
+          // wishCd => ’’, 出题开启倒计时 countdown
           // wishCdType => ’’, 倒计时类型 1:秒2:分钟3:小时（暂定）
-          // coinCd => ’’, 金币许愿免费倒计时（hh:ii:ss）
-          // diamondCd => ’’, 钻石许愿免费倒计时（hh:ii:ss）
-          // oneWishCoin => ’’, 一次金币许愿价格
-          // tenWishCoin => ’’, 十次金币许愿价格
-          // oneWishDia => ’’, 一次钻石许愿价格
-          // tenWishDia => ’’ 十次钻石许愿价格
+          // coinCd => ’’, 金币出题免费倒计时（hh:ii:ss）
+          // diamondCd => ’’, 钻石出题免费倒计时（hh:ii:ss）
+          // oneWishCoin => ’’, 一次金币出题价格
+          // tenWishCoin => ’’, 十次金币出题价格
+          // oneWishDia => ’’, 一次钻石出题价格
+          // tenWishDia => ’’ 十次钻石出题价格
 
           var result = data.result;
           var wishCd = result.wishCd;
@@ -116,23 +116,24 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
           // sec: 56
           // years: 0
           self.startCountdown($('#wishCd'), wishCd, function() {
-            $('#with-price-value').attr('data-value', 0);
-          }, function(data) {
-            var hours = data.hours;
-            if (hours <= 2) {
-              $(".bottleimg").removeClass().addClass("bottle_b_4");
-              $(".bottle-simg").removeClass().addClass("bottle_s_4");
-            } else if (hours <= 8) {
-              $(".bottleimg").removeClass().addClass("bottle_b_3");
-              $(".bottle-simg").removeClass().addClass("bottle_s_3");
-            } else if (hours <= 16) {
-              $(".bottleimg").removeClass().addClass("bottle_b_2");
-              $(".bottle-simg").removeClass().addClass("bottle_s_2");
-            } else {
-              $(".bottleimg").removeClass().addClass("bottle_b_1");
-              $(".bottle-simg").removeClass().addClass("bottle_s_1");
-            }
-          });
+              $('#with-price-value').attr('data-value', 0);
+            })
+            //, function(data) {
+            //var hours = data.hours;
+            // if (hours <= 2) {
+            //   $(".bottleimg").removeClass().addClass("bottle_b_4");
+            //   $(".bottle-simg").removeClass().addClass("bottle_s_4");
+            // } else if (hours <= 8) {
+            //   $(".bottleimg").removeClass().addClass("bottle_b_3");
+            //   $(".bottle-simg").removeClass().addClass("bottle_s_3");
+            // } else if (hours <= 16) {
+            //   $(".bottleimg").removeClass().addClass("bottle_b_2");
+            //   $(".bottle-simg").removeClass().addClass("bottle_s_2");
+            // } else {
+            //   $(".bottleimg").removeClass().addClass("bottle_b_1");
+            //   $(".bottle-simg").removeClass().addClass("bottle_s_1");
+            // }
+            //});
           self.startCountdown($('#coinCd'), coinCd, function() {
             $('.gold_wish .wish-time-tip').css('visibility', 'hidden');
             $("#goldPrice").html("免费");
@@ -226,12 +227,12 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
         timeLast = 0;
       }
     },
-    popWish: function(e, type) { //点击许愿按钮弹出相关信息
+    popWish: function(e, type) { //点击出题按钮弹出相关信息
       this.d.close().remove();
       var typeS = $(e.target).attr("id");
       var self = this;
       if (typeS == "oneCoidWish" || typeS == "tenCoinWish") {
-        //金币许愿
+        //金币出题
         this.loadTemplate('coidwish', function(template) {
           if (dialog.getCurrent()) {
             dialog.getCurrent().remove();
@@ -300,14 +301,14 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
           priceValueText = oneWishCoin;
           priceValue = oneWishCoin;
         }
-        var gwbtnstr = '<a href="javascript:;" class="btn_1y w160" id="oneCoinWish">' + '许愿1次：<img src="' + window.resUrl + 'orig/images/bottle/gold_img.png" id="coinPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValueText + '</span></a>'
+        var gwbtnstr = '<a href="javascript:;" class="btn_1y w160" id="oneCoinWish">' + '出题1次：<img src="' + window.resUrl + 'orig/images/bottle/gold_img.png" id="coinPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValueText + '</span></a>'
         $("#gwButton").html(gwbtnstr);
         $('#gwButton a').click(function(e) {
           self.initWish(e);
         });
       } else if (type == "tenCoinWish") {
         priceValue = tenWishCoin;
-        var gwbtnstr = '<a href="javascript:;" class="btn_1y w160" id="tenCoinWish">' + '许愿1次：<img src="' + window.resUrl + 'orig/images/bottle/gold_img.png" id="coinPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValue + '</span></a>'
+        var gwbtnstr = '<a href="javascript:;" class="btn_1y w160" id="tenCoinWish">' + '出题1次：<img src="' + window.resUrl + 'orig/images/bottle/gold_img.png" id="coinPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValue + '</span></a>'
         $("#gwButton").html(gwbtnstr);
         $('#gwButton a').click(function(e) {
           self.initWish(e);
@@ -363,7 +364,7 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
           priceValueText = oneWishDia;
           priceValue = oneWishDia;
         }
-        var gwdiastr = '<a href="javascript:;" class="btn_1y w160" id="oneDimWish">' + '许愿1次：<img src="' + window.resUrl + 'orig/images/bottle/blue_drill.png" id="dimPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValueText + '</span></a>'
+        var gwdiastr = '<a href="javascript:;" class="btn_1y w160" id="oneDimWish">' + '出题1次：<img src="' + window.resUrl + 'orig/images/bottle/blue_drill.png" id="dimPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValueText + '</span></a>'
         $("#dwButton").html(gwdiastr);
         $('#dwButton a').click(function(e) {
           self.initWish(e);
@@ -371,7 +372,7 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
 
       } else if (type == "tenDimWish") {
         priceValue = tenWishDia;
-        var gwdiastr = '<a href="javascript:;" class="btn_1y w160" id="tenDimWish">' + '许愿1次：<img src="' + window.resUrl + 'orig/images/bottle/blue_drill.png" id="dimPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValue + '</span></a>'
+        var gwdiastr = '<a href="javascript:;" class="btn_1y w160" id="tenDimWish">' + '出题1次：<img src="' + window.resUrl + 'orig/images/bottle/blue_drill.png" id="dimPrice"/><span id="with-price-value" data-value="' + priceValue + '">' + priceValue + '</span></a>'
         $("#dwButton").html(gwdiastr);
         $('#dwButton a').click(function(e) {
           self.initWish(e);
@@ -381,14 +382,14 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
     },
     initWish: function(e, wishType, data) {
       var self = this;
-      var errorCode1 = "您还没有许愿";
+      var errorCode1 = "您还没有出题";
       var errorCode2 = "穷逼，你钱不够";
       var errorCode3 = "现在不是免费了";
       var typeS = $(e.currentTarget).attr("id");
       var wish = $("#wishId").val();
       //提取愿望并验证
       var inputWish = $("#wishId").attr('data-content');
-      //金币许愿
+      //金币出题
       if (typeS.indexOf("Coin") >= 0) {
         if (wish == null) {
           $("#error").html(errorCode1);
@@ -403,8 +404,8 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
         }
 
       } else {
-        //钻石许愿
-        if (wish == null && (inputWish == null || inputWish == "" || inputWish == "请许愿^-^")) {
+        //钻石出题
+        if (wish == null && (inputWish == null || inputWish == "" || inputWish == "请出题^-^")) {
           $("#error").html(errorCode1);
           return;
         } else {
@@ -455,7 +456,7 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
                   module.show({
                     bidtype: bidtype,
                     price: $('#with-price-value').attr('data-value'),
-                    name: '许愿',
+                    name: '出题',
                     quality: 1
                   });
                   self.d.close();
@@ -482,7 +483,7 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
               title: ' ',
               content: '',
               quickClose: false, //点击空白处快速关闭
-              skin: 'bottleGames getaward_dialog'
+              skin: 'dialogGames getaward_dialog'
             });
             this.d.content(template);
             this.d.show();
@@ -506,7 +507,7 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
               title: ' ',
               content: '',
               quickClose: false, //点击空白处快速关闭
-              skin: 'bottleGames getaward_dialog'
+              skin: 'dialogGames getaward_dialog'
             });
             this.d.content(template(data));
             var htmlTag;
@@ -576,7 +577,7 @@ define(["libs/client/views/base", "models/bottle", "models/taskList", "models/us
       }
     },
     closepop: function() {
-      $(".bottleGames").remove();
+      $(".dialogGames").remove();
     }
 
   });
