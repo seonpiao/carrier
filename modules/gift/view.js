@@ -1,14 +1,18 @@
-define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], function(Base, gift, GiftItemView) {
+define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView","models/userInfo"], function(Base, gift, GiftItemView,userInfo) {
   var View = Base.extend({
     moduleName: "gift",
     events: {
       'click [data-gift-tab]': 'switchGiftTab',
     },
     init: function() {
-      this.render();
+      var self = this;
       this.collection = gift;
       this.listenTo(gift, 'sync', this.initCarousel.bind(this));
       this.listenTo(gift, 'add', this.renderItem.bind(this));
+      this.listenTo(userInfo,'change:username',this.render.bind(this));
+      userInfo.cache(function(){
+        self.render();
+      });
     },
     render: function() {
       var self = this;
@@ -16,6 +20,7 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], f
         var data = gift.toJSON();
         self.$el.html(template({
           result: data,
+          userInfo:userInfo.toJSON(),
           now: gift.now
         }));
         self.renderItems();
