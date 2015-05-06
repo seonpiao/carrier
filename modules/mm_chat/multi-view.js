@@ -1,4 +1,4 @@
-define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/json2", "libs/client/scrollbar/jquery.tinyscrollbar", "models/girlList", "models/userInfo", "models/girls", "models/feedHistory"], function(Base, ICOMET, JSON2, SCROLLBAR, girlList, userInfo, girls, feedHistory) {
+define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/json2", "libs/client/scrollbar/jquery.tinyscrollbar", "models/girlList", "models/icomet", "models/userInfo", "models/girls", "models/feedHistory"], function(Base, ICOMET, JSON2, SCROLLBAR, girlList, icometModel, userInfo, girls, feedHistory) {
   var comet;
   var View = Base.extend({
     moduleName: "chat",
@@ -15,7 +15,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
     },
     init: function() {
       var self = this;
-      self.girlid = this.$el.parent().attr('data-girlid') || window.girlid;
+      self.girlid = this.$el.parent().parent().attr('data-girlid') || window.girlid;
       this.channelid = self.girlid;
       this.contentPoint = 0;
       this.contentList = this.contentList || [];
@@ -48,15 +48,25 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       var $managerChat = $('.managerChat');
       if (!$managerChat.attr('data-listenChannel0')) {
         var signUrl = "http://ic.mm.wanleyun.com/demo/web/php/sign.php";
-        comet = new iComet({
+        comet = new icometModel();
+        this.listenTo(comet, 'sync', function(content) {
+          self.msgCb(content);
+        });
+        comet.fetch({
           channel: 'girl_0',
           signUrl: signUrl,
-          subUrl: this.base.sub_url,
-          pubUrl: this.base.pub_url,
-          callback: function(content) {
-            self.msgCb(content)
-          }
+          subUrl: self.base.sub_url,
+          pubUrl: self.base.pub_url,
         });
+        // comet = new iComet({
+        //   channel: 'girl_0',
+        //   signUrl: signUrl,
+        //   subUrl: this.base.sub_url,
+        //   pubUrl: this.base.pub_url,
+        //   callback: function(content) {
+        //     self.msgCb(content)
+        //   }
+        // });
         $managerChat.attr('data-listenChannel0', '1')
       }
     },
@@ -73,17 +83,28 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       }
       this.channelid = ($target.attr('data-channel') === 'world' ? '0' : this.girlid);
       var self = this;
+      this.$('.overview').html('');
       if (this.channelid != 0) {
-        comet = new iComet({
+        comet = new icometModel();
+        this.listenTo(comet, 'sync', function(e) {
+          self.msgCb(content);
+
+        });
+        comet.fetch({
           channel: 'girl_' + this.channelid,
           signUrl: signUrl,
-          subUrl: this.base.sub_url,
-          pubUrl: this.base.pub_url,
-          callback: function(content) {
-            self.msgCb(content)
-          }
+          subUrl: self.base.sub_url,
+          pubUrl: self.base.pub_url,
         });
-        this.$('.overview').html('');
+        // comet = new iComet({
+        //   channel: 'girl_' + this.channelid,
+        //   signUrl: signUrl,
+        //   subUrl: this.base.sub_url,
+        //   pubUrl: this.base.pub_url,
+        //   callback: function(content) {
+        //     self.msgCb(content)
+        //   }
+        // });
         feedHistory.fetch({
           data: {
             girlid: this.channelid
@@ -171,7 +192,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       setTimeout(el, time);
     },
     insertString: function(tbid, str) {
-      var tb = document.getElementById(tbid);
+      var tb = this.$('#' + tbid)[0];
       tb.focus();
       if (document.all) {
         var r = document.selection.createRange();
@@ -1001,9 +1022,10 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
 
       return strNew;
     },
-    addmsg: function(euid, name, content, is) {
+    addmsg: function(euid, name, content, is, cname) {
       var self = this;
       is = is || false
+      var channelid = cname.split('girl_')[1];
       var l = 'm' + (Math.random() + '').replace('.', '').substr(1, 6);
       try {
         var msg = JSON.parse(content);
@@ -1037,7 +1059,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
         } else {
           this.$("#" + self.msgs[content]).removeClass("sent");
         }
-        if (this.channelid == 0) {
+        if (channelid == 0) {
           var p = $('.managerChat .chat_viewer_tab .on[data-channel="world"]').parent().parent().toArray();
           for (var i = 0, l = p.length; i < l; i++) {
             $(p[i]).find('#chat_box').append(html);
@@ -1082,7 +1104,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
 
         try { //如果是json格式，则加入聊天室信息
           var msg0 = JSON.parse(msg.content);
-          self.addmsg(msg0.uid ? msg0.uid : '', msg0.nickname, msg.content, true);
+          self.addmsg(msg0.uid ? msg0.uid : '', msg0.nickname, msg.content, true, msg.cname);
         } catch (e) {
           self.module('feed', function(feed) {
             if (feed) {
@@ -1118,15 +1140,25 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       if (this.$el.attr('data-sign') != '0') {
         signUrl = self.base.sign_url;
       }
-      comet = new iComet({
+      comet = new icometModel();
+      this.listenTo(comet, 'sync', function(content) {
+        self.msgCb(content);
+      });
+      comet.fetch({
         channel: channel,
         signUrl: signUrl,
         subUrl: self.base.sub_url,
         pubUrl: self.base.pub_url,
-        callback: function(content) {
-          self.msgCb(content)
-        }
       });
+      // comet = new iComet({
+      //   channel: channel,
+      //   signUrl: signUrl,
+      //   subUrl: self.base.sub_url,
+      //   pubUrl: self.base.pub_url,
+      //   callback: function(content) {
+      //     self.msgCb(content)
+      //   }
+      // });
       if (userInfo.get('username')) {
         this.sign();
       }
