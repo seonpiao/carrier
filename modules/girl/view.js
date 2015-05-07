@@ -1,5 +1,5 @@
 define(["libs/client/global", "libs/client/views/base", "models/girl", "models/girlActive", "models/girlActiveInfo", "models/giftBoardForGirl",
-    "libs/client/dialog/dialog-plus", "libs/client/scrollbar/jquery.tinyscrollbar", "libs/client/validate/jquery.validator", "libs/client/tinycarousel/jquery.tinycarousel", "models/userInfo", "models/angelList", "models/userGirl", "models/lovetransfer"
+    "libs/client/dialog/dialog-plus-plus", "libs/client/scrollbar/jquery.tinyscrollbar", "libs/client/validate/jquery.validator", "libs/client/tinycarousel/jquery.tinycarousel", "models/userInfo", "models/angelList", "models/userGirl", "models/lovetransfer"
   ],
   function(GLOBAL, Base, girl, activeList, activeInfo, giftBoard, DIALOG, SCROLLBAR, VALIDATOR, TINYCAROUSEL, userInfo, angelList, userGirl, lovetransfer) {
     var View = Base.extend({
