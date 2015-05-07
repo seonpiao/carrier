@@ -31,7 +31,7 @@
             input#chat_text.chatText(type='text', style='background:transparent')
             span.chat_holder
               | 请输入文字……
-          a#post.btn_chat.fl(href=(query.from == '114la' ? 'http://mm.wanleyun.com/square' : 'javascript:;'),target="_blank")
+          a#post.btn_chat.fl(href=(query && query.from == '114la' ? 'http://mm.wanleyun.com/square' : 'javascript:;'),target="_blank")
             | 发送
           span.errors
           input(type='submit', value='提交', style='width:0;height:0;overflow:hidden;display:block;')

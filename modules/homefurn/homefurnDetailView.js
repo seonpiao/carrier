@@ -15,7 +15,13 @@ define(["libs/client/views/base"], function(Base) {
     },
     show: function(pos) {
       this.$el.show();
-      this.$el.css(pos);
+      var beginPos = {
+        left: pos.left + 50,
+        top: pos.top
+      }
+      createjs.Tween.get(this.$el[0])
+        .set(beginPos, this.$el[0].style)
+        .to(pos, 200, createjs.Ease.bounceOut)
     },
     hide: function() {
       this.$el.hide();

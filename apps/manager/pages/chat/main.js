@@ -1,0 +1,1 @@
+require([ "apps/manager/pages/chat/modules" ], function() {});

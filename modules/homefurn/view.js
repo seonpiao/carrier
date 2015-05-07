@@ -3,7 +3,7 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
     moduleName: "homefurn",
     progressTemplate: 'progress',
     events: {
-      'click [data-homef-tab]': 'switchHomefTab',
+      //'click [data-homef-tab]': 'switchHomefTab',
       'click .raise_homefurn': 'raiseHomefurn'
     },
     init: function() {
@@ -34,8 +34,7 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       this.$carousel = $carousel;
       var carousel = $carousel.tinycarousel({
         step: 5,
-        infinite: false,
-        children: '.homef_show_list li'
+        infinite: false
       });
       this.carousel = carousel.data('plugin_tinycarousel');
       this.carousel.update();
@@ -53,7 +52,7 @@ define(["libs/client/views/base", "models/homefurn", "modules/homefurn/homefurnI
       var templateName = $title.attr('data-template');
       var self = this;
       this.loadTemplate(templateName, function(template) {
-        self.$('.homef_con_right').html(template({}));
+        self.$('.homef_novstyle2').html(template({}));
         homefurn.remove(homefurn.models);
         self.stopListening(homefurn);
         self.renderItems();

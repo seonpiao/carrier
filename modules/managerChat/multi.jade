@@ -1,0 +1,43 @@
+#chat(data-module='mm_chatMulti')
+  .chat_viewer
+    ul.pr.chat_viewer_tab
+      li.on(data-channel='girl')
+        | 房间频道
+      li(data-channel='world')
+        | 世界频道
+    .chat_wiew
+      #recv_chat_window.chat_box.chat_window
+        #chat_box_scrollbar.scrollbars
+          .scrollbar
+            .scroll_up
+            .track
+              .thumb
+                .thumb_end
+            .scroll_down
+          .viewport(sh='180')
+            #chat_box.overview
+      .chat_bottom.cl
+        form.chat_form
+          .chat_emoBtn.fl
+            a#btnlol.emoticon
+            #emoticonDropDown(style='display:none;')
+          span#nickname(style='display:none')
+            | u265570
+          span.chat_text.fl
+            input#chat_text.chatText(type='text', style='background:transparent')
+            span.chat_holder
+              | 请输入文字……
+          a#post.btn_chat.fl(href=(query && query.from == '114la' ? 'http://mm.wanleyun.com/square' : 'javascript:;'),target="_blank")
+            | 发送
+          span.errors
+          input(type='submit', value='提交', style='width:0;height:0;overflow:hidden;display:block;')
+    .chat_wiew.hide
+      #userListScrollbar.scrollbars(data-module='userList')
+        .scrollbar
+          .scroll_up
+          .track
+            .thumb
+              .thumb_end
+          .scroll_down
+        .viewport
+          ul#audienceList.overview.view_box.ml_5

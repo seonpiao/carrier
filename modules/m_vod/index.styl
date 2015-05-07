@@ -4,7 +4,7 @@
     position: relative;
 
   .headline
-    background: #212121 url($bgUrl + 'newproject/projectbanner_1.jpg') no-repeat center top;
+    background: #212121 url($bgUrl + 'newproject/banner_new.jpg') no-repeat center top;
     width: 100%;
     height: 430px;
     margin: 0 auto;
@@ -76,11 +76,11 @@
 
   .headline .content .right_girls
     position: absolute;
-    background: url($bgUrl + 'newproject/lady_img.png') no-repeat center bottom;
-    bottom: 0px;
+    background: url($bgUrl + 'newproject/lady_imgnew.png') no-repeat center bottom;
+    bottom: 49px;
     right: 0;
     height: 100%;
-    width: 498px;
+    width: 540px;
   .project_main
     width: 100%;
     margin: 0 auto;
@@ -102,22 +102,17 @@
     background: url($bgUrl + 'newproject/project_type_titbg.png') no-repeat center center;
     position: relative;
     margin-bottom: 30px;
-  .project_con .video_con_box
-    width:950px;
-    height:390px;
-    overflow:hidden;
+  #ladySays,#ladygamevod
+    width:980px;
+    height:470px;
+    position:relative;
     margin:0 auto;
-    text-align:center;
-  .project_con .video_con
-    width:10000px;
-    height:390px;
-  .project_con .ullist .pagelist,.project_con .video_con .ullist
-    width:950px;
-    height:390px;
-    text-align:center;
-    overflow:hidden;
+    #holder
+      width:950px;
+      overflow:hidden;
+      position:relative;
+      margin-left:15px;
   .project_type dd ul
-    width:950px;
     li
       width: 180px;
       float: left;
@@ -218,25 +213,24 @@
     right: 70px;
     top: 30px;
 
-  .project_con .page_btn
-    margin: 10px auto 0;
-    width: 950px;
-    height:10px;
-    text-align: center;
+  .project_con
+    .page_list
+      height:10px;
+      text-align: center;
+      margin:10px auto 0;
+      position:absolute;
+      height:20px;
+      bottom:0;
 
-  .page_btn .page_list
-    text-align: center;
-    margin: 0 auto;
-    width: 450px;
-
-  .page_list span
+  .page_list a.swShowPage
     width: 10px;
     height: 10px;
     background:url($bgUrl + 'newproject/page_btn.png') no-repeat 0 -11px;
     text-align: center;
-    display: inline-block;
-    margin: 0 5px;
+    float: left;
+    margin:0 5px;
     cursor: pointer;
+    text-indent: -9999px;
 
-  .page_list span:hover,.page_list span.cur
+  .page_list a:hover,.page_list a.active
     background:url($bgUrl + 'newproject/page_btn.png') no-repeat 0 0;
