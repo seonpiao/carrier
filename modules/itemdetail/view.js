@@ -1,4 +1,4 @@
-define(["libs/client/views/base", "libs/client/countup"], function(Base) {
+define(["libs/client/views/base"], function(Base) {
   var View = Base.extend({
     moduleName: "itemdetail",
     template: 'index',
@@ -34,14 +34,14 @@ define(["libs/client/views/base", "libs/client/countup"], function(Base) {
           }), 200, createjs.Ease.backOut)
           .wait(300)
           .call(function() {
-            self.$('.red').data('numbercounter').startCounter();
+            // self.$('.red').data('numbercounter').startCounter();
           });
-        self.$('.red').NumberCounter({
-          onUpdate: function(curVal) {
-            $(this).html(globalUtil.commafy(curVal))
-          }
-        });
-        self.$('.red').html('0');
+        // self.$('.red').NumberCounter({
+        //   onUpdate: function(curVal) {
+        //     $(this).html(globalUtil.commafy(curVal))
+        //   }
+        // });
+        // self.$('.red').html('0');
       })
       this.render();
     },
