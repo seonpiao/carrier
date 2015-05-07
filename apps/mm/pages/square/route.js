@@ -9,6 +9,7 @@ module.exports = function(app, pageName) {
 	app.route('/' + pageName + '$').all(function*(next) {
 		this.result = {};
 		this.global.girlid = 0;
-		this.page = 'vod';
+    this.page = 'square';
+		// this.page = 'vod';
 	});
 }

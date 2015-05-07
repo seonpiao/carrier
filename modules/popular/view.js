@@ -24,6 +24,13 @@ define(["libs/client/views/base", "models/PopularTop", "models/dreamMoneyTop"], 
               top: 10
             }
           });
+        } else if (cur.getAttribute('data-type') == 'TodaypopularTop') {
+          popularTop.fetch({
+            data: {
+              type: 2,
+              top: 10
+            }
+          });
         } else {
           dreamMoneyTop.fetch({
             data: {
