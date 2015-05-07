@@ -3,7 +3,7 @@ define(["libs/client/views/base"], function(Base) {
     moduleName: "itemdetail",
     template: 'index',
     events: {
-      // 'mouseleave': 'hide'
+      'mouseleave': 'hide'
     },
     init: function(options) {
       options = options || {};
