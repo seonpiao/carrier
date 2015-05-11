@@ -22,14 +22,14 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
       var self = this;
       clearTimeout(this._hideChildTimer);
       if (!this.$child) {
-        this.loadTemplate('giftItemChild', function(template) {
+        this.loadTemplate('giftdetailChild', function(template) {
           var html = template(self.model.toJSON());
           if (html) {
             self.$child = $(html);
             self.$child.find('.giftSigel').children('li').on('mouseenter', function() {
               $(this).siblings().removeClass('cur');
-              var sigleitem = $(this).children('div.play_gameitem').html();
-              $(this).parent().siblings('div.giftsigel_item').html(sigleitem);
+              //var sigleitem = $(this).children('div.play_gameitem').html();
+              //$(this).parent().siblings('div.giftsigel_item').html(sigleitem);
               clearTimeout(self._hideChildTimer);
             });
             self.$child.on('mouseleave', function() {
@@ -37,11 +37,17 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
             });
             self.$child.find('.buy_gift').on('click', self.buyGift.bind(self));
             var itemPos = self.$el.offset();
+            // self.$child.css({
+            //   position: 'absolute',
+            //   left: itemPos.left,
+            //   top: itemPos.top - 90
+            // });
             self.$child.css({
               position: 'absolute',
-              left: itemPos.left,
-              top: itemPos.top - 90
+              left: itemPos.left + 80,
+              top: itemPos.top - 196
             });
+
             self.$body.append(self.$child);
           }
         });

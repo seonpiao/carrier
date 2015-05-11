@@ -1,16 +1,19 @@
-define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView","models/userInfo"], function(Base, gift, GiftItemView,userInfo) {
+define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "models/userInfo"], function(Base, gift, GiftItemView, userInfo) {
+  var d;
   var View = Base.extend({
     moduleName: "gift",
     events: {
-      'click [data-gift-tab]': 'switchGiftTab',
+      'click [data-gift-tab]': 'switchGiftTab'
+        //'mouseenter .UserhDetils': 'UserhDetilsD',
+        //'mouseleave .UserhDetils': 'UserhDetilsH'
     },
     init: function() {
       var self = this;
       this.collection = gift;
       this.listenTo(gift, 'sync', this.initCarousel.bind(this));
       this.listenTo(gift, 'add', this.renderItem.bind(this));
-      this.listenTo(userInfo,'change:username',this.render.bind(this));
-      userInfo.cache(function(){
+      this.listenTo(userInfo, 'change:username', this.render.bind(this));
+      userInfo.cache(function() {
         self.render();
       });
     },
@@ -20,14 +23,14 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView","mo
         var data = gift.toJSON();
         self.$el.html(template({
           result: data,
-          userInfo:userInfo.toJSON(),
+          userInfo: userInfo.toJSON(),
           now: gift.now
         }));
         self.renderItems();
       });
     },
     initCarousel: function() {
-      var carousel = this.$('.gift_con_right').tinycarousel({
+      var carousel = this.$('.gift_con_listL').tinycarousel({
         step: 5,
         infinite: false
       });
@@ -57,6 +60,7 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView","mo
         }
       });
       self.$('.gift_show_list').append(view.render().$el);
+      self.UserhDetilsD();
     },
     switchGiftTab: function(e) {
       var $target = $(e.target);
@@ -71,6 +75,37 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView","mo
         reset: true
       });
       this.$('.gift_show_list').html('');
+    },
+    UserhDetilsD: function() {
+      var self = this;
+      var helpnum = $('#helpDetis');
+      this.loadTemplate('critprobability', function(template) {
+        d = dialog({
+          skin: 'dialogBluebgGames gamefresh_dialog',
+          title: ' ',
+          // follow: document.getElementById('helpDetis'),
+          width: 270,
+          height: 180,
+          drag: true
+        });
+        self.setElement(d._popup);
+        if (helpnum) {
+          helpnum.on('mouseenter', function() {
+            var html = template({});
+            d.content(html);
+            d.show();
+          })
+        }
+      })
+    },
+    UserhDetilsH: function() {
+      alert(123)
+      if (d) {
+        this._hideChildTimer = setTimeout(function() {
+          d.hide();
+          d = null;
+        }, 200);
+      }
     }
   });
   return View;

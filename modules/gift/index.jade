@@ -1,6 +1,6 @@
 .send_giftbox.game_listbox_gift
   .gift_con.cl
-    ul.fl.gift_con_tab
+    ul.fl.gift_con_tab.hide
       li.on(data-gift-tab='1')
         | 常用
       li(data-gift-tab='2')
@@ -13,7 +13,8 @@
         | 奢华
       li(data-gift-tab='6')
         | 天使
-    .fl.gift_con_right.shop_item_list
+    //.fl.gift_con_right.shop_item_list
+    .gift_con_listL.cl
       - var chancesRanking = {vip0:0,angel0:0,vip1:1,angel1:2,angel2:3};
       - var chances = [{chance:12.5,title:'普通用户'},{chance:15,title:'<img width="18" src="http://static.mm.wanleyun.com/orig/images/vip.png">'},{chance:20,title:'<img src="http://static.mm.wanleyun.com/orig/images/flying1.png" style="height:15px;">'},{chance:25,title:'<img src="http://static.mm.wanleyun.com/orig/images/flying2.png" style="height:15px;">'}];
       if userInfo.isLogin
@@ -24,6 +25,7 @@
         != chances[userRanking].title
         |&nbsp;，现在的暴击率是&nbsp;
         span.num= chances[userRanking].chance.toFixed(2) + '%'
+        #helpDetis.UserhDetils.helpicon
       a.gift_leftbtn.fl.prev(href='javascript:;')
       .fl.gift_show_con.viewport
         ul.cl.gift_show_list.shop_tab_body.overview

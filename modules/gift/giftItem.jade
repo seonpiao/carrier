@@ -1,6 +1,8 @@
 img(class="giftimg buy_gift" + (children ? " has_child" : ""),data-flash=name,data-id=(children ? children[0].id : id),data-pid=id,data-num="1",src=window.resUrl + 'item/' + id + '/60/1/' + quality)
 if locals['class'] === '7'
   ins
+.c_markbg
+  ins.cmark_1
 - var availableColors = ['gray','q_white','q_green','q_blue','q_purple','q_orange'];
 p(class=availableColors[quality - 1])= name
 p
