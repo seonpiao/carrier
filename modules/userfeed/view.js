@@ -4,11 +4,9 @@ define(["libs/client/views/base"], function(Base) {
 		init: function() {
 			var self = this;
 			self.render();
-
 		},
 		render: function() {
 			var self = this;
-			console.log(344)
 			this.loadTemplate('index', function(template) {
 				var item = template({});
 				console.log(item)
