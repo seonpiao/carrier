@@ -1,4 +1,4 @@
-img(class="giftimg buy_gift" + (children ? " has_child" : ""),data-flash=name,data-id=(children ? children[0].id : id),data-pid=id,data-num="1",src=window.resUrl + 'item/' + id + '/60/1/' + quality)
+img(class="giftimg buy_gift",data-flash=name,data-id=(children ? children[0].id : id),data-pid=id,data-num="1",src=window.resUrl + 'item/' + id + '/60/1/' + quality)
 if locals['class'] === '7'
   ins
 .c_markbg
@@ -15,3 +15,4 @@ p
       - width = 14
     img(src=imgSrc,style="width:" + width + "px;height:12px;")
     = bid
+div.itemdetail(data-module="itemdetail",data-module-itemdetail="gift")

@@ -52,7 +52,7 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
         model: model,
         collection: self.collection,
         giftView: self,
-        el: $('<li data-itemid="' + model.get('id') + '" class="' + (model.get('children') ? 'has_child' : '') + '" data-baidu data-baidu-category="gift" data-baidu-action="buy_item" data-baidu-label="' + model.get('id') + '" data-baidu-value="' + model.get('bid') + '"/>')
+        el: $('<li data-itemid="' + model.get('id') + '" data-baidu data-baidu-category="gift" data-baidu-action="buy_item" data-baidu-label="' + model.get('id') + '" data-baidu-value="' + model.get('bid') + '"/>')
       });
       view.on('afterrender', function() {
         if (self.carousel) {
@@ -88,7 +88,7 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
           height: 180,
           drag: true
         });
-        self.setElement(d._popup);
+        // self.setElement(d._popup);
         if (helpnum) {
           helpnum.on('mouseenter', function() {
             var html = template({});

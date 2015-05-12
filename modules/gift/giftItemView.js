@@ -4,8 +4,10 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
     moduleName: "gift",
     template: 'giftItem',
     events: {
-      'mouseenter': 'showSingleList',
-      'mouseleave': 'hideSingleList',
+      // 'mouseenter': 'showSingleList',
+      // 'mouseleave': 'hideSingleList',
+      'mouseenter': 'showDetail',
+      'mouseleave': 'hideDetail',
       'click .buy_gift': 'buyGift'
     },
     errmsgs: {
@@ -18,51 +20,74 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
       options = options || {};
       this.listenTo(this.model, 'change', this.render.bind(this));
     },
-    showSingleList: function() {
+    showDetail: function() {
       var self = this;
-      clearTimeout(this._hideChildTimer);
-      if (!this.$child) {
-        this.loadTemplate('giftdetailChild', function(template) {
-          var html = template(self.model.toJSON());
-          if (html) {
-            self.$child = $(html);
-            self.$child.find('.giftSigel').children('li').on('mouseenter', function() {
-              $(this).siblings().removeClass('cur');
-              //var sigleitem = $(this).children('div.play_gameitem').html();
-              //$(this).parent().siblings('div.giftsigel_item').html(sigleitem);
-              clearTimeout(self._hideChildTimer);
-            });
-            self.$child.on('mouseleave', function() {
-              self.hideSingleList();
-            });
-            self.$child.find('.buy_gift').on('click', self.buyGift.bind(self));
-            var itemPos = self.$el.offset();
-            // self.$child.css({
-            //   position: 'absolute',
-            //   left: itemPos.left,
-            //   top: itemPos.top - 90
-            // });
-            self.$child.css({
-              position: 'absolute',
-              left: itemPos.left + 80,
-              top: itemPos.top - 196
-            });
-
-            self.$body.append(self.$child);
+      var offset = this.$el.offset();
+      this.module('itemdetail', 'gift', function(itemdetail) {
+        if (itemdetail) {
+          var random = Date.now() % 2;
+          if (random === 1) {
+            itemdetail.setTemplate('gift');
+          } else {
+            itemdetail.setTemplate('index');
           }
-        });
-      }
+          itemdetail.setModel(self.model);
+          itemdetail.show(self.$el);
+        }
+      });
     },
-    hideSingleList: function() {
-      var self = this;
-      clearTimeout(this._hideChildTimer);
-      if (this.$child) {
-        this._hideChildTimer = setTimeout(function() {
-          self.$child.remove();
-          self.$child = null;
-        }, 200);
-      }
+    hideDetail: function() {
+      this.module('itemdetail', 'gift', function(itemdetail) {
+        if (itemdetail) {
+          itemdetail.hide();
+        }
+      });
     },
+    // showSingleList: function() {
+    //   var self = this;
+    //   clearTimeout(this._hideChildTimer);
+    //   if (!this.$child) {
+    //     this.loadTemplate('giftdetailChild', function(template) {
+    //       var html = template(self.model.toJSON());
+    //       if (html) {
+    //         self.$child = $(html);
+    //         self.$child.find('.giftSigel').children('li').on('mouseenter', function() {
+    //           $(this).siblings().removeClass('cur');
+    //           //var sigleitem = $(this).children('div.play_gameitem').html();
+    //           //$(this).parent().siblings('div.giftsigel_item').html(sigleitem);
+    //           clearTimeout(self._hideChildTimer);
+    //         });
+    //         self.$child.on('mouseleave', function() {
+    //           self.hideSingleList();
+    //         });
+    //         self.$child.find('.buy_gift').on('click', self.buyGift.bind(self));
+    //         var itemPos = self.$el.offset();
+    //         // self.$child.css({
+    //         //   position: 'absolute',
+    //         //   left: itemPos.left,
+    //         //   top: itemPos.top - 90
+    //         // });
+    //         self.$child.css({
+    //           position: 'absolute',
+    //           left: itemPos.left + 80,
+    //           top: itemPos.top - 196
+    //         });
+
+    //         self.$body.append(self.$child);
+    //       }
+    //     });
+    //   }
+    // },
+    // hideSingleList: function() {
+    //   var self = this;
+    //   clearTimeout(this._hideChildTimer);
+    //   if (this.$child) {
+    //     this._hideChildTimer = setTimeout(function() {
+    //       self.$child.remove();
+    //       self.$child = null;
+    //     }, 200);
+    //   }
+    // },
     buyGift: function(e) {
       var self = this;
       this.module('sign', function(module) {
