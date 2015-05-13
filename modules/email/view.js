@@ -55,11 +55,12 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
           obj.removeClass('on');
         }
         emailContent.once('sync', function() {
-          var data = emailContent.toJSON()
+          var data = emailContent.toJSON();
           self.loadTemplate('email', function(template) {
             var item = template(data);
             self.d = dialog({
               id: 'email-edialog-on',
+              parent: self.d.id,
               title: ' ',
               content: ' ',
               padding: 0,
@@ -85,7 +86,7 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
             mailid: emailid
           }
         });
-      })
+      });
 
     },
     //全部领取
@@ -122,7 +123,7 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
             }
           }
         });
-      })
+      });
     },
     newemailF: function() {
       newemailflicker.on('sync', function() {
@@ -141,7 +142,7 @@ define(["libs/client/views/base", 'models/email', 'models/emailContent', 'models
       var self = this;
       $('.email-edialog-on #AllClose').click(function(e) {
         self.d.close().remove();
-      })
+      });
     }
   });
   return View;

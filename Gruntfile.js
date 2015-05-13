@@ -79,7 +79,8 @@ module.exports = function(grunt) {
             underscore: "libs/client/underscore",
             backbone: "libs/client/backbone",
             oz: "libs/client/oz",
-            jaderuntime: "libs/client/runtime"
+            jaderuntime: "libs/client/runtime",
+            tween: "libs/client/tween"
           },
           modules: [ {
             name: "apps/i/common"

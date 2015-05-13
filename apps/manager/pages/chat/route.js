@@ -61,8 +61,9 @@ var urlBase = 'http://' + 'account.' + global.WLY_DOMAIN
 var cookieMap = {};
 module.exports = function(app) {
   app.route('/chat').all(function*(next) {
+    this.result = this.result || {};
     this.template = 'chat/index';
-    yield getgirlNameList.call(this);
+    // yield getgirlNameList.call(this);
   });
 
   app.route('/api/userLogin$').all(function*(next) {
