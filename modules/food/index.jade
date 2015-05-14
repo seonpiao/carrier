@@ -1,67 +1,32 @@
 .send_foodbox.game_listbox_food
   dl.give_foodcon.cl
     dt.food_type.fl
-      p.mb_3.yellow_3 豪华款食物
-      img(width="40",height="40",src="http://static.mm.wanleyun.cn/item/1000000531/60/1/6")
+      p.mb_3.yellow_3= result.luxury.foodName
+      img(width="40",height="40",src=window.resUrl + "item/1000000148/60/1/6")
     dd.lady_foodrank.fr
       .nowpopulrank.cl
         span.fl 当前人气前三名：
         ul.now_ladyrank.fl
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights1")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights2")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights3")
-            span.name_color.fl 刘婧怡
+          each girl in result.luxury.sentimentrank
+            li
+              img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
+              span.name_color.fl= girl.name
       .lastpopulrank.cl.mt_10
         span.fl 上场比赛前三名：
         ul.now_ladyrank.fl
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
+          each girl in result.luxury.gameRank
+            li
+              img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
+              span.name_color.fl= girl.name
   dl.give_foodcon.cl
     dt.food_type.fl
-      p.mb_3.white 基本款食物
-      img(width="40",height="40",src="http://static.mm.wanleyun.cn/item/1000000531/60/1/6")
+      p.mb_3.white= result.ordinary.foodName
+      img(width="40",height="40",src=window.resUrl + "item/1000000143/60/1/1")
     dd.lady_foodrank.fr
       .nowpopulrank.cl.rasic_foodrank
         //span.fl 当前人气前三名：
         ul.now_ladyrank.fl
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights1")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights2")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights3")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-          li
-            img(width="20",src="http://static.mm.wanleyun.cn/girl/5/50",class="photobg lights0")
-            span.name_color.fl 刘婧怡
-
-
-
-
-    
+          each girl in result.ordinary.girlRank
+            li
+              img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
+              span.name_color.fl= girl.name
