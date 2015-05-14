@@ -14,5 +14,5 @@ define(["libs/client/models/base"], function(Base) {
       this.xhr = Base.prototype.fetch.call(this, options);
     }
   });
-  return new Model;
+  return Model;
 });
