@@ -1,4 +1,4 @@
-define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dialog-plus', 'libs/client/validate/jquery.validator', 'libs/client/chalUtil', "libs/client/base64", "models/userInfo"], function(Base, userVitality, DIALOG, VALIDATOR, SHALUTIL, base64, userInfo) {
+define(["libs/client/views/base", "models/userVitality", 'libs/client/dialog/dialog-plus-plus', 'libs/client/validate/jquery.validator', 'libs/client/chalUtil', "libs/client/base64", "models/userInfo"], function(Base, userVitality, DIALOG, VALIDATOR, SHALUTIL, base64, userInfo) {
   var View = Base.extend({
     moduleName: "sign",
     template: 'index',
