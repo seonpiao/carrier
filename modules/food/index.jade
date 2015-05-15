@@ -8,16 +8,18 @@
         span.fl 当前人气前三名：
         ul.now_ladyrank.fl
           each girl in result.luxury.sentimentrank
-            li
-              img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
-              span.name_color.fl= girl.name
+            if girl
+              li
+                img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
+                span.name_color.fl= girl.name
       .lastpopulrank.cl.mt_10
         span.fl 上场比赛前三名：
         ul.now_ladyrank.fl
           each girl in result.luxury.gameRank
-            li
-              img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
-              span.name_color.fl= girl.name
+            if girl
+              li
+                img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
+                span.name_color.fl= girl.name
   dl.give_foodcon.cl
     dt.food_type.fl
       p.mb_3.white= result.ordinary.foodName
@@ -27,6 +29,7 @@
         //span.fl 当前人气前三名：
         ul.now_ladyrank.fl
           each girl in result.ordinary.girlRank
-            li
-              img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
-              span.name_color.fl= girl.name
+            if girl
+              li
+                img(width="20",src=window.resUrl + "girl/" + girl.girlid + "/50",class="photobg lights2")
+                span.name_color.fl= girl.name
