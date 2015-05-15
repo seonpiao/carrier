@@ -51,10 +51,7 @@ define(["libs/client/views/base"], function(Base) {
       this.module('itemdetail', 'homefurn', function(itemdetail) {
         if (itemdetail) {
           itemdetail.setModel(self.model);
-          itemdetail.show({
-            top: offset.top - 40,
-            left: offset.left + self.$el.width() + 10
-          });
+          itemdetail.show(self.$el);
         }
       });
     },

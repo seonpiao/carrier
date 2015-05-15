@@ -1,14 +1,19 @@
-define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], function(Base, gift, GiftItemView) {
+define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "models/userInfo"], function(Base, gift, GiftItemView, userInfo) {
+  var d;
   var View = Base.extend({
     moduleName: "gift",
     events: {
-      'click [data-gift-tab]': 'switchGiftTab',
+      'click [data-gift-tab]': 'switchGiftTab'
     },
     init: function() {
-      this.render();
+      var self = this;
       this.collection = gift;
-      this.listenTo(gift, 'sync', this.initCarousel.bind(this));
+      this.listenToOnce(gift, 'sync', this.initCarousel.bind(this));
       this.listenTo(gift, 'add', this.renderItem.bind(this));
+      this.listenTo(userInfo, 'change:username', this.render.bind(this));
+      userInfo.cache(function() {
+        self.render();
+      });
     },
     render: function() {
       var self = this;
@@ -16,13 +21,23 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], f
         var data = gift.toJSON();
         self.$el.html(template({
           result: data,
+          userInfo: userInfo.toJSON(),
           now: gift.now
         }));
         self.renderItems();
+        var helpnum = $('#helpDetis');
+        if (helpnum) {
+          helpnum.on('mouseenter', function() {
+            self.showUserhDetilsD();
+          });
+          helpnum.on('mouseleave', function() {
+            clearTimeout(self._detailTimer);
+          });
+        }
       });
     },
     initCarousel: function() {
-      var carousel = this.$('.gift_con_right').tinycarousel({
+      var carousel = this.$('.gift_con_listL').tinycarousel({
         step: 5,
         infinite: false
       });
@@ -34,7 +49,6 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], f
       var params = {
         data: {}
       };
-      params.data['class'] = '1';
       gift.remove(gift.models);
       gift.fetch(params);
     },
@@ -44,7 +58,7 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], f
         model: model,
         collection: self.collection,
         giftView: self,
-        el: $('<li data-itemid="' + model.get('id') + '" class="' + (model.get('children') ? 'has_child' : '') + '" data-baidu data-baidu-category="gift" data-baidu-action="buy_item" data-baidu-label="' + model.get('id') + '" data-baidu-value="' + model.get('bid') + '"/>')
+        el: $('<li data-itemid="' + model.get('id') + '" data-baidu data-baidu-category="gift" data-baidu-action="buy_item" data-baidu-label="' + model.get('id') + '" data-baidu-value="' + model.get('bid') + '"/>')
       });
       view.on('afterrender', function() {
         if (self.carousel) {
@@ -66,6 +80,34 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView"], f
         reset: true
       });
       this.$('.gift_show_list').html('');
+    },
+    showUserhDetilsD: function() {
+      var self = this;
+      if (!d) {
+        this._detailTimer = setTimeout(function() {
+          if (d) {
+            d.close();
+          }
+          self.loadTemplate('critprobability', function(template) {
+            d = dialog({
+              skin: 'dialogBluebgGames gamefresh_dialog',
+              title: ' ',
+              // follow: document.getElementById('helpDetis'),
+              width: 270,
+              height: 180,
+              drag: true,
+              onclose: function() {
+                d.remove();
+                d = null;
+              }
+            });
+            var html = template({});
+            d.content(html);
+            d.show();
+            d._popup.find('.btn_2b').on('click', d.close.bind(d));
+          });
+        }, 500);
+      }
     }
   });
   return View;
