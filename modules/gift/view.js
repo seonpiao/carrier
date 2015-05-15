@@ -10,7 +10,6 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
       this.collection = gift;
       this.listenToOnce(gift, 'sync', this.initCarousel.bind(this));
       this.listenTo(gift, 'add', this.renderItem.bind(this));
-      this.listenTo(userInfo, 'change:username', this.render.bind(this));
       userInfo.cache(function() {
         self.render();
       });
