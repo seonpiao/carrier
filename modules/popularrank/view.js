@@ -47,7 +47,9 @@ define(["libs/client/views/base", "models/userInfo", "models/girlList", "libs/cl
           }
         }
         $('.totalpopul_list').html(html);
-        $('#popular-scrollbar').tinyscrollbar({});
+        $('#popular-scrollbar').tinyscrollbar({
+          trackSize: 80
+        });
       } else {
         $('.totalpopul_list').html('暂时还没有人气贡献哦！');
       }
