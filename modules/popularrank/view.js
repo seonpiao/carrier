@@ -1,9 +1,13 @@
-define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", "models/popRank"], function(Base, SCROLLBAR, popRank) {
+define(["libs/client/views/base", "models/userInfo", "models/girlList", "libs/client/scrollbar/jquery.tinyscrollbar", "models/popRank"], function(Base, userInfo, girlList, SCROLLBAR, popRank) {
   var View = Base.extend({
     moduleName: "popularrank",
     init: function() {
       var self = this;
-      self.render();
+      this.listenTo(userInfo, 'change:username', function() {
+        if (window.talkname == userInfo.toJSON().username) {
+          self.render();
+        }
+      });
     },
     render: function() {
       var self = this;
@@ -36,7 +40,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
       if (ranks) {
         var html = '';
         for (var i = 0, l = ranks.length; i < l; i++) {
-          if (i == l-1) {
+          if (i == l - 1) {
             html += '<span>' + ranks[i].username + '</span>';
           } else {
             html += '<span>' + ranks[i].username + '，</span>';
@@ -56,7 +60,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
       if (ranks) {
         var html = '';
         for (var i = 0, l = ranks.length; i < l; i++) {
-          if (i == l-1) {
+          if (i == l - 1) {
             html += '<span class="crown_' + (i + 1) + '">' + ranks[i].username + '</span>';
           } else {
             html += '<span class="crown_' + (i + 1) + '">' + ranks[i].username + '，</span>';
