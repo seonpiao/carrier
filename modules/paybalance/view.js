@@ -1,23 +1,13 @@
-define(["libs/client/views/base", "models/userInfo", "models/girlList", "models/girlIncome"], function(Base, userInfo, girlList, girlIncome) {
+define(["libs/client/views/base", "models/userInfo", "models/girlIncome"], function(Base, userInfo, girlIncome) {
   var View = Base.extend({
     moduleName: "paybalance",
     init: function() {
       var self = this;
       this.listenTo(userInfo, 'change:username', function() {
-        girlList.cache(null, function() {
-          var girls = girlList.toJSON();
-          var username = userInfo.toJSON().username;
-          var girlFlag;
-          for (var i = 0, l = girls.length; i < l; i++) {
-            if (username == girls[i].name) {
-              girlFlag = true;
-            }
-          }
-          if (girlFlag) {
-            self.listenTo(girlIncome, 'change', self.render.bind(self));
-            girlIncome.fetch();
-          }
-        });
+        if (window.talkname != userInfo.toJSON().username) {
+          self.listenTo(girlIncome, 'change', self.render.bind(self));
+          girlIncome.fetch();
+        }
       });
     },
     render: function() {
