@@ -4,13 +4,11 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
     moduleName: "gift",
     events: {
       'click [data-gift-tab]': 'switchGiftTab'
-        //'mouseenter .UserhDetils': 'UserhDetilsD',
-        //'mouseleave .UserhDetils': 'UserhDetilsH'
     },
     init: function() {
       var self = this;
       this.collection = gift;
-      this.listenTo(gift, 'sync', this.initCarousel.bind(this));
+      this.listenToOnce(gift, 'sync', this.initCarousel.bind(this));
       this.listenTo(gift, 'add', this.renderItem.bind(this));
       this.listenTo(userInfo, 'change:username', this.render.bind(this));
       userInfo.cache(function() {
@@ -27,6 +25,15 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
           now: gift.now
         }));
         self.renderItems();
+        var helpnum = $('#helpDetis');
+        if (helpnum) {
+          helpnum.on('mouseenter', function() {
+            self.showUserhDetilsD();
+          });
+          helpnum.on('mouseleave', function() {
+            clearTimeout(self._detailTimer);
+          });
+        }
       });
     },
     initCarousel: function() {
@@ -42,7 +49,6 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
       var params = {
         data: {}
       };
-      params.data['class'] = '1';
       gift.remove(gift.models);
       gift.fetch(params);
     },
@@ -60,7 +66,6 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
         }
       });
       self.$('.gift_show_list').append(view.render().$el);
-      self.UserhDetilsD();
     },
     switchGiftTab: function(e) {
       var $target = $(e.target);
@@ -76,35 +81,32 @@ define(["libs/client/views/base", "models/gift", "modules/gift/giftItemView", "m
       });
       this.$('.gift_show_list').html('');
     },
-    UserhDetilsD: function() {
+    showUserhDetilsD: function() {
       var self = this;
-      var helpnum = $('#helpDetis');
-      this.loadTemplate('critprobability', function(template) {
-        d = dialog({
-          skin: 'dialogBluebgGames gamefresh_dialog',
-          title: ' ',
-          // follow: document.getElementById('helpDetis'),
-          width: 270,
-          height: 180,
-          drag: true
-        });
-        // self.setElement(d._popup);
-        if (helpnum) {
-          helpnum.on('mouseenter', function() {
+      if (!d) {
+        this._detailTimer = setTimeout(function() {
+          if (d) {
+            d.close();
+          }
+          self.loadTemplate('critprobability', function(template) {
+            d = dialog({
+              skin: 'dialogBluebgGames gamefresh_dialog',
+              title: ' ',
+              // follow: document.getElementById('helpDetis'),
+              width: 270,
+              height: 180,
+              drag: true,
+              onclose: function() {
+                d.remove();
+                d = null;
+              }
+            });
             var html = template({});
             d.content(html);
             d.show();
-          })
-        }
-      })
-    },
-    UserhDetilsH: function() {
-      alert(123)
-      if (d) {
-        this._hideChildTimer = setTimeout(function() {
-          d.hide();
-          d = null;
-        }, 200);
+            d._popup.find('.btn_2b').on('click', d.close.bind(d));
+          });
+        }, 500);
       }
     }
   });

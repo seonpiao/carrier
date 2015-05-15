@@ -1,8 +1,16 @@
 img(class="giftimg buy_gift",data-flash=name,data-id=(children ? children[0].id : id),data-pid=id,data-num="1",src=window.resUrl + 'item/' + id + '/60/1/' + quality)
+- var cmark;
 if locals['class'] === '7'
-  ins
-.c_markbg
-  ins.cmark_1
+  - cmark = 4
+if suhocond == 1
+  - cmark = 1
+if suhocond > 1
+  - cmark = 2
+if event == '101'
+  - cmark = 3
+if cmark
+  .c_markbg
+    ins(class="cmark_" + cmark)
 - var availableColors = ['gray','q_white','q_green','q_blue','q_purple','q_orange'];
 p(class=availableColors[quality - 1])= name
 p

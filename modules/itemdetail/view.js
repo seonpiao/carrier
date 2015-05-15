@@ -14,6 +14,7 @@ define(["libs/client/views/base"], function(Base) {
       this.$el.appendTo(this.$body);
     },
     setModel: function() {
+      this.stopListening(this.model, 'change');
       Base.prototype.setModel.apply(this, arguments);
       this.listenTo(this.model, 'change', this.render.bind(this));
     },

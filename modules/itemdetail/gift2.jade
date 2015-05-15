@@ -20,9 +20,8 @@
       .description_wd.white= description
       .white.mt_20 已送/活动达成总数
       .draw_money_number
-        //div(class=(bidtype === '1' ? 'yellow_gold' : 'blue_drill'))
         div.cl
           span.red= globalUtil.commafy(curfunds || 0) + '/'
           span.orange= globalUtil.commafy(targetfunds || price)
       .border_topline.cl
-      .gray ※再送888,888,888个女神会获得一束玫瑰
+      .gray= '※再送' + globalUtil.commafy((targetfunds || price) - (curfunds||0)) + '个女神会获得一个真实的' + name
