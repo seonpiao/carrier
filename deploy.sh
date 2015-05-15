@@ -82,8 +82,13 @@ if [ "$env" = "test" ]; then
 fi
 # if [ "$env" = "production" ]; then
 #   choice="n"
-read -p "Deploy branch(${branch}) to ${hosts[*]}: (y/n)" choice
 # fi
+if [ "$env" = "production" ]; then
+  read -p "Deploy branch(${branch}) to ${hosts[*]}: (y/n)" choice
+else
+  echo "Deploy branch(${branch}) to ${hosts[*]}"
+  choice="y"
+fi
 
 if [ "$choice" = "y" ]; then
 
