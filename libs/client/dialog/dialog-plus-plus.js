@@ -3,9 +3,8 @@
  * coexist: true or false, default = false, true 表示共存，不会关掉其他的 dialog
  * parent: 指定 parent 的 id
  */
-define(function(require) {
+define(['libs/client/dialog/dialog-plus'], function() {
 
-  require('./dialog-plus');
   var dialog = window.dialog;
   var baseCreate = dialog.oncreate;
 
