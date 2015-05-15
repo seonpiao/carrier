@@ -10,7 +10,7 @@
       ul.popularity_rankgin_pk.pr.cl
         for item,index in result
           if index < 3
-            if item.is_out ==0
+            if item.is_out != 1
               a(href="/room/" + item.girlid)
                 li(class="user_photo_" + (index+1))
                   div(class="pk_user_photpbg" + (index+1))
@@ -24,7 +24,7 @@
       ol.cl.popularity_square_rank
         for item,index in result
           if index > 2
-            if item.is_out ==0
+            if item.is_out != 1
               li
                 a(href="/room/" + item.girlid)
                   .fl

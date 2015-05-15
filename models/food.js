@@ -1,26 +1,13 @@
-define(["libs/client/collections/base", "models/girlItem"], function(Base, Model) {
-  var Collections = Base.extend({
+define(["libs/client/models/base"], function(Base) {
+  var Model = Base.extend({
     module: 'now',
-    model: Model,
-    action: 'getNowGirlItemList',
+    action: 'getNowFoodList',
     parse: function(resp) {
       if (resp.success == 200) {
-        this.now = resp.now;
         return resp.result;
       }
-      return [];
-    },
-    fetch: function(options) {
-      options = options || {};
-      options.data = {
-        girlid: window.girlid,
-        type: '2'
-      };
-      if (this.xhr) {
-        this.xhr.abort();
-      }
-      this.xhr = Base.prototype.fetch.call(this, options);
+      return {};
     }
   });
-  return new Collections;
+  return new Model;
 });

@@ -12,9 +12,9 @@ define(["libs/client/global", "libs/client/views/base", "models/girl", "models/g
         'click #ladyPhoto': 'showLadyStatus', //女神详细
         'click #ladyName': 'showLadyStatus', //女神详细
         // 'click .followInfo a.diary': 'showGirlDiaries', // 日记薄浮层
-        'click #emotionsDetail': 'showHappyDetail', //幸福度弹窗
-        'mouseenter #emotionsDetail': 'showHappyMsg', //幸福度说明浮层
-        'mouseleave #emotionsDetail': 'hideHandleMsg', //隐藏说明浮层
+        // 'click #emotionsDetail': 'showHappyDetail', //幸福度弹窗
+      // 'mouseenter #emotionsDetail': 'showHappyMsg', //幸福度说明浮层
+      // 'mouseleave #emotionsDetail': 'hideHandleMsg', //隐藏说明浮层
         'click .currentPercent ': 'showCurrentData', //显示升级状态
         'mouseover #followBtn': 'showFollow',
         'mouseover .diary': 'showDiaryTips',

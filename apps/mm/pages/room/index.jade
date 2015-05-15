@@ -4,7 +4,7 @@ block append title
   title= girl.name + '的房间-女神的房间-玩乐云'
 
 block append stylesheet
-  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/room.3cc4961eb4dc5675.css', rel='stylesheet', type='text/css')
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/room.6cdf163ec46641da.css', rel='stylesheet', type='text/css')
   style(type='text/css').
     .paoMsg div {
       position: absolute;
@@ -62,6 +62,7 @@ block append headjs
   script(type='text/javascript')
     != 'var girlid = ' + girl.girlid + ';'
     != 'var girlname = "' + girl.name + '";'
+    != 'var talkname = "' + girl.talkname + '";'
 block append bg
   include ../../../../modules/mm_roombg/index
 
@@ -77,6 +78,7 @@ block append body
     .leftsec
       #girl.myLady(data-module='girl', girlid='1')
       .angel-list(data-module='angelList')
+      .popularrank(data-module='popularrank')
       include ../../../../modules/mm_chat/index
     .midsec
       #player
@@ -204,5 +206,5 @@ block append body
   include ../../../../modules/mm_footer/index
 
 block append footjs
-  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/room.min.56be3777fa434997.js')
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/room.min.217f34c0661e2d82.js')
   include ../../../../modules/mm_feedback/index
