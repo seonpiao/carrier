@@ -25,7 +25,7 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
       var offset = this.$el.offset();
       this.module('itemdetail', 'gift', function(itemdetail) {
         if (itemdetail) {
-          if (self.model.get('class') == '7' || self.model.get('event') == '101') {
+          if (self.model.get('event') == '101') {
             itemdetail.setTemplate('gift2');
           } else {
             itemdetail.setTemplate('gift1');
