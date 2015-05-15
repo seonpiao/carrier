@@ -4,7 +4,7 @@ define(["libs/client/views/base", "models/userInfo", "models/girlIncome"], funct
     init: function() {
       var self = this;
       this.listenTo(userInfo, 'change:username', function() {
-        if (window.talkname != userInfo.toJSON().username) {
+        if (window.talkname == userInfo.toJSON().username) {
           self.listenTo(girlIncome, 'change', self.render.bind(self));
           girlIncome.fetch();
         }
