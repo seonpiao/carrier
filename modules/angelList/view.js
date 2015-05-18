@@ -29,7 +29,8 @@ define(["libs/client/views/base", "models/angelList", "models/userInfo"], functi
       this.hideFullnameTip();
       this.d = dialog({
         skin: 'tipGames',
-        content: $(target).attr('data-name')
+        content: $(target).attr('data-name'),
+        coexist: true
       });
       this.d.show(target);
       var self = this;
