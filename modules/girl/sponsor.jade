@@ -10,7 +10,7 @@ for item, index in result
         .itemInfo
           span(class='itemlevel' + item.quality)= item.name
       .itemList
-        if item.title !== false
+        if index !== 'seaHeart'
           .itemListT
             img(src= resUrl + 'orig/images/'+index+'.png')
         ul.itemListC
