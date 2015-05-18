@@ -1,14 +1,18 @@
-define(["libs/client/collections/base", "models/girlItem"], function(Base, Model) {
+define(["libs/client/collections/base", "models/giftItem"], function(Base, Model) {
   var Collections = Base.extend({
     module: 'now',
     model: Model,
     action: 'getNowGirlItemList',
     parse: function(resp) {
+      var items = [];
       if (resp.success == 200) {
         this.now = resp.now;
-        return resp.result[0].items;
+        _.forEach(resp.result, function(item) {
+          items = items.concat(item.items);
+        });
+        return items;
       }
-      return [];
+      return items;
     },
     fetch: function(options) {
       options = options || {};

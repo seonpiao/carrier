@@ -4,8 +4,10 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
     moduleName: "gift",
     template: 'giftItem',
     events: {
-      'mouseenter': 'showSingleList',
-      'mouseleave': 'hideSingleList',
+      // 'mouseenter': 'showSingleList',
+      // 'mouseleave': 'hideSingleList',
+      'mouseenter': 'showDetail',
+      'mouseleave': 'hideDetail',
       'click .buy_gift': 'buyGift'
     },
     errmsgs: {
@@ -16,47 +18,75 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
     },
     init: function(options) {
       options = options || {};
-      this.listenTo(this.model, 'change', this.render.bind(this));
+      // this.listenTo(this.model, 'change', this.render.bind(this));
     },
-    showSingleList: function() {
+    showDetail: function() {
       var self = this;
-      clearTimeout(this._hideChildTimer);
-      if (!this.$child) {
-        this.loadTemplate('giftItemChild', function(template) {
-          var html = template(self.model.toJSON());
-          if (html) {
-            self.$child = $(html);
-            self.$child.find('.giftSigel').children('li').on('mouseenter', function() {
-              $(this).siblings().removeClass('cur');
-              var sigleitem = $(this).children('div.play_gameitem').html();
-              $(this).parent().siblings('div.giftsigel_item').html(sigleitem);
-              clearTimeout(self._hideChildTimer);
-            });
-            self.$child.on('mouseleave', function() {
-              self.hideSingleList();
-            });
-            self.$child.find('.buy_gift').on('click', self.buyGift.bind(self));
-            var itemPos = self.$el.offset();
-            self.$child.css({
-              position: 'absolute',
-              left: itemPos.left,
-              top: itemPos.top - 90
-            });
-            self.$body.append(self.$child);
+      var offset = this.$el.offset();
+      this.module('itemdetail', 'gift', function(itemdetail) {
+        if (itemdetail) {
+          if (self.model.get('event') == '101') {
+            itemdetail.setTemplate('gift2');
+          } else {
+            itemdetail.setTemplate('gift1');
           }
-        });
-      }
+          itemdetail.setModel(self.model);
+          itemdetail.show(self.$el);
+        }
+      });
     },
-    hideSingleList: function() {
-      var self = this;
-      clearTimeout(this._hideChildTimer);
-      if (this.$child) {
-        this._hideChildTimer = setTimeout(function() {
-          self.$child.remove();
-          self.$child = null;
-        }, 200);
-      }
+    hideDetail: function() {
+      this.module('itemdetail', 'gift', function(itemdetail) {
+        if (itemdetail) {
+          itemdetail.hide();
+        }
+      });
     },
+    // showSingleList: function() {
+    //   var self = this;
+    //   clearTimeout(this._hideChildTimer);
+    //   if (!this.$child) {
+    //     this.loadTemplate('giftdetailChild', function(template) {
+    //       var html = template(self.model.toJSON());
+    //       if (html) {
+    //         self.$child = $(html);
+    //         self.$child.find('.giftSigel').children('li').on('mouseenter', function() {
+    //           $(this).siblings().removeClass('cur');
+    //           //var sigleitem = $(this).children('div.play_gameitem').html();
+    //           //$(this).parent().siblings('div.giftsigel_item').html(sigleitem);
+    //           clearTimeout(self._hideChildTimer);
+    //         });
+    //         self.$child.on('mouseleave', function() {
+    //           self.hideSingleList();
+    //         });
+    //         self.$child.find('.buy_gift').on('click', self.buyGift.bind(self));
+    //         var itemPos = self.$el.offset();
+    //         // self.$child.css({
+    //         //   position: 'absolute',
+    //         //   left: itemPos.left,
+    //         //   top: itemPos.top - 90
+    //         // });
+    //         self.$child.css({
+    //           position: 'absolute',
+    //           left: itemPos.left + 80,
+    //           top: itemPos.top - 196
+    //         });
+
+    //         self.$body.append(self.$child);
+    //       }
+    //     });
+    //   }
+    // },
+    // hideSingleList: function() {
+    //   var self = this;
+    //   clearTimeout(this._hideChildTimer);
+    //   if (this.$child) {
+    //     this._hideChildTimer = setTimeout(function() {
+    //       self.$child.remove();
+    //       self.$child = null;
+    //     }, 200);
+    //   }
+    // },
     buyGift: function(e) {
       var self = this;
       this.module('sign', function(module) {
@@ -140,6 +170,27 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
         } else {
           self.showSuccess(model);
         }
+
+        //实物集资达成
+        var raisesuc = model.get('result').raisesuc;
+        if (raisesuc) {
+          this.module('errmsg', function(errmsg) {
+            if (errmsg) {
+              if (self.model.get('event') == '101') {
+                errmsg.show(self.model.get('name') + '已集齐，' + window.girlname + '可获得一个真实的' + self.model.get('name') + '，请不要离开屏幕，我们会尽快将您的礼物送到女神身边', {
+                  time: 5000
+                });
+              } else {
+                errmsg.show(self.model.get('name') + '已购买成功，' + window.girlname + '可获得一个真实的' + self.model.get('name') + '，请不要离开屏幕，我们会尽快将您的礼物送到女神身边', {
+                  time: 5000
+                });
+              }
+            }
+          });
+        }
+
+        // this.model.set('curfunds', this.model.get('curfunds') * 1 + 1);
+        this.model.fetch();
       }
     },
     showSuccess: function(model) {

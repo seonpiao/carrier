@@ -1,29 +1,31 @@
 for item, index in result
-  .otherItem
-    .item
-      .itemPic
-        if index == 'cloth'
-          img(src= resUrl + 'item/' + item.id + '/76')
-        else 
-          img(src= resUrl + 'item/' + item.id + '/90')
-      .itemInfo
-        span(class='itemlevel' + item.quality)= item.name
-    .itemList
-      .itemListT
-        img(src= resUrl + 'orig/images/'+index+'.png')
-      ul.itemListC
-        if item.patronslist
-          for rank,j in item.patronslist
-            - j = j.substring(4, j.length);
-            li(class='line' + j)
-              a(class= (j<4?'yText':'wText'), href='javascript:;', title= rank.username || rank.usrnick)
-                i
-                span.usrIcons
-                  if rank.usrangel && rank.usrangel != '0'
-                    img(src=resUrl + 'orig/images/flying' + rank.usrangel + '.png')
-                  if rank.usrvip && rank.usrvip == '1'
-                    img(width='18px',src=resUrl + 'orig/images/vip.png')
-                span.usrnick= (rank.usrnick || rank.username)
-        if !item.myrank
-          li(style='text-align:center;')
-            span.redText(style='float:none;') 您今日尚未参与集资
+  if item.patronslist
+    .otherItem
+      .item
+        .itemPic
+          if index == 'cloth'
+            img(src= resUrl + 'item/' + item.id + '/76')
+          else 
+            img(src= resUrl + 'item/' + item.id + '/90')
+        .itemInfo
+          span(class='itemlevel' + item.quality)= item.name
+      .itemList
+        if item.title !== false
+          .itemListT
+            img(src= resUrl + 'orig/images/'+index+'.png')
+        ul.itemListC
+          if item.patronslist
+            for rank,j in item.patronslist
+              - j = j.substring(4, j.length);
+              li(class='line' + j)
+                a(class= (j<4?'yText':'wText'), href='javascript:;', title= rank.usrnick)
+                  i
+                  span.usrIcons
+                    if rank.usrangel && rank.usrangel != '0'
+                      img(src=resUrl + 'orig/images/flying' + rank.usrangel + '.png')
+                    if rank.usrvip && rank.usrvip == '1'
+                      img(width='18px',src=resUrl + 'orig/images/vip.png')
+                  span.usrnick= (rank.usrnick)
+          if item.myrank == 0
+            li(style='text-align:center;')
+              span.redText(style='float:none;') 您今日尚未参与集资

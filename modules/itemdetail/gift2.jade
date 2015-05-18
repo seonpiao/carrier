@@ -1,0 +1,31 @@
+.sgift_detialbox.cl.dialogBluebgGames
+  - var availableColors = ['gray','white','q_green','q_blue','q_purple','q_orange'];
+  - var availableColorNames = ['灰色','白色','绿色','蓝色','紫色','橙色'];
+  - var titleColor = availableColors[quality - 1];
+  - var nextColor = availableColors[toquality - 1];
+  - var nextColorName = availableColorNames[toquality - 1];
+  - bid = dbid || bid || 10
+  .arrow_icon.cl
+  .sgift_detialcon.cl
+    p(class=titleColor)= name
+    .sgift_boxcon.pr.mt_5
+      .close_introduce.cl
+        .sgift_img.fl
+          img(src=window.resUrl + 'item/' + itemid + '/76/1/' + quality)
+        .fl.mt_15.ml_10
+          if lovebuf && lovebuf !== '0'
+            p.green= '亲密度：' + lovebuf
+          if popbuf && popbuf !== '0'
+            p.green= '人气值：' + popbuf
+      .description_wd.white= description
+      .sgift_numline.cl
+        .white.fl.mt_20 已送/活动达成总数
+        div.fr
+          span.red= globalUtil.commafy(curfunds || 0)
+          span.orange= '/' + globalUtil.commafy(targetfunds || price)
+      //.draw_money_number
+        //div.cl
+          //span.red= globalUtil.commafy(curfunds || 0) + '/'
+          //span.orange= globalUtil.commafy(targetfunds || price)
+      .border_topline.cl
+      .gray= '※再送' + globalUtil.commafy((targetfunds || price) - (curfunds||0)) + '个女神会获得一个真实的' + name

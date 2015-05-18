@@ -7,7 +7,7 @@ block append meta
   meta(property='wb:webmaster', content='47dec89457353ad1')
 
 block append stylesheet
-  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/square.e8897c7ea6cc3eee.css', rel='stylesheet', type='text/css')
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/square.f73faed9fbed87f0.css', rel='stylesheet', type='text/css')
   style(type='text/css').
     #timeline {
       width: 300px;
@@ -99,6 +99,7 @@ block append body
           span
         ul.ranking_type_list.cl
           li.on(data-type='popularTop') 人 气 榜
+          li.ml_5(data-type='TodaypopularTop') 今日人气榜
           li.ml_5(data-type='dreamMoneyTop') 梦想基金榜
         .ranking_pk_main.cl
       include ../../../../modules/mm_chat/index
@@ -197,5 +198,5 @@ block append body
   include ../../../../modules/mm_footer/index
 
 block append footjs
-  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/square.min.c481ebfa56342e02.js')
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/square.min.5201b4a36b998a68.js')
   include ../../../../modules/mm_feedback/index
