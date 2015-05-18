@@ -428,6 +428,8 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
 
         var strTime = strArr[3] ? strArr[3].substring(11, 16) : '00:00';
         strNew = strNew.replace('<mc>', '<span class="mcname">').replace('</mc>', '</span>');
+        strNew = strNew.replace('<angeltxt1>', '<img src="' + window.resUrl + 'orig/images/flying1.png" style="height:15px;"><span class="grayText2">').replace('</angeltxt1>', '</span>');
+        strNew = strNew.replace('<angeltxt2>', '<img src="' + window.resUrl + 'orig/images/flying2.png" style="height:15px;"><span class="goldText">').replace('</angeltxt2>', '</span>');
         strNew = strNew.replace('<re>', '<span class="rename">').replace('</re>', '</span>'); //成就名称
         strNew = strNew.replace('<t>', '<span class="taskname">').replace('</t>', '</span>'); //任务名称
         strNew = strNew.replace('<vip>', '<img width="18" src="' + window.resUrl + 'orig/images/vip.png">') //显示vip
@@ -575,7 +577,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
           }
         }
       }
-      if (position && ((position.substring(2, 3) == 1) || (isScreen == 2 || isScreen == 5)) && strNew) {
+      if (position && ((position.substring(2, 3) == 1) || (isScreen == 2 || isScreen == 5) || (position.substring(0, 1) == 2)) && strNew) {
         return '<li><em>' + strTime + '</em>' + strNew + '</li>';
       } else {
         return '';
