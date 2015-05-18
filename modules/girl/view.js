@@ -328,7 +328,6 @@ define(["libs/client/global", "libs/client/views/base", "models/girl", "models/g
                         id: '1000000436',
                         name: '海洋之心',
                         quality: '6',
-                        title: false,
                         patronslist: rankList
                       }
                       self.showGirlNow(self.girlNow, self.seaHeart);
