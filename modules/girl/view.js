@@ -13,8 +13,8 @@ define(["libs/client/global", "libs/client/views/base", "models/girl", "models/g
         'click #ladyName': 'showLadyStatus', //女神详细
         // 'click .followInfo a.diary': 'showGirlDiaries', // 日记薄浮层
         // 'click #emotionsDetail': 'showHappyDetail', //幸福度弹窗
-      // 'mouseenter #emotionsDetail': 'showHappyMsg', //幸福度说明浮层
-      // 'mouseleave #emotionsDetail': 'hideHandleMsg', //隐藏说明浮层
+        // 'mouseenter #emotionsDetail': 'showHappyMsg', //幸福度说明浮层
+        // 'mouseleave #emotionsDetail': 'hideHandleMsg', //隐藏说明浮层
         'click .currentPercent ': 'showCurrentData', //显示升级状态
         'mouseover #followBtn': 'showFollow',
         'mouseover .diary': 'showDiaryTips',
@@ -308,7 +308,33 @@ define(["libs/client/global", "libs/client/views/base", "models/girl", "models/g
             success: function(data) {
               if (data.success == 200 && data.result) {
                 self.girlNow = data.result;
-                self.showGirlNow(self.girlNow);
+                $.ajax({
+                  url: apiUrl + 'item/getSeaHeartList',
+                  data: {
+                    girlid: girlid
+                  },
+                  cache: false,
+                  dataType: 'jsonp',
+                  jsonp: 'jsonpCallback',
+                  success: function(data) {
+                    if (data.success == 200 && data.result) {
+                      var rankList = {};
+                      _.forEach(data.result, function(player, i) {
+                        rankList['rank' + (i + 1)] = {
+                          'usrnick': player.name
+                        }
+                      });
+                      self.girlNow.seaHeart = {
+                        id: '1000000436',
+                        name: '海洋之心',
+                        quality: '6',
+                        title: false,
+                        patronslist: rankList
+                      }
+                      self.showGirlNow(self.girlNow, self.seaHeart);
+                    }
+                  }
+                });
               }
             }
           });
