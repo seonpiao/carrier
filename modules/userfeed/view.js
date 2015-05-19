@@ -15,17 +15,18 @@ define(["libs/client/views/base", "models/userInfo", "models/userNews"], functio
     },
     render: function(data) {
       var self = this;
-      console.log(data);
       this.loadTemplate('index', function(template) {
         var str = template({});
         self.$body.find('.userfeed').html(str);
         var userNewList = userNews.toJSON().result;
-        for (var i = 0, l = userNewList.length; i < l; i++) {
+        self.scrollBar = self.$('#userfeed-scrollbar').tinyscrollbar();
+        for (var i = 0, l = userNewList.length ; i < l; i++) {
           self.module('feed', function(feed) {
             if (feed) {
               self.$body.find('.userfeed ul').append(feed.transformStr({
                 content: userNewList[i]
               }));
+              self.$('#userfeed-scrollbar').data('plugin_tinyscrollbar').update();
             }
           });
         }
