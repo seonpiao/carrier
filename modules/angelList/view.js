@@ -10,6 +10,7 @@ define(["libs/client/views/base", "models/angelList", "models/userInfo"], functi
     },
     init: function() {
       this.listenTo(angelList, 'sync', this.render.bind(this));
+      this.listenTo(userInfo, 'change:username', this.render.bind(this));
       angelList.fetch();
     },
     render: function() {
@@ -19,7 +20,7 @@ define(["libs/client/views/base", "models/angelList", "models/userInfo"], functi
         $('.angel-list').html(template(data));
         globalUtil.resetScrollbar('scrollbar1', 128, '');
         $('#angelBuying .angelTotal').text(data.result.allcount);
-        if (userInfo.get('usrangel') == 0) {
+        if (userInfo.get('usrangel') == 0 || !userInfo.get('usrangel')) {
           $('#angelBe').css('display', 'inline-block');
         }
       });
