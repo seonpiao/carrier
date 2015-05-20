@@ -5,7 +5,8 @@ define(["libs/client/views/base", "models/popRank"], function(Base, popRank) {
       'click .goddess_ranking_list li': 'changeType'
     },
     init: function() {
-      this.listenTo(popRank, 'sync', this.switchRank.bind(this));
+      this.model = new popRank;
+      this.listenTo(this.model, 'sync', this.switchRank.bind(this));
     },
     show: function() {
       if (this.d) {
@@ -21,7 +22,7 @@ define(["libs/client/views/base", "models/popRank"], function(Base, popRank) {
         });
         self.setElement(self.d._popup);
         self.d.show();
-        popRank.fetch({
+        self.model.fetch({
           data: {
             type: 1
           }
@@ -37,8 +38,8 @@ define(["libs/client/views/base", "models/popRank"], function(Base, popRank) {
     switchRank: function(model) {
       var self = this;
       this.loadTemplate('rank', function(template) {
-        var data = model.toJSON(); 
-        if(data.result != null){
+        var data = model.toJSON();
+        if (data.result != null) {
           var html = template(data);
           self.$('.popularity_1').html(html);
           self.$scrollbar = $('#ladyrankListBar');
@@ -53,7 +54,7 @@ define(["libs/client/views/base", "models/popRank"], function(Base, popRank) {
       var $target = $(e.currentTarget);
       $target.addClass('on');
       var type = $target.attr('data-type');
-      popRank.fetch({
+      this.model.fetch({
         data: {
           type: type
         }
