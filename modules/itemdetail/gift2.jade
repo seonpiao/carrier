@@ -18,8 +18,8 @@
           if popbuf && popbuf !== '0'
             p.green= '人气值：' + popbuf
       .description_wd.white= description
-      .sgift_numline.cl
-        .white.fl.mt_20 已送/活动达成总数
+      .sgift_numline.cl.mt_20
+        .white.fl 已送/活动达成总数
         div.fr
           span.red= globalUtil.commafy(curfunds || 0)
           span.orange= '/' + globalUtil.commafy(targetfunds || price)
