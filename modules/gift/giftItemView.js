@@ -178,21 +178,23 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
         }
 
         //实物集资达成
-        var raisesuc = model.get('result').raisesuc;
-        if (raisesuc) {
-          this.module('errmsg', function(errmsg) {
-            if (errmsg) {
-              if (self.model.get('event') == '101') {
-                errmsg.show(self.model.get('name') + '已集齐，' + window.girlname + '可获得一个真实的' + self.model.get('name') + '，请不要离开屏幕，我们会尽快将您的礼物送到女神身边', {
-                  time: 5000
-                });
-              } else {
-                errmsg.show(self.model.get('name') + '已购买成功，' + window.girlname + '可获得一个真实的' + self.model.get('name') + '，请不要离开屏幕，我们会尽快将您的礼物送到女神身边', {
-                  time: 5000
-                });
+        if (self.model.get('event') == '101' || self.model.get('class') == '7') {
+          var raisesuc = model.get('result').raisesuc;
+          if (raisesuc) {
+            this.module('errmsg', function(errmsg) {
+              if (errmsg) {
+                if (self.model.get('event') == '101') {
+                  errmsg.show(self.model.get('name') + '已集齐，' + window.girlname + '可获得一个真实的' + self.model.get('name') + '，请不要离开屏幕，我们会尽快将您的礼物送到女神身边', {
+                    time: 5000
+                  });
+                } else {
+                  errmsg.show(self.model.get('name') + '已购买成功，' + window.girlname + '可获得一个真实的' + self.model.get('name') + '，请不要离开屏幕，我们会尽快将您的礼物送到女神身边', {
+                    time: 5000
+                  });
+                }
               }
-            }
-          });
+            });
+          }
         }
 
         // this.model.set('curfunds', this.model.get('curfunds') * 1 + 1);
