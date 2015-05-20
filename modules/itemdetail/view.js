@@ -13,6 +13,9 @@ define(["libs/client/views/base"], function(Base) {
       this.hide();
       this.$el.appendTo(this.$body);
     },
+    destroy: function() {
+      this.$el.remove();
+    },
     setModel: function() {
       this.stopListening(this.model, 'change');
       Base.prototype.setModel.apply(this, arguments);

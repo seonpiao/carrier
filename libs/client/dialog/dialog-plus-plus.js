@@ -14,7 +14,7 @@ define(['libs/client/dialog/dialog-plus'], function() {
   dialog.prototype.removeAllChild = function() {
     if (this.child) {
       for (var i = 0, l = len; i < len; i++) {
-        this.child[i].close().remove();
+        this.child[i].close();
       }
     }
   };
@@ -33,7 +33,7 @@ define(['libs/client/dialog/dialog-plus'], function() {
     //         var parent = dialog.get(current.parent);
     //         removeCurrent(parent);
     //       }
-    //       current.close().remove();
+    //       current.close();
     //     }
     //   }
     // };
@@ -45,7 +45,7 @@ define(['libs/client/dialog/dialog-plus'], function() {
       var key = keyList.pop();
       if (key) {
         if (list[key].id != parentId) {
-          list[key].close().remove();
+          list[key].close();
           removeCurrent();
         }
       }

@@ -8,7 +8,7 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
       // 'mouseleave': 'hideSingleList',
       'mouseenter': 'showDetail',
       'mouseleave': 'hideDetail',
-      'click .buy_gift': 'buyGift'
+      'click': 'buyGift'
     },
     errmsgs: {
       '2008011': '账户余额不足'
@@ -20,11 +20,17 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
       options = options || {};
       // this.listenTo(this.model, 'change', this.render.bind(this));
     },
+    destroy: function() {
+      if (this._detail) {
+        this._detail.destroy();
+      }
+    },
     showDetail: function() {
       var self = this;
       var offset = this.$el.offset();
       this.module('itemdetail', 'gift', function(itemdetail) {
         if (itemdetail) {
+          self._detail = itemdetail;
           if (self.model.get('event') == '101') {
             itemdetail.setTemplate('gift2');
           } else {
@@ -92,7 +98,7 @@ define(["libs/client/views/base", "models/buyItem"], function(Base, BuyItem) {
       this.module('sign', function(module) {
         if (module) {
           module.showSignModel('login', function() {
-            var $target = $(e.target);
+            var $target = $(e.currentTarget).find('img');
             var num = $target.attr('data-num');
             var id = $target.attr('data-id');
             var pid = $target.attr('data-pid') || id;
