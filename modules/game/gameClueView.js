@@ -6,7 +6,9 @@ define(["libs/client/views/base"], function(Base) {
       var self = this;
       this.on('afterrender', function(e) {
         self.$scrollbar = $('.clue_scroll');
-        self.$scrollbar.tinyscrollbar();
+        self.$scrollbar.tinyscrollbar({
+          trackSize: 115
+        });
       });
 
     }

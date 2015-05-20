@@ -10,7 +10,9 @@ define(["libs/client/views/base", "models/playGame", "models/userFund", "modules
       this._currOption = '1';
       this.on('afterrender', function(e) {
         this.$scrollbar = $('.vote_scroll');
-        this.$scrollbar.tinyscrollbar();
+        this.$scrollbar.tinyscrollbar({
+          trackSize: 110
+        });
       });
     },
     change: function(e) {
