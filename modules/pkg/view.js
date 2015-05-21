@@ -147,6 +147,7 @@ define(["libs/client/views/base", "models/pkg.js", "models/userVitality", "model
           quickClose: false, //点击空白处快速关闭
           width: 300,
           padding: 0,
+          parent: self.d.id,
           skin: 'pkg-dialog pkg-send'
         });
         self.sendDialog.show();
@@ -225,6 +226,7 @@ define(["libs/client/views/base", "models/pkg.js", "models/userVitality", "model
         content: multiSendStr,
         quickClose: false, //点击空白处快速关闭
         width: 300,
+        parent: self.d.id,
         padding: 0,
         skin: 'pkg-dialog pkg-multisend'
       });
@@ -277,6 +279,7 @@ define(["libs/client/views/base", "models/pkg.js", "models/userVitality", "model
         quickClose: false, //点击空白处快速关闭
         width: 298,
         padding: 0,
+        parent: self.d.id,
         skin: 'pkg-dialog pkg-send'
       });
       self.sendDialog.show();
@@ -366,6 +369,7 @@ define(["libs/client/views/base", "models/pkg.js", "models/userVitality", "model
       var self = this;
       var d = dialog({
         content: '<span class="' + style + '"></span>',
+        parent: self.d.id,
         skin: 'pkg-msg'
       });
       d.show();
