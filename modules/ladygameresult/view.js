@@ -28,7 +28,7 @@ define(["libs/client/views/base", 'models/ladygameresult'], function(Base, ladyg
 			if (!ladygrFlag && initladygrShow) {
 				this.listenTo(ladygameresult, 'sync', this.ladygRshow.bind(this));
 			}
-			ladygameresult.fetch();
+			// ladygameresult.fetch();
 		},
 		ladygamersscrool: null,
 		ladygRshow: function() { //页面直接执行的数据
