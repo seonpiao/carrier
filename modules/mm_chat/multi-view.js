@@ -81,7 +81,12 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       if (this.$el.attr('data-sign') != '0') {
         signUrl = this.base.sign_url;
       }
-      this.channelid = ($target.attr('data-channel') === 'world' ? '0' : this.girlid);
+      this.channelid = this.girlid;
+      if ($target.attr('data-channel') === 'world') {
+        this.channelid = 0;
+      } else if ($target.attr('data-channel') === 'assist') {
+        this.channelid = this.girlid + '_assist';
+      }
       var self = this;
       this.$('.overview').html('');
       if (this.channelid != 0) {
