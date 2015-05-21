@@ -25,12 +25,15 @@ define(["libs/client/views/base", 'models/ladygameresult'], function(Base, ladyg
 			var self = this;
 			var ladygrFlag = getCookie('ladygr-flag');
 			var initladygrShow = self.$el.attr('data-show') === 'init';
+			this.listenTo(ladygameresult, 'sync', this.ladygRshow.bind(this));
 			if (!ladygrFlag && initladygrShow) {
-				this.listenTo(ladygameresult, 'sync', this.ladygRshow.bind(this));
+				// ladygameresult.fetch();
 			}
-			// ladygameresult.fetch();
 		},
 		ladygamersscrool: null,
+		show: function() {
+			ladygameresult.fetch();
+		},
 		ladygRshow: function() { //页面直接执行的数据
 			var self = this;
 			var data = ladygameresult.toJSON();
