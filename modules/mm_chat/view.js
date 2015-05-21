@@ -942,11 +942,19 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       var girlNameList = this.girlNameList;
       if ((girlNameList.indexOf(realName) != -1)) {
         unameClass = 'pinkText';
-        chat_word.nickname = chat_word.nickname.replace(/&lt;vip&gt;/, '&lt;girl&gt;');
+        if (chat_word.nickname.indexOf('&lt;vip&gt;') != -1) {
+          chat_word.nickname = chat_word.nickname.replace(/&lt;vip&gt;/, '&lt;girl&gt;');
+        } else {
+          chat_word.nickname = '&lt;girl&gt;' + chat_word.nickname;
+        }
       }
       if ((this.girlList.indexOf(realName.replace('的小管家', '')) != -1)) {
         unameClass = 'pinkText';
-        chat_word.nickname = chat_word.nickname.replace(/&lt;vip&gt;/, '&lt;assist&gt;');
+        if (chat_word.nickname.indexOf('&lt;vip&gt;') != -1) {
+          chat_word.nickname = chat_word.nickname.replace(/&lt;vip&gt;/, '&lt;assist&gt;');
+        } else {
+          chat_word.nickname = '&lt;assist&gt;' + chat_word.nickname;
+        }
       }
       contentStr += '<span class="' + unameClass + ' chat_nickname chat_icons" onclick="self.showSingle(this)">' + self.transformStr(chat_word.nickname) + '</span>：' + '<span class="chat_word">' + chat_word.content + '</span>'
       return self.chatformEmotions(contentStr)
