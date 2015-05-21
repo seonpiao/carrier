@@ -204,7 +204,8 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
         var paoPop = dialog({
           content: $('#paoPopup').html(),
           quickClose: false, // 点击空白处快速关闭
-          skin: 'paoSkinss ' + paoSkinR
+          skin: 'paoSkinss ' + paoSkinR,
+          coexist: true
         });
         paoPop.show();
         count--;

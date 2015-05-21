@@ -55,22 +55,24 @@ define(["libs/client/views/base", 'models/exchange', 'models/userInfo', 'models/
           module.showSignModel('login', function() {
             self.loadTemplate('index', function(tempalte) {
               var html = tempalte();
-              if (dialog.getCurrent()) {
-                dialog.getCurrent().remove();
-              }
               var exchangeDialog = dialog({
                 title: ' ',
                 content: html,
                 height: 340,
                 quickClose: false, //点击空白处快速关闭
-                skin: 'dialogGames exchange_dialog'
+                skin: 'dialogGames exchange_dialog',
+                onclose: function() {
+                  exchangeDialog.remove();
+                }
               });
-              exchangeDialog.show();
               $('.dialogGames .ui-dialog-title').html('');
               $('.dialogGames .ui-dialog-close').text('');
               var exchangeBtn = $('.exchange-btn');
               exchangeBtn.on('click', function() {
                 self.checkExchange();
+              });
+              setTimeout(function() {
+                exchangeDialog.show();
               });
             });
           });
