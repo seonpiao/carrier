@@ -37,6 +37,9 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
           self.loadHistory(function() {
             self.join();
           });
+          if (userInfo.get('usrnick') === window.talkname || userInfo.get('usrnick') === window.girlname + '的小管家') {
+            self.$('.chat_viewer_tab').append('<li data-channel="assist">小管家</li>');
+          }
         });
       });
       this.listenTo(feedHistory, 'sync', this.showHistory.bind(this));
@@ -52,7 +55,12 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
       if (this.$el.attr('data-sign') != '0') {
         signUrl = this.base.sign_url;
       }
-      this.chid = ($target.attr('data-channel') === 'world' ? '0' : window.girlid);
+      this.chid = window.girlid;
+      if ($target.attr('data-channel') === 'world') {
+        this.chid = 0;
+      } else if ($target.attr('data-channel') === 'assist') {
+        this.chid = window.girlid + '_assist';
+      }
       var self = this;
       comet = new iComet({
         channel: 'girl_' + this.chid,
