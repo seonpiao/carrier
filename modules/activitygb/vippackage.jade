@@ -1,0 +1,25 @@
+#popVippackage.angel_package
+  dl.cl.package_list.mt_40
+    dt.white VIP礼包
+    dd
+      ul.cl.vippacklibg
+        for key,value in result.vip.items
+          li
+            img(src='http://static.mm.wanleyun.com/item/ ' +value+ '/50/' +key)
+      button#vip.draw-package-btn.btn_1y.w60.mt_20.btn_silver 领取
+  dl.cl.package_list.mt_25
+    dt.white 白银天使的礼包
+    dd
+      ul.cl.vippacklibg
+        for key,value in result.gold.items
+          li
+            img(src='http://static.mm.wanleyun.com/item/ ' +value+ '/50/' +key)
+      button#silver.draw-package-btn.btn_1y.w60.mt_20.btn_silver 领取
+  dl.cl.package_list.mt_25
+    dt.yellow 黄金天使的礼包
+    dd
+      ul.cl.vippacklibg
+        for key,value in result.silver.items
+          li
+            img(src='http://static.mm.wanleyun.com/item/ ' +value+ '/50/' +key)
+      button#gold.draw-package-btn.btn_1y.w60.mt_20.btn_gold 领取

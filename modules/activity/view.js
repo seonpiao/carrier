@@ -4,8 +4,8 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
     events: {
       'click #firstRechange': 'handleActivity',
       'click #dayRechange': 'handleActivity',
-      'click #vipBuy': 'handleActivity',
-      'click #actionShow': 'handleActivity',
+      'click #vipBuy': 'openvipBuy',
+      'click #actionShow': 'openActivitygiftb',
       'click #MysteriousTrader': 'handleActivity',
       'click #DailySign': 'handleActivity',
       'click #ConstellAtion': 'openConstellAtion',
@@ -1337,6 +1337,20 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
       this.module('ladygameresult', function(ladygameresult) {
         if (ladygameresult) {
           ladygameresult.ladygRshow();
+        }
+      });
+    },
+    openActivitygiftb: function() {
+      this.module('activitygb', function(activitygb) {
+        if (activitygb) {
+          activitygb.show();
+        }
+      });
+    },
+    openvipBuy:function() {
+      this.module('vipbuy', function(vipbuy) {
+        if (vipbuy) {
+          vipbuy.show();
         }
       });
     }
