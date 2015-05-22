@@ -3,13 +3,13 @@ if window.girlid
     a(href=__global.base.mm + "/square")= "女神广场"
   if locals.girlid == window.girlid || locals.girlid == undefined || locals.girlid == 0
     if locals.girlid == window.girlid
-      li.hide
+      li
         a.cur(href=__global.base.mm + "/room/" + locals.girlid) 我的女神
     else  
       li
         a.cur(href=__global.base.mm + "/room/" + window.girlid)= window.girlname + '的房间'
   else
-    li.hide
+    li
       a(href=__global.base.mm + "/room/" + locals.girlid) 我的女神
     li 
       a.cur(href=__global.base.mm + "/room/" + window.girlid)= window.girlname + '的房间'
@@ -17,7 +17,7 @@ else
   li
     a(class=((window.page === 'square' || window.page === 'vod') ? 'cur' : ''),href=__global.base.mm + "/square")= "女神广场"
     if locals.girlid
-      li.hide
+      li
         a(href=__global.base.mm + "/room/" + locals.girlid) 我的女神
 li
   a(href=__global.base.mm + "/app",class=(window.page === 'app' ? 'cur' : ''))= "App下载"

@@ -1336,7 +1336,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
     openLadyGameResult: function() {
       this.module('ladygameresult', function(ladygameresult) {
         if (ladygameresult) {
-          ladygameresult.ladygRshow();
+          ladygameresult.show();
         }
       });
     }

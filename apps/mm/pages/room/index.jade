@@ -4,7 +4,7 @@ block append title
   title= girl.name + '的房间-女神的房间-玩乐云'
 
 block append stylesheet
-  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/room.68dda7fe09a91704.css', rel='stylesheet', type='text/css')
+  link(href='http://static.mm.' + __env.WLY_DOMAIN + '/dist/css/mm/room.55731932dc9b085c.css', rel='stylesheet', type='text/css')
   style(type='text/css').
     .paoMsg div {
       position: absolute;
@@ -102,7 +102,7 @@ block append body
     ul.active_box.fr.ml_10.active_box_right(data-module='activity')
       li
         #ladyNotice.ladynotice_1
-      li
+      li.hide
         #ladygameresult.ladygamereshow(data-module='ladygameresult')
       li
         #actionShow.active_2
@@ -207,5 +207,5 @@ block append body
   include ../../../../modules/mm_footer/index
 
 block append footjs
-  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/room.min.75581ef0907da899.js')
+  script(src='http://static.mm.' + __env.WLY_DOMAIN + '/dist/js/mm/room.min.79041c6daa1a8b36.js')
   include ../../../../modules/mm_feedback/index

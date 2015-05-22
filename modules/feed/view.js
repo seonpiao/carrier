@@ -176,7 +176,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
       $('.followerImg').attr('src', window.resUrl + 'head/' + userid + '/40');
       angel && angel != 0 ? $('.followerImg').addClass('followerPicBg' + angel) : $('.followerImg').removeClass('followerPicBg1').removeClass('followerPicBg2');
 
-      if (itemid == '1000000432') {
+      if (itemid == '1000000658') {
         this.module('flash', function(module) {
           if (module) {
             module.show('环游世界');
@@ -192,7 +192,7 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
         });
       }
 
-      if (itemid == '1000000436') {
+      if (itemid == '1000000660') {
         this.module('flash', function(module) {
           if (module) {
             module.show('海洋之心');
@@ -204,7 +204,8 @@ define(["libs/client/views/base", "libs/client/scrollbar/jquery.tinyscrollbar", 
         var paoPop = dialog({
           content: $('#paoPopup').html(),
           quickClose: false, // 点击空白处快速关闭
-          skin: 'paoSkinss ' + paoSkinR
+          skin: 'paoSkinss ' + paoSkinR,
+          coexist: true
         });
         paoPop.show();
         count--;
