@@ -10,10 +10,14 @@ define([ "libs/client/views/base",'models/vipbuy','models/userInfo' ], function(
 	        uservip: usrvip,
 	        username: userIfdata.username
 	      };
-	      if (girlid != 0) {
-	        data.girlid = girlid;
-	      }
-	      vipbuy.fetch();
+	      // if (girlid != 0) {
+	      //   data.girlid = girlid;
+	      // }
+	      vipbuy.fetch({
+          data:{
+            girlid:girlid
+          }
+        });
 	      vipbuy.on('sync', function() {
 	      	var datavipb = vipbuy.toJSON();
 		      self.loadTemplate('index', function(template) {
