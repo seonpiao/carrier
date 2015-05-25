@@ -10,7 +10,7 @@
         .close_introduce.w200.cl
           block img
           .fl.mt_15.ml_10
-            if happybuf
+            if happybuf && lovebuf !== '0'
               p.green 幸福度
                 span(class='expression_' + happybuf)
             if lovebuf && lovebuf !== '0'

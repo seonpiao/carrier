@@ -5,7 +5,7 @@ define(["libs/client/views/base", "models/userInfo", "models/userNews"], functio
       var self = this;
       self.listenTo(userNews, 'sync', self.render.bind(self));
       this.listenTo(userInfo, 'change:username', function() {
-        if (window.talkname == userInfo.toJSON().username) {
+        if (window.talkname == userInfo.toJSON().username || userInfo.toJSON().username == window.girlname + '的小管家') {
           userNews.fetch();
           setInterval(function() {
             userNews.fetch();
@@ -20,7 +20,7 @@ define(["libs/client/views/base", "models/userInfo", "models/userNews"], functio
         self.$body.find('.userfeed').html(str);
         var userNewList = userNews.toJSON().result;
         self.scrollBar = self.$('#userfeed-scrollbar').tinyscrollbar();
-        for (var i = 0, l = userNewList.length ; i < l; i++) {
+        for (var i = 0, l = userNewList.length; i < l; i++) {
           self.module('feed', function(feed) {
             if (feed) {
               self.$body.find('.userfeed ul').append(feed.transformStr({
