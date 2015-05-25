@@ -14,6 +14,7 @@ define([ "libs/client/views/base",'models/vippackage' ], function(Base,vippackag
 
         });
         self.setElement(self.d._popup);
+        self.open_popExchangecode();
         self.d.show();
         globalUtil.resetScrollbar('icon_img_bar', 317);
         $('#icon_img_bar li').click(function(e) {
@@ -25,7 +26,7 @@ define([ "libs/client/views/base",'models/vippackage' ], function(Base,vippackag
 	        }
 	        eval('self.open_' + item + '(this)');
       	});
-      	self.open_popExchangecode();
+      	
       });
     },
     // 兑换码内容加载
