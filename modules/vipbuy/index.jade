@@ -36,5 +36,7 @@
 					a#vipbtnGetPackage.fl.btn_grayh30.w100(href='javascript:void(0);') 领取VIP礼包
 				else
 					a#vipbtnGetPackage.fl.btn_5b.w100(href='javascript:void(0);') 领取VIP礼包
-				if result.usrvip != 1
+				if result.usrvip === 1
+					a.btn_5y.w100.ml_70.fl.vip-call-exchange-btn(href='javascript:;') VIP续费
+				else
 					a.btn_5y.w100.ml_70.fl.vip-call-exchange-btn(href='javascript:;') 购买VIP

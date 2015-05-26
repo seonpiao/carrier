@@ -62,6 +62,7 @@ define([ "libs/client/views/base",'models/vipbuy','models/userInfo' ], function(
     // 备注：1.已领取，2.未充值，3.已充值
     //点击蓝色按钮按钮变已领取
     getPackageVip: function(obj) {
+      var self = this;
       if ($(obj).hasClass("btn_grayh30")) {
         return;
       } else {
@@ -80,6 +81,8 @@ define([ "libs/client/views/base",'models/vipbuy','models/userInfo' ], function(
                 $("#vipbtnGetPackage").text("已领取").addClass("btn_grayh30");
                 globalUtil.pkgNew();
                 globalUtil.lightpkgNew();
+              }else{
+                self.showErrorDialog("领取失败，稍后重试！")
               }
             }
           }
@@ -90,6 +93,13 @@ define([ "libs/client/views/base",'models/vipbuy','models/userInfo' ], function(
       this.module('exchange', function(exchange) {
         if (exchange) {
           exchange.showExchangeDialog();
+        }
+      });
+    },
+    showErrorDialog: function(msg) {
+      this.module('errmsg', function(module) {
+        if (module) {
+          module.show(msg);
         }
       });
     }

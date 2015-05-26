@@ -120,7 +120,7 @@ define([ "libs/client/views/base",'models/vippackage' ], function(Base,vippackag
                 self.showBuyDialog();
               }
             } else {
-              alert(result.error_code + result.error_msg);
+              self.showErrorDialog(result.error_code + result.error_msg);
             }
           }
         });
@@ -140,7 +140,14 @@ define([ "libs/client/views/base",'models/vippackage' ], function(Base,vippackag
       d.show();
       setTimeout(function() {
         d.close().remove();
-      }, 1500);
+      }, 2000);
+    },
+    showErrorDialog: function(msg) {
+      this.module('errmsg', function(module) {
+        if (module) {
+          module.show(msg);
+        }
+      });
     }
   });
   return View;
