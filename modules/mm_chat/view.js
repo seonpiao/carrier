@@ -37,7 +37,7 @@ define(["libs/client/views/base", "libs/client/chat/icomet", "libs/client/chat/j
           self.loadHistory(function() {
             self.join();
           });
-          if (userInfo.get('usrnick') === window.talkname || userInfo.get('usrnick') === window.girlname + '的小管家') {
+          if (userInfo.get('usrnick') && (userInfo.get('usrnick') === window.talkname || userInfo.get('usrnick') === window.girlname + '的小管家')) {
             self.$('.chat_viewer_tab').append('<li data-channel="assist">小管家</li>');
           }
         });
