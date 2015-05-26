@@ -11,7 +11,9 @@ define([ "libs/client/views/base",'models/vippackage' ], function(Base,vippackag
           title: ' ',
           content: template({}),
           skin: 'dialogGames acitive_dialogbg',
-
+          onclose: function() {
+            self.d.close().remove();
+          }
         });
         self.setElement(self.d._popup);
         self.open_popExchangecode();

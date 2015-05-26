@@ -25,6 +25,9 @@ define([ "libs/client/views/base",'models/vipbuy','models/userInfo' ], function(
 		          title: ' ',
 		          content: template(datavipb),
 		          skin: 'dialogGames acitive_dialogbg',
+              onclose: function() {
+                self.d.close().remove();
+              }
 		        });
 		        self.setElement(self.d._popup);
 		        self.d.show();
