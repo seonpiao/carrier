@@ -1,0 +1,42 @@
+#popVipBuy.vipBuy_show.vipbuy
+	.vipBuy_title
+		span
+	.girls_con.cl.pr
+		.grils_img.fl
+			img(src='http://static.mm.wanleyun.com/girl/'+ result.girlid +'/154x356')
+		.girls_rightcon.fl
+			.mt_15.cl
+				p.red.tr= 'VIP期限：' + result.starttime + '至' + result.endtime
+			.girls_vipcon.cl.mt_10.pr
+				.cl
+					.vip_welfare.fl
+						p.yellow_2.f14.ml_10
+							if result.usrvip == 1
+								尊敬的VIP：
+							else
+								您还不是VIP：
+							span.yellow= result.username
+						p.yellow_1.mt_10.ml_10 您可以享受以下至尊福利：
+						ul.cl
+							for value,key in result.vip.privilege
+								li
+									a(href='javascript:void(0);',title='' + value.name + '')
+										img(src='' + value.picurl + '')
+									p(class="quality" + value.quality,title='' + value.name + '')= value.name
+					img.fl(src='http://static.mm.wanleyun.cn/images/prop_icon/blue_drill_img.png')
+				.tl.w300.viptq
+					p.yellow_1 vip特权：
+					.yellow_2.vip_tqword.mt_5.f12
+						for value,key in result.vip.reward
+							span= value
+			.vip_btnimg.mt_15.cl.pl50
+				if result.vipStatus == 1
+					a#vipbtnGetPackage.fl.btn_grayh30.w100(href='javascript:void(0);') 已领取
+				else if result.vipStatus == 2
+					a#vipbtnGetPackage.fl.btn_grayh30.w100(href='javascript:void(0);') 领取VIP礼包
+				else
+					a#vipbtnGetPackage.fl.btn_5b.w100(href='javascript:void(0);') 领取VIP礼包
+				if result.usrvip === 1
+					a.btn_5y.w100.ml_70.fl.vip-call-exchange-btn(href='javascript:;') VIP续费
+				else
+					a.btn_5y.w100.ml_70.fl.vip-call-exchange-btn(href='javascript:;') 购买VIP
