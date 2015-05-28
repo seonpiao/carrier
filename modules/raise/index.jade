@@ -9,16 +9,16 @@
       .no_lock_boxcon.pr.mt_5
         .close_introduce.w200.cl
           block img
-          .fl.mt_15.ml_10
-            if happybuf && lovebuf !== '0'
-              p.green 幸福度
-                span(class='expression_' + happybuf)
-            if lovebuf && lovebuf !== '0'
-              p.green= '亲密度：' + lovebuf
-            if popbuf && popbuf !== '0'
-              p.green= '人气值：' + popbuf
+          .fl.ml_10
+            block description
           block chengbao_wd
-        block description
+        //- if happybuf && lovebuf !== '0'
+        //-   p.green 幸福度
+        //-     span(class='expression_' + happybuf)
+        if lovebuf && lovebuf !== '0'
+          p.green= '亲密度：' + lovebuf
+        //- if popbuf && popbuf !== '0'
+        //-   p.green= '人气值：' + popbuf
         if toquality
           block priceDesc
           #Help_goods_showbox.goods_showbox.w200.hide
