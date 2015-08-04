@@ -87,35 +87,9 @@ module.exports = function(grunt) {
             jaderuntime: "libs/client/runtime"
           },
           modules: [{
-            name: "apps/api/common"
-          }, {
-            name: "apps/m/common"
-          }, {
             name: "apps/manage/common"
           }, {
             name: "apps/api/pages/data/main"
-          }, {
-            name: "apps/api/pages/finance/main"
-          }, {
-            name: "apps/api/pages/resource/main"
-          }, {
-            name: "apps/api/pages/sign/main"
-          }, {
-            name: "apps/api/pages/sos/main"
-          }, {
-            name: "apps/api/pages/user/main"
-          }, {
-            name: "apps/api/pages/weixin/main"
-          }, {
-            name: "apps/m/pages/kangbao_profile/main"
-          }, {
-            name: "apps/m/pages/kangbao_show/main"
-          }, {
-            name: "apps/m/pages/m_article/main"
-          }, {
-            name: "apps/m/pages/m_intro/main"
-          }, {
-            name: "apps/m/pages/m_signup/main"
           }, {
             name: "apps/manage/pages/api/main"
           }, {
