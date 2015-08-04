@@ -14,7 +14,7 @@ code_prjname="firstre"
 code_git="git@git.dev.bylh.tv:bfe/$code_prjname.git"
 
 nginx_site=(manage m api)
-nginx_logpath="/var/log/nginx/firstre"
+nginx_logpath="/var/log/nginx/$code_prjname"
 
 node_installed="yes"
 hash node 2>/dev/null || node_installed="no"
@@ -66,7 +66,13 @@ if [ ! -d "$code_prjname" ]; then
 fi
 cd $code_prjname
 npm install
-npm install -g pm2
+
+pm2_installed="yes"
+hash pm2 2>/dev/null || pm2_installed="no"
+
+if [ "$pm2_installed" = "no" ]; then
+  npm install -g pm2
+fi
 
 nginx_installed="yes"
 hash nginx 2>/dev/null || nginx_installed="no"
@@ -77,10 +83,10 @@ fi
 
 cd $code_path/$code_prjname
 cp install/nginx.conf /etc/nginx/nginx.conf <<< "y"
-cp install/$code_prjname.conf /etc/nginx/conf.d/$code_prjname.conf <<< "y"
+cp install/site.conf /etc/nginx/conf.d/$code_prjname.conf <<< "y"
 nginx_site_count=${#nginx_site[@]}
 for((i=0;i<nginx_site_count;i++));do
-  tmp_path="$nginx_logpath/${code_prjname}_${nginx_site[i]}"
+  tmp_path="$nginx_logpath/${nginx_site[i]}"
   if [ ! -d "$tmp_path" ]; then
     mkdir -p $tmp_path
   fi
