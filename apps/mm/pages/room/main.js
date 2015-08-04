@@ -1,1 +1,0 @@
-require(["apps/mm/pages/room/modules", "apps/mm/pages/room/timers"], function() {});

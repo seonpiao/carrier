@@ -1,6 +1,8 @@
 define(function() {
   var Model = Backbone.Model.extend({
     idAttribute: '_id',
+    db: 'nyouhui',
+    prefix: '/api',
     initialize: function(options) {
       options = options || {};
       if (options.module) {
@@ -8,9 +10,37 @@ define(function() {
       }
       this.init.apply(this, arguments);
     },
+    fetch: function() {
+      this.method = 'read';
+      return Backbone.Model.prototype.fetch.apply(this, arguments);
+    },
+    save: function(key, val, options) {
+      options = options || {};
+      this.method = this.isNew() ? 'create' : (options.patch ? 'patch' : 'update');
+      return Backbone.Model.prototype.save.apply(this, arguments);
+    },
+    destroy: function() {
+      this.method = 'delete';
+      return Backbone.Model.prototype.destroy.apply(this, arguments);
+    },
+    url: function() {
+      var url = '';
+      if (this.customUrl) {
+        url = this.customUrl;
+      } else {
+        url = this.prefix + '/' + this.db + '/' + this.collection;
+      }
+      if (this.method !== 'create') {
+        url = url + '/' + (this.id ? this.id : '');
+      }
+      return url;
+    },
     parse: function(resp) {
-      var data = resp;
-      return data;
+      if (resp.code === 200 || resp.code === 0) {
+        return resp.result;
+      }
+      this.error = resp;
+      return {};
     },
     cache: function(options, callback) {
       if (typeof options === 'function') {

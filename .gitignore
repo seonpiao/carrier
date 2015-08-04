@@ -2,5 +2,5 @@ node_modules
 dist
 temp
 .DS_Store
-**/.DS_Store
-.DS_Store?
+dump.rdb
+upload_tmp

@@ -1,0 +1,68 @@
+mixin drawSubMenu(menus)
+  ul.treeview-menu
+    each item in menus
+      li(class=(item.active ? 'active' : ''))
+        a(href=(item.leaf ? item.url : 'javascript:;'))
+          if !item.leaf
+            i.fa.fa-circle-o
+          else
+            i.fa.fa-hand-o-up
+          span= item.name
+          if !item.leaf
+            i.fa.fa-angle-left.pull-right
+        if !item.leaf
+          +drawSubMenu(item.childs)
+
+
+mixin drawMenu(menus)
+  each item in menus
+    li(class="treeview" + (item.active ? ' active' : ''))
+      a(href=item.url)
+        if !item.leaf
+          i.fa.fa-circle-o
+        else
+          i.fa.fa-hand-o-up
+        span= item.name
+        if !item.leaf
+          i.fa.fa-angle-left.pull-right
+      if !item.leaf
+        +drawSubMenu(item.childs)
+
+// sidebar menu: : style can be found in sidebar.less
+ul.sidebar-menu
+  //- li.header MAIN NAVIGATION
+  - var menus = __global.menu;
+  - var menuTree = {name:'root',childs:{}};
+  - var currNode = menuTree;
+  - var privilege = JSON.parse(__global.user.privilege || 'null');
+  each item in menus
+    - var hasPermission = true;
+    - var crud = item.url.match(/\/crud\/([^\/]+)\/([^\/]+)/);
+    - var db,collection;
+    if crud
+      - db = crud[1];
+      - collection = crud[2];
+    if db && collection && privilege && (!privilege[db][collection] || !privilege[db][collection].read)
+      - hasPermission = false
+    if item.url.match(/^\/schema$/) && __global.user.username != 'root'
+      - hasPermission = false
+    if hasPermission
+      - item.leaf = true;
+      - var menuPath = item.path.replace(/^\/*/,'').replace(/\/*$/,'');
+      - var menuPathArr = menuPath.split('/');
+      each menuName in menuPathArr
+        if menuName
+          if !currNode.childs[menuName]
+            - currNode.childs[menuName] = {name:menuName,childs:{}};
+          - currNode.childs[menuName].parent = currNode;
+          - currNode = currNode.childs[menuName];
+      - currNode.childs[item.name] = item;
+      - item.parent = currNode;
+      - currNode = menuTree;
+      - var pattern = new RegExp(item.url.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1") + '(?:\\/|$)');
+      if path.match(pattern)
+        - var activeNode = item
+        while activeNode.name !== 'root'
+          - activeNode.active = true;
+          - activeNode = activeNode.parent;
+  +drawMenu(menuTree.childs)

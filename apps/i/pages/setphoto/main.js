@@ -1,1 +1,0 @@
-require([ "apps/i/pages/setphoto/modules" ], function() {});

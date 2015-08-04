@@ -1,1 +1,0 @@
-require(["apps/mm/pages/404/modules"], function() {});

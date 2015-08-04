@@ -1,44 +1,6 @@
 define(function() {
-  Backbone.sync = function(method, model, options) {
-    var params = {
-      type: 'GET',
-      dataType: 'jsonp',
-      jsonp: 'jsonpCallback'
-    };
-
-    options || (options = {});
-
-    var action = model.action;
-    var baseUrl = model.baseUrl || 'http://api.mm.' + window.domain + '/';
-
-    if (options.action) {
-      action = options.action;
-    }
-
-    if (model.path) {
-      params.url = model.path;
-    } else {
-      params.url = baseUrl + model.module + '/' + action
-    }
-
-    _.extend(params, options)
-
-    if (!options.data && model && (method === 'create' || method === 'update' || method === 'delete')) {
-      params.data = model.toJSON();
-      params.type = 'POST';
-    }
-
-    if (!('cache' in params)) {
-      params.cache = false;
-    }
-
-    model.filter = params.data;
-    var xhr = Backbone.ajax(params);
-    model.trigger('request', model, xhr, params);
-    return xhr;
-  };
   var View = Backbone.View.extend({
-    __base: 'http://static.mm.' + window.domain + '/dist/template/',
+    __base: 'http://' + __global.base['static'] + '/dist/template/',
     _templates: {},
     // __base: '/jsdev/dist/template/modules/',
     loadTemplate: function(template, callback) {
@@ -94,7 +56,7 @@ define(function() {
       View.views.push(this);
       self.init.apply(self, arguments);
       if (this.model) {
-        this.model.on('change', this.__triggrtChange.bind(this));
+        this.model.on('change', this.__triggerChange.bind(this));
       }
       setTimeout(function() {
         self.$el.trigger({
@@ -123,18 +85,32 @@ define(function() {
         $module = $('[data-module=' + name + ']');
       } else if (typeof instanceName === 'string') {
         $module = $('[data-module-' + name + '=' + instanceName + ']');
+      } else {
+        $module = $('[data-module=' + name + ']');
       }
       if ($module.length > 0) {
         var module = $module.data('view');
         if (module) {
-          callback(module);
+          if (callback) {
+            callback(module);
+          } else {
+            return module;
+          }
         } else {
-          $module.one('viewbind', function() {
-            callback($module.data('view'));
-          });
+          if (callback) {
+            $module.one('viewbind', function() {
+              callback($module.data('view'));
+            });
+          } else {
+            return null;
+          }
         }
       } else {
-        callback(null);
+        if (callback) {
+          callback(null);
+        } else {
+          return null;
+        }
       }
     },
     renderTo: function(selector) {
@@ -177,7 +153,7 @@ define(function() {
       this.trigger('remove');
       return this;
     },
-    __triggrtChange: function() {
+    __triggerChange: function() {
       var changed = this.model.changed;
       var self = this;
       _.each(changed, function(val, key) {

@@ -1,0 +1,14 @@
+- var data = result[db][collection];
+.beima_intro_content
+  .line
+  h1= data.headline
+  .abstract= data.abstract
+  - var blocks = data.content;
+  each block in blocks
+    - try{block = JSON.parse(block)}catch(e){}
+    .block
+      h3= block.title
+      .content!= block.value
+  .mt_50
+    include ../beima_bottom_qrcode/index
+  .line.mt_30

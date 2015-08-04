@@ -4,5 +4,7 @@ module.exports = function*() {
   this.body = null;
   this.maxTry = 3;
   this.tried = 0;
+  this.status = 404;
   this.global = {};
+  this.parts = null;
 }

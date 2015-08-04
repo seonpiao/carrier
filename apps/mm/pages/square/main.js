@@ -1,1 +1,0 @@
-require(["apps/mm/pages/square/modules"], function() {});

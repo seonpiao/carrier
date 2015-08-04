@@ -1,53 +1,35 @@
 #!/bin/bash
 
-test=(121.201.7.134)
-production=(123.56.152.17)
-wlycn=(182.92.215.90)
-staticdir="../web/code/static/"
-staticurl="http://online.static.mm.wanleyun.com/"
-server_host="182.92.215.90"
-server_path="/data/wwwroot/wanleyun/static/dist"
-upload_dirs=(js css template)
+config=$1
 
-users=(master wujunlian seon feng staging yange manager)
+GetKey(){    
+  section=$(echo $1 | cut -d '.' -f 1)    
+  key=$(echo $1 | cut -d '.' -f 2)    
+  sed -n "/\[$section\]/,/\[.*\]/{    
+   /^\[.*\]/d
+   /^[ \t]*$/d
+   /^$/d
+   /^#.*$/d
+   s/^[ \t]*$key[ \t]*=[ \t]*\(.*\)[ \t]*/\1/p
+  }" $config
+}
 
-env=$1
-user=$2
-branch=$3
-
-if [ "$3" = "" ]; then
-  branch=$user
-fi
-
-user=($(echo $2 | sed s/\[0-9\]\$//))
-
-if [ "$env" = "production" ]; then
-  hosts=(${production[@]})
-elif [ "$env" = "test" ]; then
-  hosts=(${test[@]})
-  for loop in ${users[@]}
-  do
-    if [[ $loop = $user ]]
-    then
-      userFlag=true
-    fi
-  done
-
-  if [[ $userFlag = true ]]; then
-    echo "${user}:" > /dev/null
-  else
-    echo "请写出你的美名，wujunlian or seon or feng"
-    exit
-  fi
-
-else
-  echo '请指定正确的上线环境，test or production'
-  exit
-fi
+hosts=($(GetKey "server.node"))
+static_host=$(GetKey "server.static")
+static_online_host="online.$static_host"
+static_check_url="http://$static_online_host/"
+server_path=$(GetKey "path.dist")
+server_code=$(GetKey "path.code")
+pm2_pname=$(GetKey "pm2.index")
+upload_dirs=($(GetKey "path.upload"))
+npm_path=$(GetKey "path.npm")
+pm2_path=$(GetKey "path.pm2")
+git_remote=$(GetKey "git.remote")
+git_branch=$(GetKey "git.branch")
 
 num=${#hosts[@]}
 
-gitmergeconfilict=($(grep ">>>>>>>" ./ -r | grep -v deploy.sh | awk -F ':' '{print $1}' | sed  's/\/\{1,\}/\//g'))
+gitmergeconfilict=($(grep ">>>>>>>" ./ -r --exclude-dir=node_modules | grep -v deploy.sh | awk -F ':' '{print $1}' | sed  's/\/\{1,\}/\//g'))
 gitmergeconfilictcount=${#gitmergeconfilict[@]}
 
 if [ $gitmergeconfilictcount -gt 0 ]; then
@@ -75,20 +57,15 @@ if [ $gitaheadcount -gt 0 ]; then
 fi
 
 if [ "$env" = "test" ]; then
-  if [ "$(git status |awk 'NR==1 {print $3}')x" != "${branch}x" ]; then
-    echo "Please enter checkout ${branch}"
+  if [ "$(git status |awk 'NR==1 {print $3}')x" != "${git_branch}x" ]; then
+    echo "Please enter checkout ${git_branch}"
     exit
   fi
 fi
 # if [ "$env" = "production" ]; then
 #   choice="n"
+read -p "Deploy branch(${git_branch}) to ${hosts[*]}: (y/n)" choice
 # fi
-if [ "$env" = "production" ]; then
-  read -p "Deploy branch(${branch}) to ${hosts[*]}: (y/n)" choice
-else
-  echo "Deploy branch(${branch}) to ${hosts[*]}"
-  choice="y"
-fi
 
 if [ "$choice" = "y" ]; then
 
@@ -105,7 +82,8 @@ if [ "$choice" = "y" ]; then
   else
     git commit -m online 
   fi
-  git push
+
+  git push $git_remote $git_branch
   
   #备份dist到temp，后续还需要还原回来
   cp -rf dist/ temp/
@@ -115,9 +93,12 @@ if [ "$choice" = "y" ]; then
   str=""
   for((i=0;i<dircount;i++));do
     #删除不带md5值的文件，这些文件不需要提交到服务器上
-    find dist/${upload_dirs[i]}/ -name "*.*"  | grep -v '\.\w\{16\}\.' | sed  's/\/\{1,\}/\//g' | xargs rm -f
+    if [ "${upload_dirs[i]}" != "images" ]; then
+      find dist/${upload_dirs[i]}/ -name "*.*"  | grep -v '\.\w\{16\}\.' | sed  's/\/\{1,\}/\//g' | xargs rm -f
+    fi
     #copy到static server
-    scp -r dist/${upload_dirs[i]}/ root@$server_host:$server_path
+    ssh root@$static_online_host "mkdir -p $server_path/${upload_dirs[i]}"
+    scp -r dist/${upload_dirs[i]}/* root@$static_online_host:$server_path/${upload_dirs[i]}
     str="${str} ./dist/${upload_dirs[i]}"
   done
 
@@ -128,12 +109,12 @@ if [ "$choice" = "y" ]; then
   files=($(find ${str} -name "*.*"  | grep '\.\w\{16\}\.' | awk -F '^./' '{print $2}' | sed 's/\/\//\//g'))
   filescount=${#files[@]}
   for((i=0;i<filescount;i++));do
-    staticfileurl="${staticurl}${files[i]}"
+    static_file_url="${static_check_url}${files[i]}"
     httpcode=""
     while [ "$httpcode" != "200" ]
     do
-      httpcode=`curl -I -o /dev/null -s -w %{http_code} -H 'Host:static.mm.wanleyun.com' ${staticfileurl}`
-      echo "$httpcode - ${staticfileurl}"
+      httpcode=`curl -I -o /dev/null -s -w %{http_code} -H Host:${static_host} ${static_file_url}`
+      echo "$httpcode - ${static_file_url}"
       wait
       if [ "$httpcode" != "200" ]; then
         sleep 10s
@@ -144,10 +125,6 @@ if [ "$choice" = "y" ]; then
   #更新Node服务
   for((i=0;i<num;i++));do
     echo deploy to ${hosts[i]}
-    if [ "$env" = "production" ]; then
-      ssh root@${hosts[i]} "dsh -M -r ssh -g node -q -- 'cd /root/code/carrier && git pull && /usr/local/node/bin/pm2 reload carrier'"
-    else
-      ssh root@${hosts[i]} "cd /root/code/$2 && git fetch && git checkout ${branch} && git pull && /usr/local/bin/pm2 reload $2"
-    fi
+    ssh root@${hosts[i]} "cd ${server_code} && git pull && $npm_path install && $pm2_path reload ${pm2_pname}"
   done
 fi

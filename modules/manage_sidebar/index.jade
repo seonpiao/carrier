@@ -1,0 +1,23 @@
+// Left side column. contains the logo and sidebar
+aside.main-sidebar
+  // sidebar: style can be found in sidebar.less
+  section.sidebar
+    // Sidebar user panel
+    .user-panel
+      .pull-left.image
+        img.img-circle(src='/img/user2-160x160.jpg', alt='User Image')
+      .pull-left.info
+        p Alexander Pierce
+        a(href='#')
+          i.fa.fa-circle.text-success
+          |  Online
+    // search form
+    form.sidebar-form(action='#', method='get')
+      .input-group
+        input.form-control(type='text', name='q', placeholder='Search...')
+        span.input-group-btn
+          button#search-btn.btn.btn-flat(type='submit', name='search')
+            i.fa.fa-search
+    // /.search form
+    include ../manage_menu/index
+  // /.sidebar
